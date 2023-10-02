@@ -1,0 +1,33 @@
+{
+  "name": "enchufando-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^9.0.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/eslint-parser": "^7.22.15",
+    "autoprefixer": "latest",
+    "eslint": "^8.50.0",
+    "eslint-config-next": "latest",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-config-standard-react": "^13.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-standard": "^5.0.0",
+    "postcss": "latest",
+    "tailwindcss": "latest"
+  }
+}
