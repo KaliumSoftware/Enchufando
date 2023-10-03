@@ -11,6 +11,7 @@
   "dependencies": {
     "eslint-config-prettier": "^9.0.0",
     "next": "latest",
+    "pg": "^8.11.3",
     "react": "latest",
     "react-dom": "latest"
   },
