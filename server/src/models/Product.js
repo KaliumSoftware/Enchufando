@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 
-export function defineSpellsModel(sequelize) {
+export function defineProductModel(sequelize) {
   class Product extends Model {
     static associate(models) {
       // Definir asociaciones aquí

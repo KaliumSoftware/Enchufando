@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize'
+import { DataTypes, Model } from 'sequelize';
 
 export function defineOrderModel(sequelize) {
   class Order extends Model {
@@ -6,11 +6,11 @@ export function defineOrderModel(sequelize) {
       Order.belongsTo(models.User, {
         through: 'OrderUser',
         timestamps: false
-      })
+      });
       Order.belongsToMany(models.Product, {
         through: 'OrderProduct',
         timestamps: false
-      })
+      });
     }
   }
 
@@ -41,6 +41,6 @@ export function defineOrderModel(sequelize) {
       sequelize,
       modelName: 'Order'
     }
-  )
-  return Order
+  );
+  return Order;
 }
