@@ -5,7 +5,7 @@
     "node": true
   },
   "parser": "@babel/eslint-parser",
-  "extends": ["standard", "standard-react", "next", "prettier"],
+  "extends": ["next/babel", "next/core-web-vitals"],
   "rules": {
     "react/react-in-jsx-scope": "off"
   }
