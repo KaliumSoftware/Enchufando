@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "dotenv": "^16.3.1",
+    "eslint-config-prettier": "^9.0.0",
     "sequelize": "^6.33.0"
   },
   "devDependencies": {
