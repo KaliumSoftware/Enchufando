@@ -6,12 +6,14 @@ package-lock.json
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 
 # next.js
 /.next/
 /out/
+next.config.js
 
 # production
 /build
