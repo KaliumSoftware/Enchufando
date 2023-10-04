@@ -11,6 +11,7 @@
     "con": "concurrently \"npm run dev-server\" \"npm run dev\""
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.2",
     "@nextui-org/react": "^2.1.13",
     "body-parser": "^1.20.2",

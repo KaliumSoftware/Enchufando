@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
 import './globals.css';
-import NavBar from '@/components/NavBar';
 import { Providers } from './providers';
+import { NavbarWithMegaMenu } from '@/components/nav-bars/ResponsiveNavBar';
 
 export const metadata = {
   title: 'Enchufando',
@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <html lang='es'>
       <body>
         <Providers>
-          <NavBar />
+          <NavbarWithMegaMenu />
           {children}
           <Footer />
         </Providers>
