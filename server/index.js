@@ -21,7 +21,7 @@ app.prepare().then(() => {
   sequelize.sync({ force: false }).then(() => {
     server.listen(PORT, (err) => {
       if (err) throw err;
-      console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+      console.log(`Server listening on port: ${PORT}`);
     });
   });
 });
