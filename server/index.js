@@ -9,10 +9,9 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  // Aquí puedes agregar tus rutas y lógica de Express
   server.use('/', router);
 
-  // Configura Next.js para manejar todas las demás rutas
+  // Next.Js configuration
   server.all('*', (req, res) => {
     return handle(req, res);
   });

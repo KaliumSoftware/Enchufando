@@ -4,8 +4,8 @@ const defineProductModel = require('./models/Product.js');
 const defineUserModel = require('./models/User.js');
 require('dotenv').config();
 
-// Crear instancia de Sequelize
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+// Instance of Sequelize
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
   {
@@ -14,10 +14,10 @@ const sequelize = new Sequelize(
   }
 );
 
-// Definir modelos
+// Define models
 const User = defineUserModel(sequelize);
 const Order = defineOrderModel(sequelize);
 const Product = defineProductModel(sequelize);
 
-// Exportar modelos y conexión
+// Export models and connection
 module.exports = { User, Order, Product, sequelize };
