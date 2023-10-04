@@ -1,5 +1,4 @@
 export async function GET() {
-  console.log('intentando');
   const res = await fetch(
     'https://jsonplaceholder.typicode.com/posts/1'
   );
