@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const morgan = require('morgan');
 const { sequelize } = require('./src/db');
 const router = require('./src/router/index');
 const dev = process.env.NODE_ENV !== 'production';
@@ -9,6 +10,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  server.use(morgan('dev'));
+  server.use(express.json());
   server.use('/', router);
 
   // Next.Js configuration
