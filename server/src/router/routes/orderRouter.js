@@ -1,9 +1,9 @@
 const { Router } = require('express');
-
 const orderRouter = Router();
 
-orderRouter.get('/', (req, res) => {
-  res.json({ message: 'Hello, world!' });
-});
+//handlers
+const { getAllOrders } = require('../../handlers');
+
+orderRouter.get('/', getAllOrders);
 
 module.exports = orderRouter;
