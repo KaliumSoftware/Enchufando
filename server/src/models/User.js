@@ -1,6 +1,6 @@
-import { DataTypes, Model } from 'sequelize';
+const { DataTypes, Model } = require('sequelize');
 
-export function defineUserModel(sequelize) {
+module.exports = function defineUserModel(sequelize) {
   class User extends Model {
     static associate(models) {
       // Definir asociaciones aquí
@@ -30,4 +30,4 @@ export function defineUserModel(sequelize) {
     { sequelize, modelName: 'User' }
   );
   return User;
-}
+};

@@ -1,6 +1,6 @@
-import { DataTypes, Model } from 'sequelize';
+const { DataTypes, Model } = require('sequelize');
 
-export function defineProductModel(sequelize) {
+module.exports = function defineProductModel(sequelize) {
   class Product extends Model {
     static associate(models) {
       // Definir asociaciones aquí
@@ -52,7 +52,9 @@ export function defineProductModel(sequelize) {
         validate: {
           validateFormat(value) {
             if (!value.url) {
-              throw new Error('The "image" object must have "url" property.');
+              throw new Error(
+                'The "image" object must have "url" property.'
+              );
             }
 
             const imageUrlRegex =
@@ -77,4 +79,4 @@ export function defineProductModel(sequelize) {
     { sequelize, modelName: 'Product' }
   );
   return Product;
-}
+};
