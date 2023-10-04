@@ -22,12 +22,20 @@ module.exports = function defineUserModel(sequelize) {
         type: DataTypes.STRING,
         allowNull: false
       },
-      description: {
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      address: {
         type: DataTypes.STRING,
         allowNull: false
       }
     },
-    { sequelize, modelName: 'User' }
+    { timestamps: false, sequelize, modelName: 'User' }
   );
   return User;
 };
