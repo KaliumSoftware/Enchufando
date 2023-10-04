@@ -1,6 +1,6 @@
-import { DataTypes, Model } from 'sequelize';
+const { DataTypes, Model } = require('sequelize');
 
-export function defineOrderModel(sequelize) {
+module.exports = function defineOrderModel(sequelize) {
   class Order extends Model {
     static associate(models) {
       Order.belongsTo(models.User, {
@@ -28,7 +28,7 @@ export function defineOrderModel(sequelize) {
         allowNull: false
       },
       doDate: {
-        type: DataTypes.DATETIME,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
         allowNull: false
       },
@@ -43,4 +43,4 @@ export function defineOrderModel(sequelize) {
     }
   );
   return Order;
-}
+};
