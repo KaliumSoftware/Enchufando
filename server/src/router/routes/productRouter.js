@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const postProduct = require('../../handlers/productHandlers/postProduct');
+const { postProduct } = require('../../handlers');
 
 const productRouter = Router();
 
