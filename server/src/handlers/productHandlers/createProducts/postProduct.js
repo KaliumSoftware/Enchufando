@@ -1,4 +1,4 @@
-const createProduct = require('../../../controllers/');
+const { createProduct } = require('../../../controllers/');
 
 const postProduct = async (req, res) => {
   try {
