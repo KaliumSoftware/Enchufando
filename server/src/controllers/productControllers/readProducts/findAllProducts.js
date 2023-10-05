@@ -1,8 +1,9 @@
 const { Product } = require('../../../db');
 
-const findAllProducts = () => {
+const findAllProducts = async () => {
   try {
-    const products = Product.findAll();
+    const products = await Product.findAll();
+
     if (!products.length) return false;
     return products;
   } catch (error) {

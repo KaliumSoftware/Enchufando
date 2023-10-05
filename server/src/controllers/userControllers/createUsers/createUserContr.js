@@ -8,7 +8,7 @@ const createUserContr = async (name, email, password, address) => {
       password,
       address
     });
-    console.log(userCreated);
+
     if (!userCreated) {
       return false;
     }
