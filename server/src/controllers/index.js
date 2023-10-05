@@ -6,13 +6,24 @@ const updateUserById = require('./userControllers/updateUsers/updateUserById');
 
 //orders
 const findAllOrders = require('./orderControllers/readOrders/findAllOrders');
+const createOrder = require('./orderControllers/createOrders/createOrder');
 //products
+const findAllProducts = require('./productControllers/readProducts/findAllProducts');
+const findProductByPk = require('./productControllers/readProducts/findProductByPk');
 const createProduct = require('./productControllers/createProducts/createProduct');
+
 module.exports = {
+  //users
   findAllUsers,
   createUserContr,
-  findUserById,
-  findAllOrders,
   updateUserById,
-  createProduct
+  findUserById,
+  //orders
+  findAllOrders,
+  createOrder,
+  //products
+  createProduct,
+  findAllProducts,
+  findProductByPk
+
 };
