@@ -106,7 +106,7 @@ export default function NavBar() {
                   href='#'
                   variant='flat'
                 >
-                  Sign Up
+                  Login
                 </Button>
               </NavbarItem>
               <NavbarItem>
