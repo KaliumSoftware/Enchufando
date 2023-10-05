@@ -1,9 +1,9 @@
-import CarouselHome from '@/components/CarouselHome';
+import CreateProduct from '@/components/forms/CreateProduct';
 
 export default function Home() {
   return (
     <div className='min-h-screen'>
-      <CarouselHome />
+      <CreateProduct />
     </div>
   );
 }
