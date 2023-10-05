@@ -1,12 +1,17 @@
 const { createUserContr } = require('../../../controllers');
+const bcrypt = require('bcrypt');
 
 const createUser = async (req, res) => {
   try {
     const { name, email, password, address } = req.body;
+
+    //Password hashing
+    const hashedPass = await bcrypt.hash(password, 10);
+
     userCreated = await createUserContr(
       name,
       email,
-      password,
+      hashedPass,
       address
     );
     if (!userCreated) {
@@ -20,3 +25,7 @@ const createUser = async (req, res) => {
 };
 
 module.exports = createUser;
+
+/* Compare password
+bcrypt.compare(password, 10);
+*/
