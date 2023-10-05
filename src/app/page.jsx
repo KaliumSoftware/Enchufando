@@ -2,9 +2,8 @@ import CarouselHome from '@/components/CarouselHome';
 
 export default function Home() {
   return (
-    <div>
+    <div className='min-h-screen'>
       <CarouselHome />
-      <button className='w-full h-20'>Click</button>
     </div>
   );
 }
