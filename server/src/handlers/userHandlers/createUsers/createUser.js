@@ -17,7 +17,7 @@ const createUser = async (req, res) => {
     if (!userCreated) {
       throw new Error('User not created');
     }
-    return res.status(201).json(userCreated);
+    return res.status(201).json({ message: 'User created' });
   } catch (error) {
     console.error('error in createUser: ' + error);
     return res.status(400).json({ error: error.message });
@@ -25,7 +25,3 @@ const createUser = async (req, res) => {
 };
 
 module.exports = createUser;
-
-/* Compare password
-bcrypt.compare(password, 10);
-*/
