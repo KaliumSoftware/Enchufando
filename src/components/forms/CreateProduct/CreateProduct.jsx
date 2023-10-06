@@ -1,7 +1,7 @@
 'use client';
 
 import { PhotoIcon } from '@heroicons/react/24/solid';
-import Measures from './CreateProduct/Measures';
+import Measures from './Measures';
 
 export default function CreateProduct() {
   return (
