@@ -16,14 +16,17 @@ import {
   Avatar,
   Button
 } from '@nextui-org/react';
-import { StickyNavbar } from './ResponsiveNavBar';
-
+import logoBlack from './../../../assets/logo-black-png-transformed.png';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logged, setLogged] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const menuItems = ['Home', 'Productos', 'Contacto'];
+
+  const path = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +62,13 @@ export default function NavBar() {
             className='sm:hidden'
           />
           <NavbarBrand>
-            <p className='font-bold text-inherit'>Enchufando</p>
+            <Link href='/'>
+              <Image
+                className='w-10 h-10'
+                src={logoBlack}
+                alt='Logo'
+              />
+            </Link>
           </NavbarBrand>
         </NavbarContent>
 
@@ -67,28 +76,28 @@ export default function NavBar() {
           className='hidden sm:flex gap-4'
           justify='center'
         >
-          <NavbarItem isActive>
+          <NavbarItem isActive={path === '/'}>
             <Link
               color='foreground'
-              href='#'
+              href='/'
             >
-              Home
+              Inicio
             </Link>
           </NavbarItem>
-          <NavbarItem>
+          <NavbarItem isActive={path === '/store'}>
             <Link
-              href='#'
+              href='/store'
               color='foreground'
             >
-              Productos
+              Tienda
             </Link>
           </NavbarItem>
-          <NavbarItem>
+          <NavbarItem isActive={path === '/contact-us'}>
             <Link
               color='foreground'
-              href='#'
+              href='/contact-us'
             >
-              Integrations
+              Contacto
             </Link>
           </NavbarItem>
         </NavbarContent>
@@ -106,7 +115,7 @@ export default function NavBar() {
                   href='#'
                   variant='flat'
                 >
-                  Login
+                  Ingresar
                 </Button>
               </NavbarItem>
               <NavbarItem>
@@ -116,7 +125,7 @@ export default function NavBar() {
                   href='#'
                   variant='flat'
                 >
-                  Sign Up
+                  Registrarse
                 </Button>
               </NavbarItem>
             </NavbarContent>
