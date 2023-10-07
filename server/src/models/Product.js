@@ -77,7 +77,7 @@ module.exports = function defineProductModel(sequelize) {
         allowNull: false
       }
     },
-    { timestamps: false, sequelize, modelName: 'Product' }
+    { sequelize, modelName: 'Product' }
   );
   return Product;
 };
