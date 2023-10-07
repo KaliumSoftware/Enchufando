@@ -1,9 +1,13 @@
 const { Product } = require('../../../db');
 
 const createProduct = async (newProduct) => {
-  const product = await Product.create(newProduct);
+  try {
+    const product = await Product.create(newProduct);
 
-  return product;
+    return product;
+  } catch (error) {
+    return error;
+  }
 };
 
 module.exports = createProduct;

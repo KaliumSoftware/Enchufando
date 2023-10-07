@@ -35,7 +35,7 @@ module.exports = function defineUserModel(sequelize) {
         allowNull: false
       }
     },
-    { timestamps: false, sequelize, modelName: 'User' }
+    { sequelize, modelName: 'User' }
   );
   return User;
 };
