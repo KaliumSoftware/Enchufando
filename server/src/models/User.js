@@ -33,6 +33,9 @@ module.exports = function defineUserModel(sequelize) {
       address: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      discount: {
+        type: DataTypes.STRING
       }
     },
     { sequelize, modelName: 'User' }
