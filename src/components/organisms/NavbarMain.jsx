@@ -19,6 +19,7 @@ import {
 import logoBlack from './../../../assets/logo-black-png-transformed.png';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import ShoppingCart from './ShoppingCart';
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logged, setLogged] = useState(false);
@@ -186,8 +187,8 @@ export default function NavbarMain() {
                   index === 2
                     ? 'warning'
                     : index === menuItems.length - 1
-                    ? 'danger'
-                    : 'foreground'
+                      ? 'danger'
+                      : 'foreground'
                 }
                 href='#'
                 size='lg'
@@ -197,6 +198,7 @@ export default function NavbarMain() {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
+        <ShoppingCart />
       </Navbar>
     </>
   );
