@@ -23,6 +23,7 @@ module.exports = function defineProductModel(sequelize) {
         type: DataTypes.STRING(40),
         allowNull: false
       },
+      // medidas: [{medida:1/2, bolsita:100, bolson:1200},{medida:1/4, bolsita:100, bolson:1200}]
       packaging: {
         type: DataTypes.STRING,
         allowNull: false
