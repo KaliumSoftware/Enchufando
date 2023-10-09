@@ -1,5 +1,3 @@
-'use client';
-
 import { PhotoIcon } from '@heroicons/react/24/solid';
 import Measures from '../../../components/molecules/Measures';
 
