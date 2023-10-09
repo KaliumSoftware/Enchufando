@@ -17,14 +17,15 @@ module.exports = {
   getAllUsers,
   createUser,
   getUserById,
-  
+  loginUser,
+  updateUser,
+
   //orders
   getAllOrders,
-  
+
   //products
   getAllMeasures,
-  updateUser,
-  loginUser,
+  getAllProducts,
   postProduct,
   getProductById
 };
