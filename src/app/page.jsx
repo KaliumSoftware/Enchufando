@@ -1,8 +1,7 @@
-import CarouselHome from '@/components/CarouselHome';
-import Testimonials from '@/components/Testimonials';
-import CreateProduct from '@/components/forms/createProduct/CreateProduct';
-import SectionBrand from '@/components/sections/SectionBrand';
-import SectionProducts from '@/components/sections/SectionProducts';
+import CarouselHome from '@/components/organisms/CarouselHome';
+import Testimonials from '@/components/organisms/Testimonials';
+import SectionBrand from '@/components/organisms/SectionBrand';
+import SectionProducts from '@/components/organisms/SectionProducts';
 
 export default function Home() {
   return (
@@ -11,7 +10,6 @@ export default function Home() {
       <SectionBrand />
       <SectionProducts />
       <Testimonials />
-      {/*  <CreateProduct /> */}
     </div>
   );
 }

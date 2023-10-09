@@ -1,8 +1,8 @@
-import Footer from '@/components/Footer';
+import Footer from '@/components/organisms/Footer';
 import './globals.css';
 import { Providers } from './providers';
 
-import NavBar from '@/components/nav-bars/NavBar';
+import NavbarMain from '@/components/organisms/NavbarMain';
 
 export const metadata = {
   title: 'Enchufando',
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang='es'>
       <body>
         <Providers>
-          <NavBar />
+          <NavbarMain />
           {children}
           <Footer />
         </Providers>
