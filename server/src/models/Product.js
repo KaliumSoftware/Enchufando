@@ -23,17 +23,9 @@ module.exports = function defineProductModel(sequelize) {
         type: DataTypes.STRING(40),
         allowNull: false
       },
-      // medidas: [{medida:1/2, bolsita:100, bolson:1200},{medida:1/4, bolsita:100, bolson:1200}]
-      packaging: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      measure: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      code: {
-        type: DataTypes.INTEGER,
+      // specifications: [{code: 50015, size:1/2, smallPack:100, bigPack:1200, price:358,93},{code: 50018, size:1/4, smallPack:200, bigPack:1500, price:499,93}]
+      specifications: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false
       },
       description: {
