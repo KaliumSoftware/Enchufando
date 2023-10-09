@@ -19,7 +19,7 @@ import {
 import logoBlack from './../../../assets/logo-black-png-transformed.png';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-export default function NavBar() {
+export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logged, setLogged] = useState(false);
   const [scrolled, setScrolled] = useState(false);
