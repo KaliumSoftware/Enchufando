@@ -17,7 +17,7 @@ const Products = () => {
 
     getAllProducts();
   }, []);
-
+  console.log(allProducts);
   return (
     <div>
       {allProducts.length

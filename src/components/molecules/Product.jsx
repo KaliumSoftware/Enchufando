@@ -17,31 +17,31 @@ const Product = ({ name, image, specifications }) => {
           </h5>
         </a>
 
-        <div class='relative overflow-x-auto mb-5'>
-          <table class='w-full text-sm text-left text-gray-400'>
-            <thead class='text-xs uppercase bg-gray-300 text-gray-700'>
+        <div className='relative overflow-x-auto mb-5'>
+          <table className='w-full text-sm text-left text-gray-400'>
+            <thead className='text-xs uppercase bg-gray-300 text-gray-700'>
               <tr>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Medida
                 </th>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Bolsita
                 </th>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Bolsón
                 </th>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Precio Unitario
                 </th>
@@ -49,19 +49,22 @@ const Product = ({ name, image, specifications }) => {
             </thead>
             <tbody>
               {specifications.length
-                ? specifications.map((specification) => {
+                ? specifications.map((specification, index) => {
                     return (
-                      <tr class='border-b bg-gray-400 border-gray-700 text-gray-700'>
-                        <td class='px-3 py-1'>
+                      <tr
+                        key={index}
+                        className='border-b bg-gray-400 border-gray-700 text-gray-700'
+                      >
+                        <td className='px-3 py-1'>
                           {specification.size}
                         </td>
-                        <td class='px-3 py-1'>
+                        <td className='px-3 py-1'>
                           {specification.smallPack}
                         </td>
-                        <td class='px-3 py-1'>
+                        <td className='px-3 py-1'>
                           {specification.bigPack}
                         </td>
-                        <td class='px-3 py-1'>
+                        <td className='px-3 py-1'>
                           {specification.price}
                         </td>
                       </tr>
@@ -86,9 +89,9 @@ const Product = ({ name, image, specifications }) => {
           >
             <path
               stroke='currentColor'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth='2'
               d='M1 5h12m0 0L9 1m4 4L9 9'
             />
           </svg>
