@@ -20,13 +20,14 @@ const Products = () => {
 
   return (
     <div>
-      {allProducts.length &&
-        allProducts.map((product) => (
-          <Product
-            key={product.id}
-            {...product}
-          />
-        ))}
+      {allProducts.length
+        ? allProducts.map((product) => (
+            <Product
+              key={product.id}
+              {...product}
+            />
+          ))
+        : null}
     </div>
   );
 };

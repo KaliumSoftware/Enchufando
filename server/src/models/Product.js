@@ -34,7 +34,7 @@ module.exports = function defineProductModel(sequelize) {
       },
       type: {
         type: DataTypes.ENUM,
-        values: ['roscados', 'riego']
+        values: ['ROSCADO', 'ESPIGA', 'KRONA']
       },
       category: {
         type: DataTypes.STRING
