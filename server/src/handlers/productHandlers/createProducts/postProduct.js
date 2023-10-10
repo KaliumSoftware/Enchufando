@@ -4,9 +4,7 @@ const postProduct = async (req, res) => {
   try {
     const {
       name,
-      packaging,
-      measure,
-      code,
+      specifications,
       description,
       type,
       category,
@@ -16,9 +14,7 @@ const postProduct = async (req, res) => {
 
     const newProduct = {
       name,
-      packaging,
-      measure,
-      code,
+      specifications,
       description,
       type,
       category,
@@ -28,9 +24,11 @@ const postProduct = async (req, res) => {
 
     const product = await createProduct(newProduct);
 
-    res.status(200).json(product);
+    if (product.errors) return res.status(400).json(product);
+
+    return res.status(200).json(product);
   } catch (error) {
-    res.status(500).json('Error creating product');
+    return res.status(500).json('Error creating product');
   }
 };
 
