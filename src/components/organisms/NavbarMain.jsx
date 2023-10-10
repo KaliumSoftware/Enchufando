@@ -50,8 +50,8 @@ export default function NavbarMain() {
       <Navbar
         className={
           scrolled
-            ? ' w-[80%] mx-auto transition-all rounded-xl'
-            : 'w-full'
+            ? ' w-screen mx-auto transition-all rounded-xl'
+            : 'w-screen'
         }
         isBordered
         isMenuOpen={isMenuOpen}
