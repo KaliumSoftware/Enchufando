@@ -48,21 +48,26 @@ const Product = ({ name, image, specifications }) => {
               </tr>
             </thead>
             <tbody>
-              {specifications.length &&
-                specifications.map((specification) => {
-                  return (
-                    <tr class='border-b bg-gray-400 border-gray-700 text-gray-700'>
-                      <td class='px-3 py-1'>{specification.size}</td>
-                      <td class='px-3 py-1'>
-                        {specification.smallPack}
-                      </td>
-                      <td class='px-3 py-1'>
-                        {specification.bigPack}
-                      </td>
-                      <td class='px-3 py-1'>{specification.price}</td>
-                    </tr>
-                  );
-                })}
+              {specifications.length
+                ? specifications.map((specification) => {
+                    return (
+                      <tr class='border-b bg-gray-400 border-gray-700 text-gray-700'>
+                        <td class='px-3 py-1'>
+                          {specification.size}
+                        </td>
+                        <td class='px-3 py-1'>
+                          {specification.smallPack}
+                        </td>
+                        <td class='px-3 py-1'>
+                          {specification.bigPack}
+                        </td>
+                        <td class='px-3 py-1'>
+                          {specification.price}
+                        </td>
+                      </tr>
+                    );
+                  })
+                : null}
             </tbody>
           </table>
         </div>
