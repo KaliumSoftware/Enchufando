@@ -2,46 +2,46 @@ import React from 'react';
 
 const Product = ({ name, image, specifications }) => {
   return (
-    <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+    <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-5 w-full'>
       <a href='#'>
         <img
-          className='rounded-t-lg'
+          className='rounded-t-lg w-full'
           src={image.url}
-          alt=''
+          alt={`imagen de ${name}`}
         />
       </a>
-      <div className='p-5 bg-gray-200'>
+      <div className='p-5 bg-gray-200 w-full'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white'>
             {name}
           </h5>
         </a>
 
-        <div class='relative overflow-x-auto mb-5'>
-          <table class='w-full text-sm text-left text-gray-400'>
-            <thead class='text-xs uppercase bg-gray-300 text-gray-700'>
+        <div className='relative overflow-x-auto mb-5 w-full rounded-lg'>
+          <table className='w-full text-sm text-left text-gray-400'>
+            <thead className='text-xs uppercase bg-gray-300 text-gray-700'>
               <tr>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Medida
                 </th>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Bolsita
                 </th>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Bolsón
                 </th>
                 <th
                   scope='col'
-                  class='px-3 py-1'
+                  className='px-3 py-1'
                 >
                   Precio Unitario
                 </th>
@@ -51,17 +51,17 @@ const Product = ({ name, image, specifications }) => {
               {specifications.length
                 ? specifications.map((specification) => {
                     return (
-                      <tr class='border-b bg-gray-400 border-gray-700 text-gray-700'>
-                        <td class='px-3 py-1'>
+                      <tr className='border-b bg-gray-400 border-gray-700 text-gray-600'>
+                        <td className='px-3 py-1'>
                           {specification.size}
                         </td>
-                        <td class='px-3 py-1'>
+                        <td className='px-3 py-1'>
                           {specification.smallPack}
                         </td>
-                        <td class='px-3 py-1'>
+                        <td className='px-3 py-1'>
                           {specification.bigPack}
                         </td>
-                        <td class='px-3 py-1'>
+                        <td className='px-3 py-1'>
                           {specification.price}
                         </td>
                       </tr>
