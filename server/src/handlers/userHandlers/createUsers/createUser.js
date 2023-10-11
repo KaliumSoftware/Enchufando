@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, address } = req.body;
+    const { name, email, password, address, code } = req.body;
 
     //Password hashing
     const hashedPass = await bcrypt.hash(password, 10);
@@ -12,14 +12,16 @@ const createUser = async (req, res) => {
       name,
       email,
       hashedPass,
-      address
+      address,
+      code
     );
-    if (!userCreated) {
-      throw new Error('User not created');
+    if (userCreated.message) {
+      throw new Error(userCreated.message);
     }
-    return res.status(201).json({ message: 'User created' });
+    return res
+      .status(201)
+      .json({ message: 'Usuario creado con éxito' });
   } catch (error) {
-    console.error('error in createUser: ' + error);
     return res.status(400).json({ error: error.message });
   }
 };

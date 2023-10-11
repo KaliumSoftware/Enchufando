@@ -1,21 +1,42 @@
-const { User } = require('../../../db');
+const { User, Codes } = require('../../../db');
 
-const createUserContr = async (name, email, password, address) => {
+const createUserContr = async (
+  name,
+  email,
+  password,
+  address,
+  code
+) => {
   try {
+    const codeExists = await Codes.findOne({
+      where: {
+        code
+      }
+    });
+    console.log(codeExists);
+
+    if (!codeExists) throw new Error('El código no existe');
+
+    if (codeExists.isUsed) throw new Error('El código ya fue usado');
+
+    const discount = codeExists.discount;
+
     const userCreated = await User.create({
       name,
       email,
       password,
-      address
+      address,
+      discount
     });
 
-    if (!userCreated) {
-      return false;
-    }
+    if (!userCreated) return false;
+
+    await Codes.update({ isUsed: true }, { where: { code } });
+
     return userCreated;
   } catch (error) {
-    console.error('error in createUserContr: ' + error);
-    return false;
+    console.error('error in createUser: ' + error);
+    return error;
   }
 };
 
