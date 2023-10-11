@@ -49,9 +49,7 @@ export default function NavbarMain() {
     <>
       <Navbar
         className={
-          scrolled
-            ? ' w-screen mx-auto transition-all rounded-xl'
-            : 'w-screen'
+          scrolled ? ' w-full mx-auto transition-all' : 'w-full'
         }
         isBordered
         isMenuOpen={isMenuOpen}
@@ -187,8 +185,8 @@ export default function NavbarMain() {
                   index === 2
                     ? 'warning'
                     : index === menuItems.length - 1
-                      ? 'danger'
-                      : 'foreground'
+                    ? 'danger'
+                    : 'foreground'
                 }
                 href='#'
                 size='lg'
