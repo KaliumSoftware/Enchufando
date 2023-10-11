@@ -4,6 +4,7 @@ const getUserById = require('../handlers/userHandlers/readUsers/getUserById');
 const createUser = require('../handlers/userHandlers/createUsers/createUser');
 const updateUser = require('./../handlers/userHandlers/updateUsers/updateUser');
 const loginUser = require('./../handlers/userHandlers/createUsers/loginUser');
+const deleteUsers = require('./../handlers/userHandlers/deleteUsers/deleteUsers');
 //orders
 const getAllOrders = require('../handlers/orderHandlers/readOrders/getAllOrders');
 //products
@@ -19,6 +20,7 @@ module.exports = {
   getUserById,
   loginUser,
   updateUser,
+  deleteUsers,
 
   //orders
   getAllOrders,

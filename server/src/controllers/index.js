@@ -4,6 +4,7 @@ const createUserContr = require('./userControllers/createUsers/createUserContr')
 const findUserById = require('./userControllers/readUsers/findUserById');
 const updateUserById = require('./userControllers/updateUsers/updateUserById');
 const compareUser = require('./userControllers/createUsers/compareUser');
+const deleteUser = require('./userControllers/deleteUsers/deleteUser');
 //orders
 const findAllOrders = require('./orderControllers/readOrders/findAllOrders');
 const createOrder = require('./orderControllers/createOrders/createOrder');
@@ -20,6 +21,7 @@ module.exports = {
   updateUserById,
   findUserById,
   compareUser,
+  deleteUser,
   //orders
   findAllOrders,
   createOrder,

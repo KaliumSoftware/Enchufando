@@ -18,6 +18,11 @@ module.exports = function defineUserModel(sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
       },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull: false
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false
