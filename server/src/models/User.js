@@ -40,7 +40,7 @@ module.exports = function defineUserModel(sequelize) {
         allowNull: false
       },
       discount: {
-        type: DataTypes.STRING
+        type: DataTypes.FLOAT
       }
     },
     { sequelize, modelName: 'User' }
