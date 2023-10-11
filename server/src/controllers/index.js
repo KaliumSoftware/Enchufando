@@ -15,6 +15,7 @@ const findProductByPk = require('./productControllers/readProducts/findProductBy
 const createProduct = require('./productControllers/createProducts/createProduct');
 //codes
 const findAllCodes = require('./codesControllers/readCodes/findAllCodes');
+const createCodes = require('./codesControllers/createCodes/createCodes');
 
 module.exports = {
   //users
@@ -33,5 +34,6 @@ module.exports = {
   findProductByPk,
   findAllMeasures,
   //codes
-  findAllCodes
+  findAllCodes,
+  createCodes
 };

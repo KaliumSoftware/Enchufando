@@ -14,6 +14,7 @@ const getProductById = require('../handlers/productHandlers/readProducts/getProd
 const postProduct = require('../handlers/productHandlers/createProducts/postProduct');
 //codes
 const getAllCodes = require('../handlers/codesHandlers/readCodes/getCodes');
+const postCodes = require('../handlers/codesHandlers/createCodes/postCodes');
 module.exports = {
   //users
   getAllUsers,
@@ -33,5 +34,6 @@ module.exports = {
   getProductById,
 
   //codes
-  getAllCodes
+  getAllCodes,
+  postCodes
 };
