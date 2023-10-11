@@ -51,7 +51,10 @@ const Product = ({ name, image, specifications }) => {
               {specifications.length
                 ? specifications.map((specification) => {
                     return (
-                      <tr className='border-b bg-gray-400 border-gray-700 text-gray-600'>
+                      <tr
+                        key={specification.code}
+                        className='border-b bg-gray-400 border-gray-700 text-gray-600'
+                      >
                         <td className='px-3 py-1'>
                           {specification.size}
                         </td>
@@ -86,9 +89,9 @@ const Product = ({ name, image, specifications }) => {
           >
             <path
               stroke='currentColor'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth='2'
               d='M1 5h12m0 0L9 1m4 4L9 9'
             />
           </svg>
