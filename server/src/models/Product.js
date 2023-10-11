@@ -28,10 +28,6 @@ module.exports = function defineProductModel(sequelize) {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false
       },
-      description: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
       type: {
         type: DataTypes.ENUM,
         values: ['ROSCADO', 'ESPIGA', 'KRONA']
