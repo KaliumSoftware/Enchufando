@@ -20,11 +20,7 @@ module.exports = function defineCodesModel(sequelize) {
       },
       isUsed: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true,
-        allowNull: false
-      },
-      isRegisterCode: {
-        type: DataTypes.BOOLEAN,
+        defaultValue: false,
         allowNull: false
       },
       discount: {
