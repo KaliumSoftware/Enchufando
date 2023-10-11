@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Select, Option, Checkbox } from '@material-tailwind/react';
 
 const Product = ({ name, image, specifications }) => {
+  const [product, setProduct] = useState(null);
+  const [checkOne, setCheckOne] = useState(false);
+  const [checkTwo, setCheckTwo] = useState(false);
+
+  const handleChange = (value) => {
+    const selectedProduct = specifications?.find(
+      (spec) => spec.size === value
+    );
+
+    setProduct(selectedProduct);
+  };
+
+  const handleCheck = (event) => {
+    const { name } = event.target;
+
+    if (name === 'checkOne') {
+      setCheckOne(true);
+      setCheckTwo(false);
+    } else {
+      setCheckOne(false);
+      setCheckTwo(true);
+    }
+  };
+
   return (
     <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-5 w-full'>
       <a href='#'>
@@ -10,6 +35,7 @@ const Product = ({ name, image, specifications }) => {
           alt={`imagen de ${name}`}
         />
       </a>
+
       <div className='p-5 bg-gray-200 w-full'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white'>
@@ -17,62 +43,48 @@ const Product = ({ name, image, specifications }) => {
           </h5>
         </a>
 
-        <div className='relative overflow-x-auto mb-5 w-full rounded-lg'>
-          <table className='w-full text-sm text-left text-gray-400'>
-            <thead className='text-xs uppercase bg-gray-300 text-gray-700'>
-              <tr>
-                <th
-                  scope='col'
-                  className='px-3 py-1'
+        <div className='flex w-full flex-wrap md:flex-nowrap justify-evenly gap-2 items-center content-center'>
+          <div>
+            <Select
+              label='Medidas'
+              onChange={handleChange}
+            >
+              {specifications?.map((spec) => (
+                <Option
+                  key={spec.code}
+                  value={spec.size}
                 >
-                  Medida
-                </th>
-                <th
-                  scope='col'
-                  className='px-3 py-1'
-                >
-                  Bolsita
-                </th>
-                <th
-                  scope='col'
-                  className='px-3 py-1'
-                >
-                  Bolsón
-                </th>
-                <th
-                  scope='col'
-                  className='px-3 py-1'
-                >
-                  Precio Unitario
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {specifications.length
-                ? specifications.map((specification) => {
-                    return (
-                      <tr
-                        key={specification.code}
-                        className='border-b bg-gray-400 border-gray-700 text-gray-600'
-                      >
-                        <td className='px-3 py-1'>
-                          {specification.size}
-                        </td>
-                        <td className='px-3 py-1'>
-                          {specification.smallPack}
-                        </td>
-                        <td className='px-3 py-1'>
-                          {specification.bigPack}
-                        </td>
-                        <td className='px-3 py-1'>
-                          {specification.price}
-                        </td>
-                      </tr>
-                    );
-                  })
-                : null}
-            </tbody>
-          </table>
+                  {spec.size}
+                </Option>
+              ))}
+            </Select>
+          </div>
+
+          <div className='flex flex-wrap mx-5'>
+            <div className='flex items-center'>
+              <label>
+                {product ? `x ${product?.smallPack}` : 'Bolsita'}
+              </label>
+              <Checkbox
+                name='checkOne'
+                checked={checkOne}
+                onClick={handleCheck}
+                disabled={!product}
+              />
+            </div>
+
+            <div className='flex items-center'>
+              <label>
+                {product ? `x ${product?.bigPack}` : 'Bolsón'}
+              </label>
+              <Checkbox
+                name='checkTwo'
+                checked={checkTwo}
+                onClick={handleCheck}
+                disabled={!product}
+              />
+            </div>
+          </div>
         </div>
 
         <a
