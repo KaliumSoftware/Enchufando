@@ -6,7 +6,8 @@ const {
   createUser,
   getUserById,
   updateUser,
-  loginUser
+  loginUser,
+  deleteUsers
 } = require('../../handlers');
 
 //read
@@ -17,5 +18,7 @@ userRouter.post('/', createUser);
 userRouter.post('/login', loginUser);
 //update
 userRouter.put('/:id', updateUser);
+//delete
+userRouter.delete('/delete/:id', deleteUsers);
 
 module.exports = userRouter;
