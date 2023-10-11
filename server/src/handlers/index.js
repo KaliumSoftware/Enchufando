@@ -12,7 +12,8 @@ const getAllProducts = require('../handlers/productHandlers/readProducts/getAllP
 const getAllMeasures = require('../handlers/productHandlers/readProducts/getAllMeaures');
 const getProductById = require('../handlers/productHandlers/readProducts/getProductById');
 const postProduct = require('../handlers/productHandlers/createProducts/postProduct');
-
+//codes
+const getAllCodes = require('../handlers/codesHandlers/readCodes/getCodes');
 module.exports = {
   //users
   getAllUsers,
@@ -29,5 +30,8 @@ module.exports = {
   getAllMeasures,
   getAllProducts,
   postProduct,
-  getProductById
+  getProductById,
+
+  //codes
+  getAllCodes
 };
