@@ -1,33 +1,36 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from './../../redux/slices/productSlice';
 import axios from 'axios';
 import Product from '../molecules/Product';
 
 const Products = () => {
-  const [allProducts, setAllProducts] = useState([]);
+  const allProducts = useSelector(
+    (state) => state.product.allProducts
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getAllProducts = async () => {
+    const getProducts = async () => {
       const { data } = await axios(
         'http://localhost:3000/api/product'
       );
 
-      setAllProducts(data);
+      dispatch(getAllProducts(data));
     };
 
-    getAllProducts();
+    if (!allProducts || !allProducts.length) getProducts();
   }, []);
 
   return (
     <div>
-      {allProducts.length
-        ? allProducts.map((product) => (
-            <Product
-              key={product.id}
-              {...product}
-            />
-          ))
-        : null}
+      {allProducts?.map((product) => (
+        <Product
+          key={product.id}
+          {...product}
+        />
+      ))}
     </div>
   );
 };
