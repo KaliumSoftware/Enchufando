@@ -8,7 +8,7 @@ const Product = ({ name, image, specifications, id }) => {
   const [product, setProduct] = useState(null);
   const [checkOne, setCheckOne] = useState(false);
   const [checkTwo, setCheckTwo] = useState(false);
-  const [quantity, setQuantity] = useState('');
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   const handleChange = (value) => {
@@ -153,11 +153,10 @@ const Product = ({ name, image, specifications, id }) => {
             </p>
             <p className='text-lg font-bold text-gray-900 dark:text-white'>
               $
-              {
-                (checkOne || checkTwo) &&
-                  product /* && user.discount */ &&
-                  product?.price /* * user.discount */
-              }
+              {(checkOne || checkTwo) &&
+                product /* && user.discount */ &&
+                (product?.price /* * user.discount */)
+                  .toFixed(2)}
             </p>
           </div>
 
@@ -170,11 +169,13 @@ const Product = ({ name, image, specifications, id }) => {
               {(checkOne || checkTwo) &&
                 product &&
                 quantity &&
-                product?.price *
+                (
+                  product?.price *
                   (checkOne
                     ? product?.smallPack
                     : product?.bigPack) /* * user.discount */ *
-                  quantity}
+                  quantity
+                ).toFixed(2)}
             </p>
           </div>
         </div>
