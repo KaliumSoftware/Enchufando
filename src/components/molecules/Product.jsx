@@ -123,7 +123,7 @@ const Product = ({ name, image, specifications, id }) => {
 
         {/* 'flex w-full flex-wrap md:flex-nowrap justify-evenly gap-2 items-center content-center' */}
         <div className='flex w-full flex-wrap md:flex-nowrap justify-evenly gap-2 items-center content-center'>
-          <div className='w-2/4 m-2 my-4'>
+          <div className='w-2/6 m-2 my-4'>
             <label
               htmlFor={`${id}quantity`}
               className='relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-black focus-within:ring-1 focus-within:ring-black selection:'
@@ -143,21 +143,38 @@ const Product = ({ name, image, specifications, id }) => {
             </label>
           </div>
 
-          <div className='w-fit'>
-            <p className='text-lg font-bold text-gray-500 dark:text-white line-through'>
+          <div className='w-2/6'>
+            <p
+              className={`text-lg font-bold text-gray-500 dark:text-white ${
+                /* user.discount &&  */ 'line-through'
+              }`}
+            >
               $ {product?.price}
             </p>
             <p className='text-lg font-bold text-gray-900 dark:text-white'>
-              $ {product?.price /* * user.discount */}
+              $
+              {
+                (checkOne || checkTwo) &&
+                  product /* && user.discount */ &&
+                  product?.price /* * user.discount */
+              }
             </p>
           </div>
 
-          <div className='w-fit'>
+          <div className='w-2/6'>
             <p className='text-lg font-bold text-gray-900 dark:text-white'>
               Total
             </p>
             <p className='text-lg font-bold text-gray-900 dark:text-white'>
-              ${product?.price /* * user.discount */ * quantity}
+              $
+              {(checkOne || checkTwo) &&
+                product &&
+                quantity &&
+                product?.price *
+                  (checkOne
+                    ? product?.smallPack
+                    : product?.bigPack) /* * user.discount */ *
+                  quantity}
             </p>
           </div>
         </div>
