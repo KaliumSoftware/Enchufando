@@ -60,10 +60,6 @@ module.exports = function defineProductModel(sequelize) {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
-      },
-      stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false
       }
     },
     { sequelize, modelName: 'Product' }
