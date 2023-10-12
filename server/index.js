@@ -5,8 +5,8 @@ const { sequelize } = require('./src/db');
 const router = require('./src/router/index');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const handle = app.getRequestHandler();
 const bodyParser = require('body-parser');
+const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();

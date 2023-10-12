@@ -3,9 +3,8 @@ const { DataTypes, Model } = require('sequelize');
 module.exports = function defineCodesModel(sequelize) {
   class Codes extends Model {
     static associate(models) {
-      // Definir asociaciones aquí
-      Codes.belongsToMany(models.Order, {
-        through: 'OrderCodes',
+      Codes.hasOne(models.User, {
+        foreignKey: 'userId',
         timestamps: false
       });
     }
