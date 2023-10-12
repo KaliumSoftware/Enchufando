@@ -3,7 +3,6 @@ const { DataTypes, Model } = require('sequelize');
 module.exports = function defineCodesModel(sequelize) {
   class Codes extends Model {
     static associate(models) {
-      // Definir asociaciones aquí
       Codes.hasOne(models.User, {
         foreignKey: 'userId',
         timestamps: false
