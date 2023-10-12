@@ -1,4 +1,4 @@
-// Copy and paste this into the productRouter file, and then make a POST request to /api/product/all.
+/* // Copy and paste this into the productRouter file, and then make a POST request to /api/product/all.
 // Falta también hacer la lógica para que solo se creé 1 producto para cada nombre
 const arraysOfColumns = require('./../../auxData/listOfProducts');
 const { Product } = require('../../db');
@@ -92,4 +92,4 @@ productRouter.post('/all', async (req, res) => {
     console.error(error);
     res.status(500).json({ message: error.message });
   }
-});
+}); */
