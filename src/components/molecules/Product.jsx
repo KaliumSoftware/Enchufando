@@ -8,7 +8,7 @@ const Product = (props) => {
   const [product, setProduct] = useState(null);
   const [checkOne, setCheckOne] = useState(false);
   const [checkTwo, setCheckTwo] = useState(false);
-  const [quantity, setQuantity] = useState('');
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const { name, image, specifications, id } = props
 
@@ -155,11 +155,11 @@ const Product = (props) => {
             </p>
             <p className='text-lg font-bold text-gray-900 dark:text-white'>
               $
-              {
-                (checkOne || checkTwo) &&
+              {(checkOne || checkTwo) &&
                 product /* && user.discount */ &&
-                product?.price /* * user.discount */
-              }
+                (product?.price /* * user.discount */)
+                  .toFixed(2)}
+
             </p>
           </div>
 
@@ -172,11 +172,13 @@ const Product = (props) => {
               {(checkOne || checkTwo) &&
                 product &&
                 quantity &&
-                product?.price *
-                (checkOne
-                  ? product?.smallPack
-                  : product?.bigPack) /* * user.discount */ *
-                quantity}
+                (
+                  product?.price *
+                  (checkOne
+                    ? product?.smallPack
+                    : product?.bigPack) /* * user.discount */ *
+                  quantity
+                ).toFixed(2)}
             </p>
           </div>
         </div>
