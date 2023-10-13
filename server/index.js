@@ -1,16 +1,17 @@
 const express = require('express');
 const next = require('next');
-const morgan = require('morgan');
 const { sequelize } = require('./src/db');
 const router = require('./src/router/index');
+
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const bodyParser = require('body-parser');
+
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-
   server.use(morgan('dev'));
   server.use(express.json());
 
@@ -35,3 +36,5 @@ app.prepare().then(() => {
     });
   });
 });
+
+module.exports = app;
