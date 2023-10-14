@@ -5,7 +5,7 @@ const { User, sequelize } = require('../src/db');
 const user = {
   name: 'Joshua Ceballos',
   email: 'joshuaceballos@gmail.com',
-  password: '321456123',
+  password: '3214561232',
   address: 'San Martin 215',
   code: '833097'
 };
