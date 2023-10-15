@@ -37,7 +37,7 @@ const Product = (props) => {
   // add products to cart logic
 
   const handleAddCart = (product) => {
-    console.log(product)
+
     if (product) {
       return dispatch(addToCart(product));
     }
