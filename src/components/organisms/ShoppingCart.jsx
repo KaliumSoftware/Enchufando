@@ -97,7 +97,7 @@ function ShoppingCart() {
                   </div>
                   <div className='flex items-center justify-between pt-5'>
                     <p className='text-base leading-none text-gray-800'>
-                      IMPUTESTOS PAIS
+                      Impuesto
                     </p>
                     <p className='text-base leading-none text-gray-800'>
                       $35
@@ -107,10 +107,10 @@ function ShoppingCart() {
                 <div>
                   <div className='flex items-center pb-6 justify-between lg:pt-5 pt-20'>
                     <p className='text-2xl leading-normal text-gray-800'>
-                      LO QUE DEBES
+                      Total Final
                     </p>
                     <p className='text-2xl font-bold leading-normal text-right text-gray-800'>
-                      $mucha plata
+                      $10.000
 
                     </p>
                   </div>
