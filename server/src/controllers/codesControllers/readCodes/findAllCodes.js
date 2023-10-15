@@ -7,7 +7,8 @@ const findAllCodes = async () => {
     if (!codes.length) return false;
     return codes;
   } catch (error) {
-    throw error;
+    console.error(error);
+    return false;
   }
 };
 

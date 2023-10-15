@@ -20,10 +20,13 @@ import logoBlack from './../../../assets/logo-black-png-transformed.png';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ShoppingCart from './ShoppingCart';
+import LoginRegisterMenu from './LoginRegisterMenu';
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logged, setLogged] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showLoginMenu, setShowLoginMenu] = useState(false);
+  const [signingin, setSigningin] = useState(false);
 
   const menuItems = ['Home', 'Productos', 'Contacto'];
 
@@ -45,6 +48,15 @@ export default function NavbarMain() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleClick = (event) => {
+    const { name } = event.target;
+
+    name === 'login' ? setSigningin(true) : setSigningin(false);
+
+    setShowLoginMenu(true);
+  };
+
   return (
     <>
       <Navbar
@@ -111,8 +123,9 @@ export default function NavbarMain() {
                 <Button
                   as={Link}
                   color='primary'
-                  href='#'
                   variant='flat'
+                  name='login'
+                  onClick={handleClick}
                 >
                   Ingresar
                 </Button>
@@ -121,8 +134,9 @@ export default function NavbarMain() {
                 <Button
                   as={Link}
                   color='primary'
-                  href='#'
                   variant='flat'
+                  name='register'
+                  onClick={handleClick}
                 >
                   Registrarse
                 </Button>
@@ -198,6 +212,14 @@ export default function NavbarMain() {
         </NavbarMenu>
         <ShoppingCart />
       </Navbar>
+
+      {showLoginMenu && (
+        <LoginRegisterMenu
+          setShowLoginMenu={setShowLoginMenu}
+          signingin={signingin}
+          setSigningin={setSigningin}
+        />
+      )}
     </>
   );
 }
