@@ -26,6 +26,7 @@ export default function NavbarMain() {
   const [logged, setLogged] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showLoginMenu, setShowLoginMenu] = useState(false);
+  const [signingin, setSigningin] = useState(false);
 
   const menuItems = ['Home', 'Productos', 'Contacto'];
 
@@ -48,7 +49,11 @@ export default function NavbarMain() {
     };
   }, []);
 
-  const handleClick = () => {
+  const handleClick = (event) => {
+    const { name } = event.target;
+
+    name === 'login' ? setSigningin(true) : setSigningin(false);
+
     setShowLoginMenu(true);
   };
 
@@ -119,31 +124,22 @@ export default function NavbarMain() {
                   as={Link}
                   color='primary'
                   variant='flat'
+                  name='login'
                   onClick={handleClick}
                 >
                   Ingresar
                 </Button>
-                {showLoginMenu && (
-                  <LoginRegisterMenu
-                    login
-                    setShowLoginMenu={setShowLoginMenu}
-                  />
-                )}
               </NavbarItem>
               <NavbarItem>
                 <Button
                   as={Link}
                   color='primary'
                   variant='flat'
+                  name='register'
                   onClick={handleClick}
                 >
                   Registrarse
                 </Button>
-                {showLoginMenu && (
-                  <LoginRegisterMenu
-                    setShowLoginMenu={setShowLoginMenu}
-                  />
-                )}
               </NavbarItem>
             </NavbarContent>
           ) : (
@@ -216,6 +212,14 @@ export default function NavbarMain() {
         </NavbarMenu>
         <ShoppingCart />
       </Navbar>
+
+      {showLoginMenu && (
+        <LoginRegisterMenu
+          setShowLoginMenu={setShowLoginMenu}
+          signingin={signingin}
+          setSigningin={setSigningin}
+        />
+      )}
     </>
   );
 }

@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-function LoginRegisterMenu({ login, setShowLoginMenu }) {
+function LoginRegisterMenu({
+  login,
+  setShowLoginMenu,
+  signingin,
+  setSigningin
+}) {
   const [signIn, toggle] = useState(login);
   const [access, setAccess] = useState(false); //eslint-disable-line
   const [input, setInput] = useState({
@@ -20,6 +25,10 @@ function LoginRegisterMenu({ login, setShowLoginMenu }) {
     address: '',
     code: ''
   });
+
+  useEffect(() => {
+    console.log(signingin);
+  }, []);
 
   const loggedUser = useSelector((state) => state.loggedUser);
 
@@ -141,201 +150,126 @@ function LoginRegisterMenu({ login, setShowLoginMenu }) {
     handlePost(data);
   };
 
+  const handleToggle = () => {
+    setSigningin(!signingin);
+  };
+
   return (
-    <div className='fixed top-0 -left-28 h-full w-full'>
-      <div className='w-fit h-fit fixed top-0 left-0 z-10'>
-        <div
-        // className={style.container}
-        >
-          <div signingin={signIn}>
-            <form id='form'>
-              <h1>Registrarse</h1>
-              <input
-                type='text'
-                placeholder='Nombre'
-                name='firstName'
-                onChange={handleSignUpChange}
-              />
+    <div className='fixed inset-0 flex items-center justify-center h-full w-full'>
+      <div className='fixed mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 z-20'>
+        <div className='mx-auto max-w-lg bg-white z-10 rounded-2xl py-16 px-32'>
+          <h1 className='text-center text-2xl font-bold text-indigo-600 sm:text-3xl'>
+            {signingin ? 'Iniciar Sesión' : 'Registrarse'}
+          </h1>
 
-              <div
-              //   className={style.errors}
-              >
-                <p>{errors.firstName}</p>
-              </div>
-              <input
-                type='text'
-                placeholder='Apellido'
-                name='lastName'
-                onChange={handleSignUpChange}
-              />
-              <div
-              //   className={style.errors}
-              >
-                <p>{errors.lastName}</p>
-              </div>
-              <input
-                type='number'
-                placeholder='Edad'
-                name='age'
-                onChange={handleSignUpChange}
-              />
-              <div
-              //   className={style.errors}
-              >
-                <p>{errors.age}</p>
-              </div>
-              <input
-                type='text'
-                placeholder='Usuario'
-                name='username'
-                onChange={handleSignUpChange}
-              />
-              <div
-              //   className={style.errors}
-              ></div>
-              <input
-                type='email'
-                placeholder='Email'
-                name='email'
-                onChange={handleSignUpChange}
-              />
-              <div
-              //   className={style.errors}
-              >
-                <p>{errors.email}</p>
-              </div>
-              <input
-                type='password'
-                placeholder='contraseña'
-                name='password'
-                onChange={handleSignUpChange}
-              />
-              <div
-              //   className={style.errors}
-              >
-                <p>{errors.password}</p>
-              </div>
-              <select
-                onChange={handleSignUpChange}
-                name='gender'
-                defaultValue={''}
-              >
-                <option
-                  disabled
-                  value=''
-                >
-                  Género
-                </option>
-                <option value='Masculino'>Masculino</option>
-                <option value='Femenino'>Femenino</option>
-                <option value='Otro'>Otro</option>
-              </select>
+          <p className='mx-auto mt-4 max-w-md text-center text-gray-500'>
+            Bienvenido a Enchufando
+          </p>
 
-              <button
-                onClick={handleRegisterSubmit}
-                // className={style.sendbutton}
-                disabled={buttonDisabled()}
-              >
-                Registrarse
-              </button>
-            </form>
-          </div>
-          <div signingin={signIn}>
-            <form
-              //   onSubmit={handleSubmit}
-              id='form'
-            >
-              <h1>Iniciar Sesión</h1>
-              <input
-                type='email'
-                placeholder='Email'
-                name='email'
-                onChange={handleChange}
-              />
-              <div
-              //   className={style.errors}
-              >
-                <p>{errors.email}</p>
-              </div>
-              <input
-                type='password'
-                placeholder='Password'
-                name='password'
-                onChange={handleChange}
-              />
-              <div
-              //   className={style.errors}
-              ></div>
-              <Link href='/resetpassword'>
-                ¿Olvidaste tu contraseña?
-              </Link>
+          <form
+            action=''
+            className='mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8'
+          >
+            <p className='text-center text-lg font-medium'>
+              {signingin
+                ? 'Ingresá con tu cuenta'
+                : 'Registrate como usuario'}
+            </p>
 
-              <button
-              //   className={style.sendbutton}
+            <div>
+              <label
+                for='email'
+                className='sr-only'
               >
-                Inicia Sesión
-              </button>
-            </form>
-          </div>
-          <div signingin={signIn}>
-            <div signingin={signIn}>
-              <div signingin={signIn}>
-                <h1>¡Bienvenido!</h1>
-                <p>¡Inicia sesión ahora para acceder a Auxie!</p>
-                <button
-                  onClick={() => toggle(true)}
+                Email
+              </label>
 
-                  //   className={style.sendbutton}
-                >
-                  Inicia Sesión
-                </button>
-              </div>
-              <div signingin={signIn}>
-                <h1>¡Bienvenido!</h1>
-                <p>Completa el formulario para crear tu cuenta</p>
-                <button
-                  //   className={style.sendbutton}
-                  onClick={() => toggle(false)}
-                >
-                  Registrarse
-                </button>
+              <div className='relative'>
+                <input
+                  type='email'
+                  className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                  placeholder='Email'
+                />
+
+                <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-4 w-4 text-gray-400'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      stroke-width='2'
+                      d='M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207'
+                    />
+                  </svg>
+                </span>
               </div>
             </div>
-          </div>
-        </div>
-        <center>
-          <button
-          // className={style.googlebutton}
-          // onClick={signInGoogle}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              preserveAspectRatio='xMidYMid'
-              viewBox='0 0 256 262'
-              width='20'
-              height='25'
+
+            <div>
+              <label
+                for='contraseña'
+                className='sr-only'
+              >
+                Contraseña
+              </label>
+
+              <div className='relative'>
+                <input
+                  type='password'
+                  className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                  placeholder='Contraseña'
+                />
+
+                <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-4 w-4 text-gray-400'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      stroke-width='2'
+                      d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
+                    />
+                    <path
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      stroke-width='2'
+                      d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <button
+              type='submit'
+              className='block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white'
             >
-              <path
-                fill='#4285F4'
-                d='M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027'
-              ></path>
-              <path
-                fill='#34A853'
-                d='M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1'
-              ></path>
-              <path
-                fill='#FBBC05'
-                d='M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782'
-              ></path>
-              <path
-                fill='#EB4335'
-                d='M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251'
-              ></path>
-            </svg>
-            {''}
-            <p>Continúa con Google</p>
-          </button>
-        </center>
+              {signingin ? 'Ingresar' : 'Registrarse'}
+            </button>
+
+            <p className='text-center text-sm text-gray-500'>
+              {signingin
+                ? '¿No tenés cuenta? '
+                : '¿Ya tenés cuenta? '}
+              <p
+                className='underline cursor-pointer'
+                onClick={handleToggle}
+              >
+                {signingin ? 'Registrarse' : 'Ingresar'}
+              </p>
+            </p>
+          </form>
+        </div>
       </div>
       <div
         className='fixed inset-0 bg-black opacity-20 h-screen w-screen z-0'
