@@ -20,7 +20,7 @@ function ShoppingCart() {
       <div className='flex items-center justify-center py-8'>
         <button
           onClick={() => setShow(!show)}
-          className='py-2 px-10 rounded bg-indigo-600 hover:bg-indigo-700 text-white'
+          className='py-2 px-10 rounded bg-black hover:bg-indigo-600  text-white'
         >
           Carrito Compras
         </button>

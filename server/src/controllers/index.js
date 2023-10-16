@@ -14,6 +14,7 @@ const findAllMeasures = require('./productControllers/readProducts/findAllMeasur
 const findProductByPk = require('./productControllers/readProducts/findProductByPk');
 const createProduct = require('./productControllers/createProducts/createProduct');
 const deleteProduct = require('./productControllers/deleteProduct');
+const isActiveProduct = require('./productControllers/modifyProduct/isActiveProduct');
 //codes
 const findAllCodes = require('./codesControllers/readCodes/findAllCodes');
 const createCodes = require('./codesControllers/createCodes/createCodes');
@@ -35,6 +36,7 @@ module.exports = {
   findProductByPk,
   findAllMeasures,
   deleteProduct,
+  isActiveProduct,
   //codes
   findAllCodes,
   createCodes
