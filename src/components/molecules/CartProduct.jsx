@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Select, Option, Checkbox } from '@material-tailwind/react';
 import TooltipReusable from '../atoms/TooltipReusable';
-import { useDispatch } from 'react-redux';
+import Button from '../atoms/Button';
+
 
 
 export default function CartProduct(props) {
@@ -9,17 +10,20 @@ export default function CartProduct(props) {
     const [checkOne, setCheckOne] = useState(false);
     const [checkTwo, setCheckTwo] = useState(false);
     const [quantity, setQuantity] = useState('');
-    const dispatch = useDispatch();
     const { name, image, specifications, id } = props
     const handleChange = (value) => {
+
+
         const selectedProduct = specifications?.find(
             (spec) => spec.size === value
         );
+
         if (selectedProduct) {
             setProduct(selectedProduct);
         }
     };
     const handleCheck = (event) => {
+
         const { name } = event.target;
 
         if (name === 'checkOne') {
@@ -45,7 +49,6 @@ export default function CartProduct(props) {
 
 
 
-
     return (
         <div className='md:flex items-center py-8 border-t border-gray-200'>
             <div className='w-1/4'>
@@ -56,31 +59,32 @@ export default function CartProduct(props) {
                 />
             </div>
             <div className='md:pl-3 md:w-3/4 w-full'>
-                <p className='text-xs leading-3 text-gray-800 md:pt-0 pt-4'>
+                <p className='text-xl pb-6 leading-3 text-gray-800 md:pt-0 pt-4'>
                     {name}
                 </p>
-                <select
+                <Select
                     label='Medidas'
                     onChange={handleChange}
                 >
                     {specifications?.map((spec) => (
-                        <option
+                        <Option
                             key={spec.code}
                             value={spec.size}
                         >
                             {spec.size}
-                        </option>
+                        </Option>
                     ))}
-                </select>
+                </Select>
                 <TooltipReusable
                     text='Seleccione una medida'
                     show={!Boolean(product)}
                     color='default'
                 >
-                    <div className='flex flex-wrap mx-5'>
+
+                    <div className='flex flex-wrap mx-5 pt-6 gap-2 pb-4 '>
                         <div className='flex items-center'>
                             <label htmlFor={`${id}checkOne`}>
-                                {product ? `x ${product?.smallPack}` : 'Bolsita'}
+                                Bolsita  {product ? `x ${product?.smallPack}` : 'Bolsita'}
                             </label>
                             <Checkbox
                                 id={`${id}checkOne`}
@@ -93,7 +97,7 @@ export default function CartProduct(props) {
 
                         <div className='flex items-center'>
                             <label htmlFor='checkTwo'>
-                                {product ? `x ${product?.bigPack}` : 'Bolsón'}
+                                Bolsón {product ? `x ${product?.bigPack}` : 'Bolsón'}
                             </label>
 
                             <Checkbox
@@ -137,11 +141,11 @@ export default function CartProduct(props) {
                         </p>
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
-                            {
-                                (checkOne || checkTwo) &&
-                                product /* && user.discount */ &&
-                                product?.price /* * user.discount */
+                            {(checkOne || checkTwo) &&
+                                product.price /* && user.discount */ &&
+                                (product?.price /* * user.discount */)
                             }
+
                         </p>
                     </div>
 
@@ -152,38 +156,24 @@ export default function CartProduct(props) {
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
                             {(checkOne || checkTwo) &&
-                                product &&
+                                product.price &&
                                 quantity &&
-                                product?.price *
-                                (checkOne
-                                    ? product?.smallPack
-                                    : product?.bigPack) /* * user.discount */ *
-                                quantity}
+                                (
+                                    product?.price *
+                                    (checkOne
+                                        ? product?.smallPack
+                                        : product?.bigPack) /* * user.discount */ *
+                                    quantity
+                                )?.toFixed(2)}
                         </p>
                     </div>
                 </div>
 
-                <p className='text-xs leading-3 text-gray-600 pt-2'>
-                    Height: 10 inches
-                </p>
-                <p className='text-xs leading-3 text-gray-600 py-4'>
-                    Color: Black
-                </p>
-                <p className='w-96 text-xs leading-3 text-gray-600'>
-                    Composition: 100% calf leather
-                </p>
                 <div className='flex items-center justify-between pt-5 pr-6'>
                     <div className='flex itemms-center'>
-                        <p className='text-xs leading-3 underline text-gray-800 cursor-pointer'>
-                            Add to favorites
-                        </p>
-                        <p className='text-xs leading-3 underline text-red-500 pl-5 cursor-pointer'>
-                            Remove
-                        </p>
+                        <Button />
                     </div>
-                    <p className='text-base font-black leading-none text-gray-800'>
-                        $9,000
-                    </p>
+
                 </div>
             </div>
         </div >

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartProduct from '../molecules/CartProduct';
 function ShoppingCart() {
   const [show, setShow] = useState(false);
-  const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.cartProducts);
 
 
@@ -54,10 +53,10 @@ function ShoppingCart() {
               id='scroll'
             >
               <div
-                className='flex items-center text-gray-500 hover:text-gray-600 cursor-pointer'
+                className='flex items-center text-gray-500 hover:text-black cursor-pointer'
                 onClick={() => setShow(!show)}
               >
-                back
+                Volver
 
               </div>
               <p className='text-5xl font-black leading-10 text-gray-800 pt-3'>
@@ -69,19 +68,16 @@ function ShoppingCart() {
                   {...product}
                 />
               ))}
-              <CartProduct />
-
-
             </div>
             <div className=' md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full'>
               <div className='flex flex-col md:h-screen px-14 py-20 justify-between overflow-y-auto'>
                 <div>
                   <p className='text-4xl font-black leading-9 text-gray-800'>
-                    resumen
+                    Resumen
                   </p>
                   <div className='flex items-center justify-between pt-16'>
                     <p className='text-base leading-none text-gray-800'>
-                      sabes contar?
+                      Sub Total
                     </p>
                     <p className='text-base leading-none text-gray-800'>
                       $9,000
@@ -89,7 +85,7 @@ function ShoppingCart() {
                   </div>
                   <div className='flex items-center justify-between pt-5'>
                     <p className='text-base leading-none text-gray-800'>
-                      Shipping
+                      Descuento
                     </p>
                     <p className='text-base leading-none text-gray-800'>
                       $30

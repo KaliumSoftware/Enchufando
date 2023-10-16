@@ -1,25 +1,17 @@
-const { createProduct } = require('../../../controllers/');
+const { createProduct } = require('../../../controllers/index');
 
 const postProduct = async (req, res) => {
   try {
-    const {
-      name,
-      specifications,
-      description,
-      type,
-      category,
-      image,
-      stock
-    } = req.body;
+    const { name, specifications, type, category, image, price } =
+      req.body;
 
     const newProduct = {
       name,
       specifications,
-      description,
       type,
       category,
       image,
-      stock
+      price
     };
 
     const product = await createProduct(newProduct);
@@ -28,6 +20,7 @@ const postProduct = async (req, res) => {
 
     return res.status(200).json(product);
   } catch (error) {
+    console.log(error);
     return res.status(500).json('Error creating product');
   }
 };
