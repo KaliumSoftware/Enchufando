@@ -4,12 +4,13 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/slices/cartSlice';
 import TooltipReusable from '../atoms/TooltipReusable';
 
-const Product = ({ name, image, specifications, id }) => {
+const Product = (props) => {
   const [product, setProduct] = useState(null);
   const [checkOne, setCheckOne] = useState(false);
   const [checkTwo, setCheckTwo] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const { name, image, specifications, id } = props
 
   const handleChange = (value) => {
     const selectedProduct = specifications?.find(
@@ -36,6 +37,7 @@ const Product = ({ name, image, specifications, id }) => {
   // add products to cart logic
 
   const handleAddCart = (product) => {
+
     if (product) {
       return dispatch(addToCart(product));
     }
@@ -147,7 +149,7 @@ const Product = ({ name, image, specifications, id }) => {
             <p
               className={`text-lg font-bold text-gray-500 dark:text-white ${
                 /* user.discount &&  */ 'line-through'
-              }`}
+                }`}
             >
               $ {product?.price}
             </p>
@@ -157,6 +159,7 @@ const Product = ({ name, image, specifications, id }) => {
                 product /* && user.discount */ &&
                 (product?.price /* * user.discount */)
                   .toFixed(2)}
+
             </p>
           </div>
 
@@ -181,7 +184,7 @@ const Product = ({ name, image, specifications, id }) => {
         </div>
 
         <button
-          onClick={() => handleAddCart(product)}
+          onClick={() => handleAddCart(props)}
           className='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         >
           Agregar al Carrito
