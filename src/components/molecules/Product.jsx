@@ -159,6 +159,7 @@ const Product = (props) => {
                 product /* && user.discount */ &&
                 (product?.price /* * user.discount */)
                   .toFixed(2)}
+
             </p>
           </div>
 
@@ -171,11 +172,13 @@ const Product = (props) => {
               {(checkOne || checkTwo) &&
                 product &&
                 quantity &&
-                product?.price *
-                (checkOne
-                  ? product?.smallPack
-                  : product?.bigPack) /* * user.discount */ *
-                quantity}
+                (
+                  product?.price *
+                  (checkOne
+                    ? product?.smallPack
+                    : product?.bigPack) /* * user.discount */ *
+                  quantity
+                ).toFixed(2)}
             </p>
           </div>
         </div>
