@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartProduct from '../molecules/CartProduct';
 function ShoppingCart() {
   const [show, setShow] = useState(false);
-  const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.cartProducts);
 
 
@@ -69,9 +68,6 @@ function ShoppingCart() {
                   {...product}
                 />
               ))}
-              <CartProduct />
-
-
             </div>
             <div className=' md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full'>
               <div className='flex flex-col md:h-screen px-14 py-20 justify-between overflow-y-auto'>
