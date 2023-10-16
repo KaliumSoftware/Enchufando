@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Select, Option, Checkbox } from '@material-tailwind/react';
 import TooltipReusable from '../atoms/TooltipReusable';
-import { useDispatch } from 'react-redux';
+
 
 
 export default function CartProduct(props) {
@@ -9,17 +9,20 @@ export default function CartProduct(props) {
     const [checkOne, setCheckOne] = useState(false);
     const [checkTwo, setCheckTwo] = useState(false);
     const [quantity, setQuantity] = useState('');
-    const dispatch = useDispatch();
     const { name, image, specifications, id } = props
     const handleChange = (value) => {
+
+
         const selectedProduct = specifications?.find(
             (spec) => spec.size === value
         );
+
         if (selectedProduct) {
             setProduct(selectedProduct);
         }
     };
     const handleCheck = (event) => {
+        console.log(event.target);
         const { name } = event.target;
 
         if (name === 'checkOne') {
@@ -45,7 +48,6 @@ export default function CartProduct(props) {
 
 
 
-
     return (
         <div className='md:flex items-center py-8 border-t border-gray-200'>
             <div className='w-1/4'>
@@ -59,19 +61,19 @@ export default function CartProduct(props) {
                 <p className='text-xs leading-3 text-gray-800 md:pt-0 pt-4'>
                     {name}
                 </p>
-                <select
+                <Select
                     label='Medidas'
                     onChange={handleChange}
                 >
                     {specifications?.map((spec) => (
-                        <option
+                        <Option
                             key={spec.code}
                             value={spec.size}
                         >
                             {spec.size}
-                        </option>
+                        </Option>
                     ))}
-                </select>
+                </Select>
                 <TooltipReusable
                     text='Seleccione una medida'
                     show={!Boolean(product)}
@@ -137,11 +139,11 @@ export default function CartProduct(props) {
                         </p>
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
-                            {
-                                (checkOne || checkTwo) &&
-                                product /* && user.discount */ &&
-                                product?.price /* * user.discount */
+                            {(checkOne || checkTwo) &&
+                                product.price /* && user.discount */ &&
+                                (product?.price /* * user.discount */)
                             }
+
                         </p>
                     </div>
 
@@ -152,13 +154,15 @@ export default function CartProduct(props) {
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
                             {(checkOne || checkTwo) &&
-                                product &&
+                                product.price &&
                                 quantity &&
-                                product?.price *
-                                (checkOne
-                                    ? product?.smallPack
-                                    : product?.bigPack) /* * user.discount */ *
-                                quantity}
+                                (
+                                    product?.price *
+                                    (checkOne
+                                        ? product?.smallPack
+                                        : product?.bigPack) /* * user.discount */ *
+                                    quantity
+                                )?.toFixed(2)}
                         </p>
                     </div>
                 </div>
