@@ -1,7 +1,6 @@
 import Footer from '@/components/organisms/Footer';
 import './globals.css';
 import { Providers } from './providers';
-
 import NavbarMain from '@/components/organisms/NavbarMain';
 
 export const metadata = {
@@ -14,9 +13,9 @@ export default function RootLayout({ children }) {
     <html lang='es'>
       <body>
         <Providers>
-          <NavbarMain />
+          {/*  <NavbarMain /> */}
           {children}
-          <Footer />
+          {/*  <Footer /> */}
         </Providers>
       </body>
     </html>
