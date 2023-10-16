@@ -12,6 +12,7 @@ const getAllProducts = require('../handlers/productHandlers/readProducts/getAllP
 const getAllMeasures = require('../handlers/productHandlers/readProducts/getAllMeaures');
 const getProductById = require('../handlers/productHandlers/readProducts/getProductById');
 const postProduct = require('../handlers/productHandlers/createProducts/postProduct');
+const handleProductDelete = require('../handlers/productHandlers/handleDeleteProduct');
 //codes
 const getAllCodes = require('../handlers/codesHandlers/readCodes/getCodes');
 const postCodes = require('../handlers/codesHandlers/createCodes/postCodes');
@@ -32,6 +33,7 @@ module.exports = {
   getAllProducts,
   postProduct,
   getProductById,
+  handleProductDelete,
 
   //codes
   getAllCodes,
