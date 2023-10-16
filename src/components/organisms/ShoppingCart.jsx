@@ -53,10 +53,10 @@ function ShoppingCart() {
               id='scroll'
             >
               <div
-                className='flex items-center text-gray-500 hover:text-gray-600 cursor-pointer'
+                className='flex items-center text-gray-500 hover:text-black cursor-pointer'
                 onClick={() => setShow(!show)}
               >
-                back
+                Volver
 
               </div>
               <p className='text-5xl font-black leading-10 text-gray-800 pt-3'>
@@ -73,11 +73,11 @@ function ShoppingCart() {
               <div className='flex flex-col md:h-screen px-14 py-20 justify-between overflow-y-auto'>
                 <div>
                   <p className='text-4xl font-black leading-9 text-gray-800'>
-                    resumen
+                    Resumen
                   </p>
                   <div className='flex items-center justify-between pt-16'>
                     <p className='text-base leading-none text-gray-800'>
-                      sabes contar?
+                      Sub Total
                     </p>
                     <p className='text-base leading-none text-gray-800'>
                       $9,000
@@ -85,7 +85,7 @@ function ShoppingCart() {
                   </div>
                   <div className='flex items-center justify-between pt-5'>
                     <p className='text-base leading-none text-gray-800'>
-                      Shipping
+                      Descuento
                     </p>
                     <p className='text-base leading-none text-gray-800'>
                       $30
