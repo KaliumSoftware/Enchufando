@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartProduct from '../molecules/CartProduct';
+import { v4 as uuidv4 } from 'uuid';
 function ShoppingCart() {
   const [show, setShow] = useState(false);
   const cartProducts = useSelector((state) => state.cart.cartProducts);
@@ -9,7 +10,9 @@ function ShoppingCart() {
 
 
 
-
+  useEffect(() => {
+    console.log(cartProducts);
+  }, [cartProducts]);
 
 
 
@@ -64,7 +67,8 @@ function ShoppingCart() {
               </p>
               {cartProducts?.map((product) => (
                 <CartProduct
-                  key={product.id}
+                  key={uuidv4()}
+                  localId={uuidv4()}
                   {...product}
                 />
               ))}
