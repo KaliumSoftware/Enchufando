@@ -23,17 +23,9 @@ module.exports = function defineOrderModel(sequelize) {
         primaryKey: true,
         allowNull: false
       },
-      products: {
-        type: DataTypes.ARRAY(DataTypes.JSON),
-        allowNull: false
-      },
       doDate: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
-        allowNull: false
-      },
-      deliveryDate: {
-        type: DataTypes.DATE,
         allowNull: false
       }
     },
