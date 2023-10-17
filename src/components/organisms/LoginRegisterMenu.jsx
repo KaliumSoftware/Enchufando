@@ -61,7 +61,7 @@ const LoginRegisterMenu = ({
           login
         );
 
-        setAccess(true);
+        if (data.access) setAccess(true);
       } catch (error) {
         //Cambiar por alerta
         setAccess(false);
@@ -90,9 +90,11 @@ const LoginRegisterMenu = ({
 
   const validate = (event, form) => {
     event.preventDefault();
+
     if (form === 'login') {
       const validatedErrors = loginValidation(login);
-      setErrors({ ...errors, validatedErrors });
+
+      setErrors({ ...errors, ...validatedErrors });
     }
   };
 
@@ -294,7 +296,7 @@ const LoginRegisterMenu = ({
                 <div className='relative'>
                   <input
                     id='email'
-                    type='email'
+                    type='text'
                     className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
                     placeholder='Email'
                     name='email'
@@ -323,17 +325,21 @@ const LoginRegisterMenu = ({
                   </span>
                 </div>
               </div>
-              {signingin ? (
-                errors.email ? (
-                  <p className='text-red-600'>{errors.email}</p>
+
+              {/* ERRORS */}
+              <div>
+                {signingin ? (
+                  errors.email ? (
+                    <p className='text-red-600'>{errors.email}</p>
+                  ) : (
+                    <p className='text-red-600'></p>
+                  )
+                ) : errorsSignUp.email ? (
+                  <p className='text-red-600'>{errorsSignUp.email}</p>
                 ) : (
                   <p className='text-red-600'></p>
-                )
-              ) : errorsSignUp.email ? (
-                <p className='text-red-600'>{errorsSignUp.email}</p>
-              ) : (
-                <p className='text-red-600'></p>
-              )}
+                )}
+              </div>
             </div>
 
             {/* PASSWORD INPUT */}
