@@ -20,8 +20,10 @@ module.exports = function defineOrderModel(sequelize) {
         primaryKey: true,
         allowNull: false
       },
+
       products: {
         type: DataTypes.ARRAY(DataTypes.JSON)
+
       }
     },
     {
