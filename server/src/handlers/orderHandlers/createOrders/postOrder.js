@@ -1,7 +1,9 @@
 const createOrder = require('../../../controllers');
 
 const postOrder = (req, res) => {
-  const { id } = req.params;
+  try {
+    const { order } = req.body;
 
-  const order = createOrder(id, status);
+    const finalOrder = createOrder(order);
+  } catch (error) {}
 };
