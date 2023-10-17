@@ -7,11 +7,11 @@ const loginUser = async (req, res) => {
     const access = await compareUser(email, password);
 
     if (access.message === 'email') {
+      return res.status(401).json({ message: 'Email no registrado' });
+    } else if (access.message === 'password') {
       return res
         .status(401)
-        .json({ message: 'Email not registered' });
-    } else if (access.message === 'password') {
-      return res.status(401).json({ message: 'Password incorrect' });
+        .json({ message: 'La contraseña no es correcta' });
     }
 
     return res.status(200).json(access);
