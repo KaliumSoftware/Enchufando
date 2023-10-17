@@ -4,12 +4,9 @@ module.exports = function defineOrderModel(sequelize) {
   class Order extends Model {
     static associate(models) {
       Order.belongsTo(models.User, {
-        through: 'OrderUser',
-        timestamps: false
-      });
-      Order.belongsToMany(models.Product, {
-        through: 'OrderProduct',
-        timestamps: false
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+        hooks: true
       });
     }
   }
@@ -23,10 +20,10 @@ module.exports = function defineOrderModel(sequelize) {
         primaryKey: true,
         allowNull: false
       },
-      doDate: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-        allowNull: false
+
+      products: {
+        type: DataTypes.ARRAY(DataTypes.JSON)
+
       }
     },
     {
