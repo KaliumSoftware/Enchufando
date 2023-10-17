@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Select, Option, Checkbox } from '@material-tailwind/react';
 import TooltipReusable from '../atoms/TooltipReusable';
-import Button from '../atoms/Button';
+import ButtonDelete from '../atoms/ButtonDelete';
+import ButtonAdd from '../atoms/ButtonAdd';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -10,7 +12,8 @@ export default function CartProduct(props) {
     const [checkOne, setCheckOne] = useState(false);
     const [checkTwo, setCheckTwo] = useState(false);
     const [quantity, setQuantity] = useState('');
-    const { name, image, specifications, id } = props
+    const { name, image, specifications, id, localId } = props
+
     const handleChange = (value) => {
 
 
@@ -171,7 +174,10 @@ export default function CartProduct(props) {
 
                 <div className='flex items-center justify-between pt-5 pr-6'>
                     <div className='flex itemms-center'>
-                        <Button />
+                        <ButtonAdd
+                            props={props} />
+                        <ButtonDelete
+                            localId={localId} />
                     </div>
 
                 </div>
