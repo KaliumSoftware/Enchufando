@@ -13,7 +13,6 @@ const createUserContr = async (
         code
       }
     });
-    console.log(codeExists);
 
     if (!codeExists) throw new Error('El código no existe');
 
@@ -33,7 +32,16 @@ const createUserContr = async (
 
     await Codes.update({ isUsed: true }, { where: { code } });
 
-    return userCreated;
+    const user = {
+      id: userCreated.id,
+      isActive: userCreated.isActive,
+      name: userCreated.name,
+      email: userCreated.email,
+      address: userCreated.address,
+      discount: userCreated.discount
+    };
+
+    return user;
   } catch (error) {
     console.error('error in createUser: ' + error);
     return error;
