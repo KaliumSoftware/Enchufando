@@ -3,11 +3,11 @@ import { Select, Option, Checkbox } from '@material-tailwind/react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/slices/cartSlice';
 import TooltipReusable from '../atoms/TooltipReusable';
-
+import { v4 as uuidv4 } from 'uuid';
 const Product = (props) => {
 
   const dispatch = useDispatch();
-  const { name, image, specifications, id } = props
+  const { name, image } = props
 
 
 
@@ -15,6 +15,10 @@ const Product = (props) => {
 
   const handleAddCart = (product) => {
 
+    product = {
+      ...product,
+      localId: uuidv4(),
+    }
     if (product) {
       return dispatch(addToCart(product));
     }
@@ -41,6 +45,7 @@ const Product = (props) => {
         </a>
         <button
           onClick={() => handleAddCart(props)}
+
           className='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         >
           Agregar al Carrito
