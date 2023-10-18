@@ -56,7 +56,7 @@ export default function NavbarMain() {
 
   return (
     <>
-      {pathname !== '/admin' && (
+      {pathname.split('/')[1] !== 'admin' && (
         <Navbar
           className={'w-full'}
           isBordered
