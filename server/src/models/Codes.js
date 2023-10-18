@@ -17,11 +17,6 @@ module.exports = function defineCodesModel(sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
       },
-      isUsed: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
-      },
       discount: {
         type: DataTypes.FLOAT,
         allowNull: false

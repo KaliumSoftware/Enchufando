@@ -1,22 +1,19 @@
 const { createUserContr } = require('../../../controllers');
-const bcrypt = require('bcrypt');
 
 const createUser = async (req, res) => {
   try {
     const { name, email, password, address, code, isAdmin } =
       req.body;
 
-    //Password hashing
-    const hashedPass = await bcrypt.hash(password, 10);
-
     userCreated = await createUserContr(
       name,
       email,
-      hashedPass,
+      password,
       address,
       code,
       isAdmin
     );
+
     if (userCreated.message) {
       throw new Error(userCreated.message);
     }

@@ -1,4 +1,5 @@
 const { User, Codes } = require('../../../db');
+const bcrypt = require('bcrypt');
 
 const createUserContr = async (
   name,
@@ -9,6 +10,9 @@ const createUserContr = async (
   isAdmin
 ) => {
   try {
+    //Password hashing
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const codeExists = await Codes.findOne({
       where: {
         code
@@ -17,14 +21,12 @@ const createUserContr = async (
 
     if (!codeExists) throw new Error('El código no existe');
 
-    if (codeExists.isUsed) throw new Error('El código ya fue usado');
-
     const discount = codeExists.discount;
 
     const userCreated = await User.create({
       name,
       email,
-      password,
+      password: hashedPassword,
       address,
       discount,
       isAdmin
@@ -32,7 +34,11 @@ const createUserContr = async (
 
     if (!userCreated) return false;
 
-    await Codes.update({ isUsed: true }, { where: { code } });
+    await Codes.destroy({
+      where: {
+        code
+      }
+    });
 
     const user = {
       id: userCreated.id,
