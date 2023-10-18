@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Navbar,
   NavbarMenu,
@@ -21,11 +22,13 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ShoppingCart from './ShoppingCart';
 import LoginRegisterMenu from './LoginRegisterMenu';
+
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [logged, setLogged] = useState(false);
   const [showLoginMenu, setShowLoginMenu] = useState(false);
   const [signingin, setSigningin] = useState(false);
+
+  const loggedUser = useSelector((state) => state.user.loggedUser);
 
   const menuItems = ['Inicio', 'Productos', 'Contacto'];
 
@@ -104,7 +107,7 @@ export default function NavbarMain() {
             as='div'
             justify='end'
           >
-            {!logged ? (
+            {!loggedUser.id ? (
               <NavbarContent justify='end'>
                 <NavbarItem className='hidden lg:flex'>
                   <Button
@@ -191,7 +194,7 @@ export default function NavbarMain() {
                       ? 'danger'
                       : 'foreground'
                   }
-                  href='#'
+                  href='/'
                   size='lg'
                 >
                   {item}
