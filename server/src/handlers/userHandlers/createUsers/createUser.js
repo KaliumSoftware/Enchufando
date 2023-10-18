@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, address, code } = req.body;
+    const { name, email, password, address, code, isAdmin } =
+      req.body;
 
     //Password hashing
     const hashedPass = await bcrypt.hash(password, 10);
@@ -13,7 +14,8 @@ const createUser = async (req, res) => {
       email,
       hashedPass,
       address,
-      code
+      code,
+      isAdmin
     );
     if (userCreated.message) {
       throw new Error(userCreated.message);

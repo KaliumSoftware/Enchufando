@@ -5,7 +5,8 @@ const createUserContr = async (
   email,
   password,
   address,
-  code
+  code,
+  isAdmin
 ) => {
   try {
     const codeExists = await Codes.findOne({
@@ -25,7 +26,8 @@ const createUserContr = async (
       email,
       password,
       address,
-      discount
+      discount,
+      isAdmin
     });
 
     if (!userCreated) return false;
@@ -34,6 +36,7 @@ const createUserContr = async (
 
     const user = {
       id: userCreated.id,
+      isAdmin: userCreated.isAdmin,
       isActive: userCreated.isActive,
       name: userCreated.name,
       email: userCreated.email,

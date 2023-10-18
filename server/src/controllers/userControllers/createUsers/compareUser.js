@@ -20,6 +20,7 @@ const compareUser = async (email, password) => {
 
     const user = {
       id: userByEmail.id,
+      isAdmin: userByEmail.isAdmin,
       isActive: userByEmail.isActive,
       name: userByEmail.name,
       email: userByEmail.email,
