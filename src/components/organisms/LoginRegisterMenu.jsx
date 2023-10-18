@@ -5,6 +5,7 @@ import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
 import { setLoggedUser } from '@/redux/slices/userSlice';
 import Swal from 'sweetalert2';
+
 // const { NEXT_PUBLIC_API_URL } = process.env;
 
 const LoginRegisterMenu = ({
