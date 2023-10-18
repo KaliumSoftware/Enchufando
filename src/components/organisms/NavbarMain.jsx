@@ -22,12 +22,10 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ShoppingCart from './ShoppingCart';
 import LoginRegisterMenu from './LoginRegisterMenu';
-import GenerateCode from './GenerateCode';
 
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLoginMenu, setShowLoginMenu] = useState(false);
-  const [showDiscountMenu, setShowDiscountMenu] = useState(false);
   const [signingin, setSigningin] = useState(false);
 
   const loggedUser = useSelector((state) => state.user.loggedUser);
@@ -206,20 +204,6 @@ export default function NavbarMain() {
           </NavbarMenu>
           <ShoppingCart />
         </Navbar>
-      )}
-
-      {loggedUser.isAdmin && (
-        <button
-          type='button'
-          className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-          onClick={() => setShowDiscountMenu(true)}
-        >
-          Panel de admin
-        </button>
-      )}
-
-      {showDiscountMenu && (
-        <GenerateCode setShowDiscountMenu={setShowDiscountMenu} />
       )}
 
       {showLoginMenu && (
