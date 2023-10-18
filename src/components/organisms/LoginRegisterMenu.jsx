@@ -310,6 +310,7 @@ const LoginRegisterMenu = ({
                         ? handleLoginChange
                         : handleSignUpChange
                     }
+                    value={signingin ? login.email : signUp.email}
                   />
 
                   <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
@@ -380,6 +381,9 @@ const LoginRegisterMenu = ({
                       signingin
                         ? handleLoginChange
                         : handleSignUpChange
+                    }
+                    value={
+                      signingin ? login.password : signUp.password
                     }
                   />
 
