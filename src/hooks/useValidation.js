@@ -96,7 +96,26 @@ const useValidation = () => {
     return errors;
   };
 
-  return { loginValidation, signUpValidation };
+  const discountValidation = (codeForm) => {
+    const errors = {};
+
+    if (codeForm.discount.trim().length === 0) {
+      errors.discount = 'Ingrese un descuento';
+    } else if (!Number(codeForm.discount)) {
+      errors.discount = 'Ingrese solo números';
+    } else if (
+      Number(codeForm.discount) > 100 ||
+      Number(codeForm.discount) < 0
+    ) {
+      errors.discount = 'Ingrese un número entre 0 y 100';
+    } else {
+      errors.discount = '';
+    }
+
+    return errors;
+  };
+
+  return { loginValidation, signUpValidation, discountValidation };
 };
 
 export default useValidation;
