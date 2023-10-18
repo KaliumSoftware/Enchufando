@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
@@ -41,8 +41,6 @@ const LoginRegisterMenu = ({
     password: false,
     repeatPassword: false
   });
-
-  const loggedUser = useSelector((state) => state.loggedUser);
 
   const dispatch = useDispatch();
   const router = useRouter();
