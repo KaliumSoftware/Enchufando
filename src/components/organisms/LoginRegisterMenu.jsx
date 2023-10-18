@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
@@ -12,7 +13,6 @@ const LoginRegisterMenu = ({
   signingin,
   setSigningin
 }) => {
-  const [access, setAccess] = useState(false);
   const [login, setLogin] = useState({
     email: '',
     password: ''
@@ -49,16 +49,6 @@ const LoginRegisterMenu = ({
   const { loginValidation, signUpValidation } = useValidation();
   //   const correo = 'info@enchufando.com';
 
-  useEffect(() => {
-    if (access === true) {
-      if (loggedUser?.isAdmin) {
-        router.push('/admin');
-      } else {
-        router.push('/store');
-      }
-    }
-  }, [access]);
-
   // LOGIN
   useEffect(() => {
     const loginUser = async () => {
@@ -70,13 +60,13 @@ const LoginRegisterMenu = ({
         );
 
         if (data.access) {
-          dispatch(setLoggedUser(data.user));
+          if (data.user.isAdmin) router.push('/admin');
+          else router.push('/store');
 
-          setAccess(true);
+          setShowLoginMenu(false);
+          dispatch(setLoggedUser(data.user));
         }
       } catch (error) {
-        setAccess(false);
-
         Swal.fire({
           icon: 'error',
           title: 'Ups...',
@@ -129,13 +119,13 @@ const LoginRegisterMenu = ({
         );
 
         if (data.message === 'Usuario creado con éxito') {
-          dispatch(setLoggedUser(data.user));
+          if (data.user.isAdmin) router.push('/admin');
+          else router.push('/store');
 
-          setAccess(true);
+          setShowLoginMenu(false);
+          dispatch(setLoggedUser(data.user));
         }
       } catch (error) {
-        setAccess(false);
-
         Swal.fire({
           icon: 'error',
           title: 'Ups...',
