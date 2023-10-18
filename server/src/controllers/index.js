@@ -18,7 +18,8 @@ const isActiveProduct = require('./productControllers/modifyProduct/isActiveProd
 //codes
 const findAllCodes = require('./codesControllers/readCodes/findAllCodes');
 const createCodes = require('./codesControllers/createCodes/createCodes');
-
+const removeAllCodes = require('./codesControllers/deleteCodes/removeAllCodes');
+const removeCodeByName = require('./codesControllers/deleteCodes/removeCodeByName');
 module.exports = {
   //users
   findAllUsers,
@@ -39,5 +40,7 @@ module.exports = {
   isActiveProduct,
   //codes
   findAllCodes,
-  createCodes
+  createCodes,
+  removeAllCodes,
+  removeCodeByName
 };

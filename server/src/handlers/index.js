@@ -17,6 +17,8 @@ const handleIsActive = require('../handlers/productHandlers/handleModifyProducts
 //codes
 const getAllCodes = require('../handlers/codesHandlers/readCodes/getCodes');
 const postCodes = require('../handlers/codesHandlers/createCodes/postCodes');
+const deleteAllCodes = require('../handlers/codesHandlers/deleteCodes/deleteAllCodes');
+const deleteCodeByName = require('../handlers/codesHandlers/deleteCodes/deleteCodeByName');
 module.exports = {
   //users
   getAllUsers,
@@ -39,5 +41,7 @@ module.exports = {
 
   //codes
   getAllCodes,
-  postCodes
+  postCodes,
+  deleteAllCodes,
+  deleteCodeByName
 };
