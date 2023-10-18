@@ -1,23 +1,17 @@
 const { User, Codes } = require('../../../db');
-
-const createUserContr = async (
-  name,
-  email,
-  password,
-  address,
-  code
-) => {
+const bcrypt = require('bcrypt');
+const createUserContr = async (name, email, pass, address, code) => {
   try {
+    //Password hashing
+    const password = await bcrypt.hash(pass, 10);
+
     const codeExists = await Codes.findOne({
       where: {
         code
       }
     });
-    console.log(codeExists);
 
     if (!codeExists) throw new Error('El código no existe');
-
-    if (codeExists.isUsed) throw new Error('El código ya fue usado');
 
     const discount = codeExists.discount;
 
@@ -31,7 +25,11 @@ const createUserContr = async (
 
     if (!userCreated) return false;
 
-    await Codes.update({ isUsed: true }, { where: { code } });
+    await Codes.destroy({
+      where: {
+        code
+      }
+    });
 
     return userCreated;
   } catch (error) {
