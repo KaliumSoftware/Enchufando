@@ -1,52 +1,57 @@
+'use client';
+import { useRouter } from 'next/navigation';
+
 const Footer = () => {
+  const router = useRouter();
+
   return (
     <footer className='bg-gray-100 rounded-lg shadow dark:bg-gray-900'>
       <div className='w-full max-w-screen-2xl mx-auto p-4 md:py-14'>
         <div className='sm:flex sm:items-center sm:justify-between'>
-          <a
-            href='/'
-            className='flex items-center mb-4 sm:mb-0'
+          <div
+            onClick={() => router.push('/')}
+            className='flex items-center mb-4 sm:mb-0 cursor-pointer'
           >
             <span className='self-center  text-4xl font-semibold whitespace-nowrap dark:text-white'>
               Enchufando
             </span>
-          </a>
+          </div>
           <ul className='flex flex-wrap items-center mb-6 text-lg font-medium  sm:mb-0 dark:text-gray-400'>
             <li>
-              <a
-                href='#'
-                className='mr-4 hover:underline md:mr-6 '
+              <div
+                onClick={() => router.push('/')}
+                className='mr-4 hover:underline md:mr-6 cursor-pointer'
               >
                 LinkedIn
-              </a>
+              </div>
             </li>
             <li>
-              <a
-                href='/'
-                className='mr-4 hover:underline md:mr-6'
+              <div
+                onClick={() => router.push('/')}
+                className='mr-4 hover:underline md:mr-6 cursor-pointer'
               >
                 Facebook
-              </a>
+              </div>
             </li>
             <li>
-              <a
-                href='/contact-us'
-                className='hover:underline'
+              <div
+                onClick={() => router.push('/contact-us')}
+                className='hover:underline cursor-pointer'
               >
                 Contactanos
-              </a>
+              </div>
             </li>
           </ul>
         </div>
         <hr className='my-6 border-black sm:mx-auto dark:border-gray-700 lg:my-8' />
         <span className='block text-sm  sm:text-center dark:text-gray-400'>
           © 2023{' '}
-          <a
-            href='/'
-            className='hover:underline'
+          <div
+            onClick={() => router.push('/')}
+            className='hover:underline cursor-pointer'
           >
             Kalium Software
-          </a>
+          </div>
           . Todos los derechos reservados.
         </span>
       </div>
