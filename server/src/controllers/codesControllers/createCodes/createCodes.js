@@ -1,6 +1,6 @@
 const { Codes } = require('../../../db');
 
-const createCodes = async (codeToCreate) => {
+const createCodes = async (discount) => {
   try {
     const createCode = () => {
       let code = '';
@@ -9,17 +9,24 @@ const createCodes = async (codeToCreate) => {
       }
       return code;
     };
-    const finalCode = createCode(codeToCreate);
+
+    const finalCode = createCode();
 
     const codeExists = await Codes.findOne({
       where: { code: finalCode }
     });
 
     if (codeExists) throw new Error('The code already exists');
-    codeToCreate.code = finalCode;
+
+    const codeToCreate = {
+      discount,
+      code: finalCode
+    };
 
     const codeCreated = await Codes.create(codeToCreate);
+
     if (!codeCreated) return false;
+
     return codeCreated;
   } catch (error) {
     console.error(error);

@@ -2,8 +2,8 @@ const { createCodes } = require('../../../controllers');
 
 const postCodes = async (req, res) => {
   try {
-    const codeToCreate = req.body;
-    const codeCreated = await createCodes(codeToCreate);
+    const { discount } = req.body;
+    const codeCreated = await createCodes(discount);
     if (!codeCreated)
       throw new Error('The code could not be created');
     res.status(201).json(codeCreated);

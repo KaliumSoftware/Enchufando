@@ -2,9 +2,8 @@ const { createUserContr } = require('../../../controllers');
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, address, code } = req.body;
-
-    const pass = password;
+    const { name, email, password, address, code, isAdmin } =
+      req.body;
 
     userCreated = await createUserContr(
       name,
@@ -12,7 +11,7 @@ const createUser = async (req, res) => {
       password,
       address,
       code,
-      pass
+      isAdmin
     );
 
     if (userCreated.message) {

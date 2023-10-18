@@ -205,6 +205,7 @@ export default function NavbarMain() {
           <ShoppingCart />
         </Navbar>
       )}
+
       {showLoginMenu && (
         <LoginRegisterMenu
           setShowLoginMenu={setShowLoginMenu}

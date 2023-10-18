@@ -19,6 +19,11 @@ module.exports = function defineUserModel(sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
       },
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

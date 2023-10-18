@@ -1,10 +1,16 @@
+'use client';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { RxSketchLogo, RxDashboard, RxPerson } from 'react-icons/rx';
+import { HiOutlineReceiptPercent } from 'react-icons/hi2';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { FiSettings } from 'react-icons/fi';
+import GenerateCode from './GenerateCode';
 
 const Sidebar = ({ children }) => {
+  const [showDiscountMenu, setShowDiscountMenu] = useState(false);
+
   return (
     <div className='flex'>
       <div className='fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-start'>
@@ -30,6 +36,12 @@ const Sidebar = ({ children }) => {
               <HiOutlineShoppingBag size={20} />
             </div>
           </Link>
+          <div
+            className='bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'
+            onClick={() => setShowDiscountMenu(!showDiscountMenu)}
+          >
+            <HiOutlineReceiptPercent size={20} />
+          </div>
           <Link href='/admin/settings'>
             <div className='bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'>
               <FiSettings size={20} />
@@ -38,6 +50,10 @@ const Sidebar = ({ children }) => {
         </div>
       </div>
       <main className='ml-20 w-full'>{children}</main>
+
+      {showDiscountMenu && (
+        <GenerateCode setShowDiscountMenu={setShowDiscountMenu} />
+      )}
     </div>
   );
 };
