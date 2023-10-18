@@ -1,4 +1,4 @@
-const { createProduct } = require('../../../controllers/index');
+const { createProduct } = require('../../../controllers');
 
 const postProduct = async (req, res) => {
   try {
@@ -15,13 +15,14 @@ const postProduct = async (req, res) => {
     };
 
     const product = await createProduct(newProduct);
+    console.log(product);
 
-    if (product.errors) return res.status(400).json(product);
+    if (!product) throw new Error('Error al crear el producto');
 
     return res.status(200).json(product);
   } catch (error) {
     console.log(error);
-    return res.status(500).json('Error creating product');
+    return res.status(500).json({ error: error.message });
   }
 };
 

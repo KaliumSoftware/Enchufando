@@ -4,9 +4,10 @@ module.exports = function defineUserModel(sequelize) {
   class User extends Model {
     static associate(models) {
       // Definir asociaciones aquí
-      User.belongsToMany(models.Order, {
-        through: 'OrderUser',
-        timestamps: false
+      User.hasMany(models.Order, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+        hooks: true
       });
     }
   }
