@@ -12,10 +12,19 @@ const cartSlice = createSlice({
       state.cartProducts = action.payload;
     },
     addToCart: (state, action) => {
-      state.cartProducts.push(action.payload);
+      state.cartProducts.push({
+        ...action.payload,
+        index: state.cartProducts.length
+      });
+    },
+    deleteCart: (state, action) => {
+      console.log(action.payload);
+      state.cartProducts = state.cartProducts.filter(
+        (product) => product.localId !== action.payload
+      );
     }
   }
 });
 
-export const { getCart, addToCart } = cartSlice.actions;
+export const { getCart, addToCart, deleteCart } = cartSlice.actions;
 export default cartSlice.reducer;
