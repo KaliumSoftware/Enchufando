@@ -4,10 +4,6 @@ module.exports = function defineProductModel(sequelize) {
   class Product extends Model {
     static associate(models) {
       // Definir asociaciones aquí
-      Product.belongsToMany(models.Order, {
-        through: 'OrderProduct',
-        timestamps: false
-      });
     }
   }
 
