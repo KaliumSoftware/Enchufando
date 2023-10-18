@@ -27,7 +27,7 @@ export default function NavbarMain() {
   const [showLoginMenu, setShowLoginMenu] = useState(false);
   const [signingin, setSigningin] = useState(false);
 
-  const menuItems = ['Home', 'Productos', 'Contacto'];
+  const menuItems = ['Inicio', 'Productos', 'Contacto'];
 
   const path = usePathname();
 
@@ -36,7 +36,13 @@ export default function NavbarMain() {
 
     name === 'login' ? setSigningin(true) : setSigningin(false);
 
-    setShowLoginMenu(true);
+    if (!showLoginMenu) {
+      setShowLoginMenu(true);
+    } else if (showLoginMenu && name === 'login' && signingin) {
+      setShowLoginMenu(false);
+    } else if (showLoginMenu && name === 'register' && !signingin) {
+      setShowLoginMenu(false);
+    }
   };
 
   return (
