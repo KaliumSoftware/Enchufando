@@ -1,10 +1,10 @@
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className='bg-gray-100 rounded-lg shadow dark:bg-gray-900'>
       <div className='w-full max-w-screen-2xl mx-auto p-4 md:py-14'>
         <div className='sm:flex sm:items-center sm:justify-between'>
           <a
-            href='https://flowbite.com/'
+            href='/'
             className='flex items-center mb-4 sm:mb-0'
           >
             <span className='self-center  text-4xl font-semibold whitespace-nowrap dark:text-white'>
@@ -22,7 +22,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href='#'
+                href='/'
                 className='mr-4 hover:underline md:mr-6'
               >
                 Facebook
@@ -30,7 +30,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href='#'
+                href='/contact-us'
                 className='hover:underline'
               >
                 Contactanos
@@ -42,7 +42,7 @@ export default function Footer() {
         <span className='block text-sm  sm:text-center dark:text-gray-400'>
           © 2023{' '}
           <a
-            href='https://flowbite.com/'
+            href='/'
             className='hover:underline'
           >
             Kalium Software
@@ -52,4 +52,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

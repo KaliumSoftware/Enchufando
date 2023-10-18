@@ -7,7 +7,7 @@ import store from '@/redux/store';
 export function Providers({ children }) {
   return (
     <Provider store={store}>
-      <NextUIProvider>{children}</NextUIProvider>;
+      <NextUIProvider>{children}</NextUIProvider>
     </Provider>
   );
 }

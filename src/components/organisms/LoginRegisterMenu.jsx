@@ -5,7 +5,6 @@ import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
 import { setLoggedUser } from '@/redux/slices/userSlice';
 import Swal from 'sweetalert2';
-
 // const { NEXT_PUBLIC_API_URL } = process.env;
 
 const LoginRegisterMenu = ({
@@ -311,6 +310,7 @@ const LoginRegisterMenu = ({
                         ? handleLoginChange
                         : handleSignUpChange
                     }
+                    value={signingin ? login.email : signUp.email}
                   />
 
                   <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
@@ -381,6 +381,9 @@ const LoginRegisterMenu = ({
                       signingin
                         ? handleLoginChange
                         : handleSignUpChange
+                    }
+                    value={
+                      signingin ? login.password : signUp.password
                     }
                   />
 
