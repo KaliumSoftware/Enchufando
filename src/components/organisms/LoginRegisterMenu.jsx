@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
 import { setLoggedUser } from '@/redux/slices/userSlice';
+import Swal from 'sweetalert2';
 // const { NEXT_PUBLIC_API_URL } = process.env;
 
 const LoginRegisterMenu = ({
@@ -74,9 +75,13 @@ const LoginRegisterMenu = ({
           setAccess(true);
         }
       } catch (error) {
-        //Cambiar por alerta
         setAccess(false);
-        console.log(error.response.data.message);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Ups...',
+          text: error.response.data.message
+        });
       }
     };
 
@@ -129,9 +134,13 @@ const LoginRegisterMenu = ({
           setAccess(true);
         }
       } catch (error) {
-        //Cambiar por alerta
         setAccess(false);
-        console.log(error.response.data.error);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Ups...',
+          text: error.response.data.error
+        });
       }
     };
 
