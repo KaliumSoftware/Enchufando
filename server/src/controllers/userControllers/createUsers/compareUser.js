@@ -18,7 +18,17 @@ const compareUser = async (email, password) => {
       return { access: false, message: 'password' };
     }
 
-    return { access: true, message: 'Welcome' };
+    const user = {
+      id: userByEmail.id,
+      isAdmin: userByEmail.isAdmin,
+      isActive: userByEmail.isActive,
+      name: userByEmail.name,
+      email: userByEmail.email,
+      address: userByEmail.address,
+      discount: userByEmail.discount
+    };
+
+    return { access: true, message: 'Welcome', user };
   } catch (error) {
     console.error(error);
     return error;

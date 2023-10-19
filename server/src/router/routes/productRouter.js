@@ -6,7 +6,8 @@ const {
   getProductById,
   getAllMeasures,
   handleProductDelete,
-  handleIsActive
+  handleIsActive,
+  handlePutProduct
 } = require('../../handlers');
 
 const productRouter = Router();
@@ -23,6 +24,7 @@ productRouter.post(
   postProduct
 );
 productRouter.patch('/:id', handleIsActive);
+productRouter.put('/:id', handlePutProduct);
 productRouter.delete('/:id', handleProductDelete);
 
 module.exports = productRouter;

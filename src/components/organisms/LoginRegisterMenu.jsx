@@ -1,16 +1,18 @@
+'use client';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
-const { NEXT_PUBLIC_API_URL } = process.env;
+import { setLoggedUser } from '@/redux/slices/userSlice';
+import Swal from 'sweetalert2';
+// const { NEXT_PUBLIC_API_URL } = process.env;
 
 const LoginRegisterMenu = ({
   setShowLoginMenu,
   signingin,
   setSigningin
 }) => {
-  const [access, setAccess] = useState(false); //eslint-disable-line
   const [login, setLogin] = useState({
     email: '',
     password: ''
@@ -23,6 +25,7 @@ const LoginRegisterMenu = ({
     name: '',
     email: '',
     password: '',
+    repeatPassword: '',
     address: '',
     code: ''
   });
@@ -34,24 +37,17 @@ const LoginRegisterMenu = ({
     address: '',
     code: ''
   });
-
-  const loggedUser = useSelector((state) => state.loggedUser);
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    repeatPassword: false
+  });
 
   const dispatch = useDispatch();
   const router = useRouter();
   const { loginValidation, signUpValidation } = useValidation();
   //   const correo = 'info@enchufando.com';
 
-  useEffect(() => {
-    if (access === true) {
-      if (loggedUser?.isAdmin) {
-        router.push('/admin');
-      } else {
-        router.push('/store');
-      }
-    }
-  }, [access]);
-
+  // LOGIN
   useEffect(() => {
     const loginUser = async () => {
       // const apiUrl = `${NEXT_PUBLIC_API_URL}/api/user/login`;
@@ -61,11 +57,19 @@ const LoginRegisterMenu = ({
           login
         );
 
-        setAccess(true);
+        if (data.access) {
+          if (data.user.isAdmin) router.push('/admin');
+          else router.push('/store');
+
+          setShowLoginMenu(false);
+          dispatch(setLoggedUser(data.user));
+        }
       } catch (error) {
-        //Cambiar por alerta
-        setAccess(false);
-        console.log(error.response.data.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Ups...',
+          text: error.response.data.message
+        });
       }
     };
 
@@ -88,89 +92,64 @@ const LoginRegisterMenu = ({
     });
   };
 
-  const validate = (event, form) => {
-    event.preventDefault();
-    if (form === 'login') {
-      const validatedErrors = loginValidation(login);
-      setErrors({ ...errors, validatedErrors });
+  const handleShowPassword = (inputName) => {
+    if (inputName === 'password') {
+      setShowPassword({
+        ...showPassword,
+        password: !showPassword.password
+      });
+    } else if (inputName === 'repeatPassword') {
+      setShowPassword({
+        ...showPassword,
+        repeatPassword: !showPassword.repeatPassword
+      });
     }
   };
 
-  // const handleLoginSubmit = () => {
-  //   console.log(errors);
-  //   if (errors.email.length === 0 && errors.password.length === 0) {
-  //     setAccess(true);
-  //   }
-  // };
-  /*   const handleLogin = async (input) => {
-    try {
-      const { data } = await axios.post('/consumers/login', input);
-      if (data) {
-        if (data.isActive) {
-          setAccess(true);
-          dispatch(loggedUser(data));
-          const form = document.getElementById('form');
-          form.reset();
-        } else {
-          return Swal.fire({
-            icon: 'error',
-            title: 'Tu cuenta ha sido suspendida.',
-            html: `<p>Para más información, contactate con <a style="color: black;" href="mailto:${correo}">${correo}</a>.</p>`
-          });
+  // SIGN UP
+  useEffect(() => {
+    const signUpUser = async () => {
+      // const apiUrl = `${NEXT_PUBLIC_API_URL}/api/user/login`;
+      try {
+        const { data } = await axios.post(
+          'http://localhost:3000/api/user',
+          signUp
+        );
+
+        if (data.message === 'Usuario creado con éxito') {
+          if (data.user.isAdmin) router.push('/admin');
+          else router.push('/store');
+
+          setShowLoginMenu(false);
+          dispatch(setLoggedUser(data.user));
         }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ups...',
+          text: error.response.data.error
+        });
       }
-    } catch (error) {
-      console.error('error: ' + error.message);
-      Swal.fire(error.message);
-    }
-  }; */
+    };
 
-  /* const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const email = input.email;
-    const password = input.password;
-
-    try {
-      const credential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      if (credential) {
-        handleLogin(input);
-      }
-      const form = document.getElementById('form');
-      form.reset();
-    } catch (error) {
-      Swal.fire(error.message);
-    }
-  }; */
-
-  //////para deshabilitar el boton si no esta lleno el formulario=>
-  const buttonDisabled = () => {
     if (
-      signUp.password.trim().length === 0 ||
-      signUp.email.trim().length === 0 ||
-      signUp.firstName.trim().length === 0 ||
-      signUp.lastName.trim().length === 0 ||
-      signUp.age.trim().length === 0 ||
-      signUp.username.trim().length === 0 ||
-      signUp.gender.trim().length === 0
+      errorsSignUp.name.length === 0 &&
+      errorsSignUp.email.length === 0 &&
+      errorsSignUp.password.length === 0 &&
+      errorsSignUp.repeatPassword.length === 0 &&
+      errorsSignUp.address.length === 0 &&
+      errorsSignUp.code.length === 0 &&
+      signUp.name.length > 0 &&
+      signUp.email.length > 0 &&
+      signUp.password.length > 0 &&
+      signUp.repeatPassword.length > 0 &&
+      signUp.address.length > 0 &&
+      signUp.code.length > 0
     ) {
-      return true;
+      signUpUser();
     }
+  }, [errorsSignUp]);
 
-    for (let error in errors) {
-      if (errors[error] !== '') {
-        return true;
-      }
-    }
-
-    return false;
-  };
-
-  ///SIGN UP///
   const handleSignUpChange = (event) => {
     const { name, value } = event.target;
 
@@ -180,35 +159,28 @@ const LoginRegisterMenu = ({
     });
   };
 
-  const handlePost = async (signUp) => {
-    try {
-      //   const response = await axios.post('/consumers', signUp);
-      if (response) {
-        // Reset the form only on successful response
-        const form = document.getElementById('form');
-        form.reset();
-      }
-
-      // Logear automaticamente
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleRegisterSubmit = async (e) => {
-    e.preventDefault();
-
-    handlePost(data);
-  };
-
   const handleToggle = () => {
     setSigningin(!signingin);
   };
 
+  const validate = (event, form) => {
+    event.preventDefault();
+
+    if (form === 'login') {
+      const validatedErrors = loginValidation(login);
+
+      setErrors({ ...errors, ...validatedErrors });
+    } else if (form === 'signUp') {
+      const validatedErrors = signUpValidation(signUp);
+
+      setErrorsSignUp({ ...errorsSignUp, ...validatedErrors });
+    }
+  };
+
   return (
     <div className='fixed inset-0 flex items-center justify-center h-full w-full'>
-      <div className='fixed mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 z-20'>
-        <div className='mx-auto bg-white z-10 rounded-2xl py-16 px-32 w-[75vw] h-[75vh]'>
+      <div className='fixed mx-auto px-4 py-16 sm:px-6 lg:px-8 z-20'>
+        <div className='mx-auto mt-14 md:mt-0 bg-white z-10 rounded-2xl py-6 md:py-16 md:pt-16 px-5 md:px-10 w-[85vw] md:w-[55vw] 2xl:w-[55vw] md:h-full'>
           <h1 className='text-center text-2xl font-bold text-indigo-600 sm:text-3xl'>
             {signingin ? 'Iniciar Sesión' : 'Registrarse'}
           </h1>
@@ -221,11 +193,11 @@ const LoginRegisterMenu = ({
             name='loginRegisterForm'
             id='loginRegisterForm'
             action=''
-            className='mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8'
+            className='mb-0 mt-6 lg:space-y-4 rounded-lg p-4 shadow-lg'
             onSubmit={(event) =>
               signingin
                 ? validate(event, 'login')
-                : validate(event, 'register')
+                : validate(event, 'signUp')
             }
           >
             <p className='text-center text-lg font-medium'>
@@ -234,7 +206,7 @@ const LoginRegisterMenu = ({
                 : 'Registrate como usuario'}
             </p>
 
-            <div className='flex items-center justify-evenly w-full'>
+            <div className='lg:flex justify-center gap-x-6 w-full'>
               {/* NAME INPUT */}
               {!signingin && (
                 <div>
@@ -249,7 +221,11 @@ const LoginRegisterMenu = ({
                     <input
                       id='name'
                       type='text'
-                      className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
+                        errorsSignUp.name
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                      }`}
                       placeholder='Nombre completo'
                       name='name'
                       onChange={handleSignUpChange}
@@ -279,6 +255,17 @@ const LoginRegisterMenu = ({
                       </svg>
                     </span>
                   </div>
+
+                  {/* ERRORS */}
+                  <div>
+                    {errorsSignUp.name ? (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                        {errorsSignUp.name}
+                      </p>
+                    ) : (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -294,8 +281,16 @@ const LoginRegisterMenu = ({
                 <div className='relative'>
                   <input
                     id='email'
-                    type='email'
-                    className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                    type='text'
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
+                      signingin
+                        ? errors.email
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                        : errorsSignUp.email
+                        ? 'border-red-600 border'
+                        : 'border-gray-200 border'
+                    }`}
                     placeholder='Email'
                     name='email'
                     onChange={
@@ -303,6 +298,7 @@ const LoginRegisterMenu = ({
                         ? handleLoginChange
                         : handleSignUpChange
                     }
+                    value={signingin ? login.email : signUp.email}
                   />
 
                   <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
@@ -322,22 +318,30 @@ const LoginRegisterMenu = ({
                     </svg>
                   </span>
                 </div>
+
+                {/* ERRORS */}
+                <div>
+                  {signingin ? (
+                    errors.email ? (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                        {errors.email}
+                      </p>
+                    ) : (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                    )
+                  ) : errorsSignUp.email ? (
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                      {errorsSignUp.email}
+                    </p>
+                  ) : (
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                  )}
+                </div>
               </div>
-              {signingin ? (
-                errors.email ? (
-                  <p className='text-red-600'>{errors.email}</p>
-                ) : (
-                  <p className='text-red-600'></p>
-                )
-              ) : errorsSignUp.email ? (
-                <p className='text-red-600'>{errorsSignUp.email}</p>
-              ) : (
-                <p className='text-red-600'></p>
-              )}
             </div>
 
             {/* PASSWORD INPUT */}
-            <div className='flex items-center justify-evenly w-full'>
+            <div className='lg:flex justify-center gap-x-6 w-full'>
               <div>
                 <label
                   htmlFor='password'
@@ -349,8 +353,16 @@ const LoginRegisterMenu = ({
                 <div className='relative'>
                   <input
                     id='password'
-                    type='password'
-                    className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                    type={showPassword.password ? 'text' : 'password'}
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
+                      signingin
+                        ? errors.password
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                        : errorsSignUp.password
+                        ? 'border-red-600 border'
+                        : 'border-gray-200 border'
+                    }`}
                     placeholder='Contraseña'
                     name='password'
                     onChange={
@@ -358,15 +370,19 @@ const LoginRegisterMenu = ({
                         ? handleLoginChange
                         : handleSignUpChange
                     }
+                    value={
+                      signingin ? login.password : signUp.password
+                    }
                   />
 
                   <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      className='h-4 w-4 text-gray-400'
+                      className='h-4 w-4 text-gray-400 cursor-pointer'
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'
+                      onClick={() => handleShowPassword('password')}
                     >
                       <path
                         strokeLinecap='round'
@@ -383,6 +399,25 @@ const LoginRegisterMenu = ({
                     </svg>
                   </span>
                 </div>
+
+                {/* PASSWORD ERRORS */}
+                <div>
+                  {signingin ? (
+                    errors.password ? (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                        {errors.password}
+                      </p>
+                    ) : (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                    )
+                  ) : errorsSignUp.password ? (
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                      {errorsSignUp.password}
+                    </p>
+                  ) : (
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                  )}
+                </div>
               </div>
 
               {/* REPEAT PASSWORD INPUT */}
@@ -398,8 +433,16 @@ const LoginRegisterMenu = ({
                   <div className='relative'>
                     <input
                       id='repeatPassword'
-                      type='password'
-                      className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                      type={
+                        showPassword.repeatPassword
+                          ? 'text'
+                          : 'password'
+                      }
+                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
+                        errorsSignUp.repeatPassword
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                      }`}
                       placeholder='Repetir contraseña'
                       name='repeatPassword'
                       onChange={handleSignUpChange}
@@ -408,10 +451,13 @@ const LoginRegisterMenu = ({
                     <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
-                        className='h-4 w-4 text-gray-400'
+                        className='h-4 w-4 text-gray-400 cursor-pointer'
                         fill='none'
                         viewBox='0 0 24 24'
                         stroke='currentColor'
+                        onClick={() =>
+                          handleShowPassword('repeatPassword')
+                        }
                       >
                         <path
                           strokeLinecap='round'
@@ -428,12 +474,23 @@ const LoginRegisterMenu = ({
                       </svg>
                     </span>
                   </div>
+
+                  {/* REPEAT PASSWORD ERRORS */}
+                  <div>
+                    {errorsSignUp.repeatPassword ? (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                        {errorsSignUp.repeatPassword}
+                      </p>
+                    ) : (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
 
             {/* ADDRESS INPUT */}
-            <div className='flex items-center justify-evenly w-full'>
+            <div className='lg:flex justify-center gap-x-6 w-full'>
               {!signingin && (
                 <div>
                   <label
@@ -447,7 +504,11 @@ const LoginRegisterMenu = ({
                     <input
                       id='address'
                       type='text'
-                      className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
+                        errorsSignUp.address
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                      }`}
                       placeholder='Dirección'
                       name='address'
                       onChange={handleSignUpChange}
@@ -476,6 +537,17 @@ const LoginRegisterMenu = ({
                       </svg>
                     </span>
                   </div>
+
+                  {/* ADDRESS ERRORS */}
+                  <div>
+                    {errorsSignUp.address ? (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                        {errorsSignUp.address}
+                      </p>
+                    ) : (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -493,7 +565,11 @@ const LoginRegisterMenu = ({
                     <input
                       id='code'
                       type='text'
-                      className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm'
+                      className={`w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ${
+                        errorsSignUp.code
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                      }`}
                       placeholder='Código'
                       name='code'
                       onChange={handleSignUpChange}
@@ -525,16 +601,29 @@ const LoginRegisterMenu = ({
                       </svg>
                     </span>
                   </div>
+
+                  {/* CODE ERRORS */}
+                  <div>
+                    {errorsSignUp.code ? (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                        {errorsSignUp.code}
+                      </p>
+                    ) : (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
 
-            <button
-              type='submit'
-              className='block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white'
-            >
-              {signingin ? 'Ingresar' : 'Registrarse'}
-            </button>
+            <div className='flex items-center justify-center'>
+              <button
+                type='submit'
+                className='block w-fit rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white mb-3'
+              >
+                {signingin ? 'Ingresar' : 'Registrarse'}
+              </button>
+            </div>
 
             <p className='text-center text-sm text-gray-500'>
               {signingin

@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Navbar,
   NavbarMenu,
@@ -18,30 +19,44 @@ import {
 } from '@nextui-org/react';
 import logoBlack from './../../../assets/logo-black-png-transformed.png';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import ShoppingCart from './ShoppingCart';
 import LoginRegisterMenu from './LoginRegisterMenu';
+import { setLoggedUser } from '@/redux/slices/userSlice';
+
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [logged, setLogged] = useState(false);
   const [showLoginMenu, setShowLoginMenu] = useState(false);
   const [signingin, setSigningin] = useState(false);
 
-  const menuItems = ['Home', 'Productos', 'Contacto'];
+  const dispatch = useDispatch();
+  const loggedUser = useSelector((state) => state.user.loggedUser);
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const path = usePathname();
+  const menuItems = ['Inicio', 'Tienda', 'Contacto'];
 
   const handleClick = (event) => {
     const { name } = event.target;
 
     name === 'login' ? setSigningin(true) : setSigningin(false);
 
-    setShowLoginMenu(true);
+    if (!showLoginMenu) {
+      setShowLoginMenu(true);
+    } else if (showLoginMenu && name === 'login' && signingin) {
+      setShowLoginMenu(false);
+    } else if (showLoginMenu && name === 'register' && !signingin) {
+      setShowLoginMenu(false);
+    }
+  };
+
+  const handleLogOut = () => {
+    dispatch(setLoggedUser({}));
   };
 
   return (
     <>
-      {path.pathname !== '/admin' && (
+      {pathname.split('/')[1] !== 'admin' && (
         <Navbar
           className={'w-full'}
           isBordered
@@ -50,17 +65,20 @@ export default function NavbarMain() {
         >
           <NavbarContent>
             <NavbarMenuToggle
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={isMenuOpen ? 'Cerrar menu' : 'Abrir menu'}
               className='sm:hidden'
             />
             <NavbarBrand>
-              <Link href='/'>
+              <div
+                onClick={() => router.push('/')}
+                className='cursor-pointer'
+              >
                 <Image
                   className='w-10 h-10'
                   src={logoBlack}
                   alt='Logo'
                 />
-              </Link>
+              </div>
             </NavbarBrand>
           </NavbarContent>
 
@@ -68,29 +86,32 @@ export default function NavbarMain() {
             className='hidden sm:flex gap-4'
             justify='center'
           >
-            <NavbarItem isActive={path === '/'}>
-              <Link
+            <NavbarItem isActive={pathname === '/'}>
+              <div
+                onClick={() => router.push('/')}
+                className='cursor-pointer'
                 color='foreground'
-                href='/'
               >
                 Inicio
-              </Link>
+              </div>
             </NavbarItem>
-            <NavbarItem isActive={path === '/store'}>
-              <Link
-                href='/store'
+            <NavbarItem isActive={pathname === '/store'}>
+              <div
+                onClick={() => router.push('/store')}
+                className='cursor-pointer'
                 color='foreground'
               >
                 Tienda
-              </Link>
+              </div>
             </NavbarItem>
-            <NavbarItem isActive={path === '/contact-us'}>
-              <Link
+            <NavbarItem isActive={pathname === '/contact-us'}>
+              <div
+                onClick={() => router.push('/contact-us')}
+                className='cursor-pointer'
                 color='foreground'
-                href='/contact-us'
               >
                 Contacto
-              </Link>
+              </div>
             </NavbarItem>
           </NavbarContent>
 
@@ -98,7 +119,7 @@ export default function NavbarMain() {
             as='div'
             justify='end'
           >
-            {!logged ? (
+            {!loggedUser.id ? (
               <NavbarContent justify='end'>
                 <NavbarItem className='hidden lg:flex'>
                   <Button
@@ -133,6 +154,7 @@ export default function NavbarMain() {
                     color='secondary'
                     name='Jason Hughes'
                     size='sm'
+                    // CAMBIAR POR IMAGEN DE USUARIO
                     src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
                   />
                 </DropdownTrigger>
@@ -142,32 +164,22 @@ export default function NavbarMain() {
                 >
                   <DropdownItem
                     key='profile'
-                    className='h-14 gap-2'
+                    className='h-14 gap-2 font-bold bg-gray-100'
                   >
-                    <p className='font-semibold'>Signed in as</p>
-                    <p className='font-semibold'>zoey@example.com</p>
+                    {`Bienvenido ${loggedUser.name.split(' ')[0]}`}
                   </DropdownItem>
                   <DropdownItem key='settings'>
-                    My Settings
-                  </DropdownItem>
-                  <DropdownItem key='team_settings'>
-                    Team Settings
-                  </DropdownItem>
-                  <DropdownItem key='analytics'>
-                    Analytics
-                  </DropdownItem>
-                  <DropdownItem key='system'>System</DropdownItem>
-                  <DropdownItem key='configurations'>
-                    Configurations
+                    Mis compras
                   </DropdownItem>
                   <DropdownItem key='help_and_feedback'>
-                    Help & Feedback
+                    Ayuda
                   </DropdownItem>
                   <DropdownItem
                     key='logout'
                     color='danger'
+                    onClick={handleLogOut}
                   >
-                    Log Out
+                    Cerrar sesión
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -176,8 +188,8 @@ export default function NavbarMain() {
           <NavbarMenu className='z-50'>
             {menuItems.map((item, index) => (
               <NavbarMenuItem key={`${item}-${index}`}>
-                <Link
-                  className='w-full'
+                <div
+                  className='w-full cursor-pointer'
                   color={
                     index === 2
                       ? 'warning'
@@ -185,17 +197,18 @@ export default function NavbarMain() {
                       ? 'danger'
                       : 'foreground'
                   }
-                  href='#'
+                  onClick={() => router.push('/')}
                   size='lg'
                 >
                   {item}
-                </Link>
+                </div>
               </NavbarMenuItem>
             ))}
           </NavbarMenu>
           <ShoppingCart />
         </Navbar>
       )}
+
       {showLoginMenu && (
         <LoginRegisterMenu
           setShowLoginMenu={setShowLoginMenu}

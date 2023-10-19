@@ -1,9 +1,17 @@
 const { User, Codes } = require('../../../db');
 const bcrypt = require('bcrypt');
-const createUserContr = async (name, email, pass, address, code) => {
+
+const createUserContr = async (
+  name,
+  email,
+  password,
+  address,
+  code,
+  isAdmin
+) => {
   try {
     //Password hashing
-    const password = await bcrypt.hash(pass, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const codeExists = await Codes.findOne({
       where: {
@@ -18,9 +26,10 @@ const createUserContr = async (name, email, pass, address, code) => {
     const userCreated = await User.create({
       name,
       email,
-      password,
+      password: hashedPassword,
       address,
-      discount
+      discount,
+      isAdmin
     });
 
     if (!userCreated) return false;
@@ -31,7 +40,17 @@ const createUserContr = async (name, email, pass, address, code) => {
       }
     });
 
-    return userCreated;
+    const user = {
+      id: userCreated.id,
+      isAdmin: userCreated.isAdmin,
+      isActive: userCreated.isActive,
+      name: userCreated.name,
+      email: userCreated.email,
+      address: userCreated.address,
+      discount: userCreated.discount
+    };
+
+    return user;
   } catch (error) {
     console.error('error in createUser: ' + error);
     return error;

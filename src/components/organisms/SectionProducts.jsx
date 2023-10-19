@@ -1,6 +1,10 @@
+'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 const SectionProducts = () => {
+  const router = useRouter();
+
   return (
     <section>
       <div className='mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8'>
@@ -19,12 +23,12 @@ const SectionProducts = () => {
               </p>
 
               <div className='mt-4 md:mt-8'>
-                <a
-                  href='#'
-                  className='inline-block rounded border border-white bg-blueMain px-12 py-3 text-sm font-medium text-white transition hover:bg-blueDark hover:text-white focus:outline-none focus:ring focus:ring-yellow-400'
+                <div
+                  onClick={() => router.push('/store')}
+                  className='inline-block rounded border border-white bg-blueMain px-12 py-3 text-sm font-medium text-white transition hover:bg-blueDark hover:text-white focus:outline-none focus:ring focus:ring-yellow-400 cursor-pointer'
                 >
                   Ir a la Tienda
-                </a>
+                </div>
               </div>
             </div>
           </div>
