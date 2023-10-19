@@ -5,30 +5,23 @@ import { addToCart } from '../../redux/slices/cartSlice';
 import TooltipReusable from '../atoms/TooltipReusable';
 
 const Product = (props) => {
-
   const dispatch = useDispatch();
-  const { name, image, specifications, id } = props
-
-
-
+  const { name, image, specifications, id } = props;
   // add products to cart logic
 
   const handleAddCart = (product) => {
-
     if (product) {
       return dispatch(addToCart(product));
     }
     return alert('Selecciona un producto');
   };
 
-
-
   return (
     <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-5 w-full'>
       <a href='#'>
         <img
           className='rounded-t-lg w-full'
-          src={image.url}
+          src={image.secure_url}
           alt={`imagen de ${name}`}
         />
       </a>
