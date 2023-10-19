@@ -31,7 +31,7 @@ const compareUser = async (email, password) => {
     return { access: true, message: 'Welcome', user };
   } catch (error) {
     console.error(error);
-    return error;
+    return false;
   }
 };
 
