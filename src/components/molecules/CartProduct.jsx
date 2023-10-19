@@ -7,11 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setSpecificationsCart } from '@/redux/slices/cartSlice';
 
 
-
-
 export default function CartProduct(props) {
-    const [specificationSelected, setSpecificationSelected] = useState(null);
-    const [check, setCheck] = useState('');
     const [quantity, setQuantity] = useState('');
     const { name, image, specifications, id, localId, selectedSpec } = props;
     const dispatch = useDispatch()
@@ -22,7 +18,6 @@ export default function CartProduct(props) {
             (spec) => spec.size === event.target.value
         );
         if (selectedProduct) {
-            setSpecificationSelected(selectedProduct);
             dispatch(setSpecificationsCart({
                 selectedSpec: selectedProduct,
                 localId
@@ -31,17 +26,12 @@ export default function CartProduct(props) {
     };
 
     const handleCheck = (event) => {
-
         if (event.target.name === 'one') {
-            setCheck('one');
-            setSpecificationSelected({ ...specificationSelected, pack: 'small' });
             dispatch(setSpecificationsCart({
                 selectedSpec: { ...selectedSpec, pack: 'small' },
                 localId
             }))
         } else {
-            setCheck('two');
-            setSpecificationSelected({ ...specificationSelected, pack: 'big' });
             dispatch(setSpecificationsCart({
                 selectedSpec: { ...selectedSpec, pack: 'big' },
                 localId
@@ -74,7 +64,7 @@ export default function CartProduct(props) {
                 <select
                     label='Medidas'
                     onChange={handleChange}
-                    value={selectedSpec?.size || specificationSelected?.size}
+                    value={selectedSpec?.size}
                 >
                     {specifications?.map((spec) => (
                         <option
@@ -94,7 +84,7 @@ export default function CartProduct(props) {
                     <div className='flex flex-wrap mx-5 pt-6 gap-2 pb-4 '>
                         <div className='flex items-center'>
                             <label htmlFor={`${id}checkOne`}>
-                                {specificationSelected ? `x ${specificationSelected?.smallPack}` : 'Bolsita'}
+                                {selectedSpec ? `x ${selectedSpec?.smallPack}` : 'Bolsita'}
                             </label>
                             <Checkbox
                                 id={`${id}checkOne`}
@@ -105,7 +95,7 @@ export default function CartProduct(props) {
                         </div>
                         <div className='flex items-center'>
                             <label htmlFor={`${id}checkTwo`}>
-                                {specificationSelected ? `x ${specificationSelected?.bigPack}` : 'Bolsón'}
+                                {selectedSpec ? `x ${selectedSpec?.bigPack}` : 'Bolsón'}
                             </label>
 
                             <Checkbox
@@ -144,13 +134,13 @@ export default function CartProduct(props) {
                 /* user.discount &&  */ 'line-through'
                                 }`}
                         >
-                            $ {specificationSelected?.price}
+                            $ {selectedSpec?.price}
                         </p>
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
-                            {(check.one || check.two) &&
-                                specificationSelected.price /* && user.discount */ &&
-                                (specificationSelected?.price /* * user.discount */)
+                            {(selectedSpec?.pack === 'small' || selectedSpec?.pack === 'big') &&
+                                selectedSpec?.price /* && user.discount */ &&
+                                (selectedSpec?.price /* * user.discount */)
                             }
 
                         </p>
@@ -162,14 +152,14 @@ export default function CartProduct(props) {
                         </p>
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
-                            {(check.one || check.two) &&
-                                specificationSelected.price &&
+                            {(selectedSpec?.pack === 'small' || selectedSpec?.pack === 'big') &&
+                                selectedSpec?.price &&
                                 quantity &&
                                 (
-                                    specificationSelected?.price *
-                                    (check.one
-                                        ? specificationSelected?.smallPack
-                                        : specificationSelected?.bigPack) /* * user.discount */ *
+                                    selectedSpec?.price *
+                                    (selectedSpec?.pack === 'small'
+                                        ? selectedSpec?.smallPack
+                                        : selectedSpec?.bigPack) /* * user.discount */ *
                                     quantity
                                 )?.toFixed(2)}
                         </p>
