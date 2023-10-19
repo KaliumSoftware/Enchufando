@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 
 const Product = (props) => {
+
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const dispatch = useDispatch();
   const { name, image } = props;
@@ -27,17 +28,19 @@ const Product = (props) => {
         title: 'Ups...',
         text: 'Para agregar productos al carrito primero debes iniciar sesión'
       });
+
     }
   };
 
   return (
     <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-5 w-full'>
-      <img
-        className='rounded-t-lg w-full'
-        src={image.url}
-        alt={`imagen de ${name}`}
-      />
 
+        <img
+          className='rounded-t-lg w-full'
+          src={image.secure_url}
+          alt={`imagen de ${name}`}
+        />
+        
       <div className='p-5 bg-gray-200 w-full'>
         <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white'>
           {name}

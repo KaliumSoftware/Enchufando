@@ -1,7 +1,8 @@
-const deleteProduct = require('../../controllers/productControllers/deleteProduct');
+const deleteProduct = require('../../controllers/productControllers/deleteProducts/deleteProduct');
 
 const handleProductDelete = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   try {
     const deleted = await deleteProduct(id);
 
