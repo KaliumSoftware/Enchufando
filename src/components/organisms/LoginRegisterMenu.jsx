@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
@@ -41,8 +41,6 @@ const LoginRegisterMenu = ({
     password: false,
     repeatPassword: false
   });
-
-  const loggedUser = useSelector((state) => state.loggedUser);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -181,8 +179,8 @@ const LoginRegisterMenu = ({
 
   return (
     <div className='fixed inset-0 flex items-center justify-center h-full w-full'>
-      <div className='fixed mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 z-20'>
-        <div className='mx-auto bg-white z-10 rounded-2xl py-16 px-32 w-[75vw] h-[75vh]'>
+      <div className='fixed mx-auto px-4 py-16 sm:px-6 lg:px-8 z-20'>
+        <div className='mx-auto mt-14 md:mt-0 bg-white z-10 rounded-2xl py-6 md:py-16 md:pt-16 px-5 md:px-10 w-[85vw] md:w-[55vw] 2xl:w-[55vw] md:h-full'>
           <h1 className='text-center text-2xl font-bold text-indigo-600 sm:text-3xl'>
             {signingin ? 'Iniciar Sesión' : 'Registrarse'}
           </h1>
@@ -195,7 +193,7 @@ const LoginRegisterMenu = ({
             name='loginRegisterForm'
             id='loginRegisterForm'
             action=''
-            className='mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8'
+            className='mb-0 mt-6 lg:space-y-4 rounded-lg p-4 shadow-lg'
             onSubmit={(event) =>
               signingin
                 ? validate(event, 'login')
@@ -208,7 +206,7 @@ const LoginRegisterMenu = ({
                 : 'Registrate como usuario'}
             </p>
 
-            <div className='flex items-center justify-evenly w-full'>
+            <div className='lg:flex justify-center gap-x-6 w-full'>
               {/* NAME INPUT */}
               {!signingin && (
                 <div>
@@ -261,11 +259,11 @@ const LoginRegisterMenu = ({
                   {/* ERRORS */}
                   <div>
                     {errorsSignUp.name ? (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                         {errorsSignUp.name}
                       </p>
                     ) : (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                     )}
                   </div>
                 </div>
@@ -284,7 +282,7 @@ const LoginRegisterMenu = ({
                   <input
                     id='email'
                     type='text'
-                    className={`w-full rounded-lg  p-4 pe-12 text-sm shadow-sm ${
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
                       signingin
                         ? errors.email
                           ? 'border-red-600 border'
@@ -325,25 +323,25 @@ const LoginRegisterMenu = ({
                 <div>
                   {signingin ? (
                     errors.email ? (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                         {errors.email}
                       </p>
                     ) : (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                     )
                   ) : errorsSignUp.email ? (
-                    <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                       {errorsSignUp.email}
                     </p>
                   ) : (
-                    <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                   )}
                 </div>
               </div>
             </div>
 
             {/* PASSWORD INPUT */}
-            <div className='flex items-center justify-evenly w-full'>
+            <div className='lg:flex justify-center gap-x-6 w-full'>
               <div>
                 <label
                   htmlFor='password'
@@ -406,18 +404,18 @@ const LoginRegisterMenu = ({
                 <div>
                   {signingin ? (
                     errors.password ? (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                         {errors.password}
                       </p>
                     ) : (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                     )
                   ) : errorsSignUp.password ? (
-                    <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                       {errorsSignUp.password}
                     </p>
                   ) : (
-                    <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                    <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                   )}
                 </div>
               </div>
@@ -480,11 +478,11 @@ const LoginRegisterMenu = ({
                   {/* REPEAT PASSWORD ERRORS */}
                   <div>
                     {errorsSignUp.repeatPassword ? (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                         {errorsSignUp.repeatPassword}
                       </p>
                     ) : (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                     )}
                   </div>
                 </div>
@@ -492,7 +490,7 @@ const LoginRegisterMenu = ({
             </div>
 
             {/* ADDRESS INPUT */}
-            <div className='flex items-center justify-evenly w-full'>
+            <div className='lg:flex justify-center gap-x-6 w-full'>
               {!signingin && (
                 <div>
                   <label
@@ -543,11 +541,11 @@ const LoginRegisterMenu = ({
                   {/* ADDRESS ERRORS */}
                   <div>
                     {errorsSignUp.address ? (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                         {errorsSignUp.address}
                       </p>
                     ) : (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                     )}
                   </div>
                 </div>
@@ -607,11 +605,11 @@ const LoginRegisterMenu = ({
                   {/* CODE ERRORS */}
                   <div>
                     {errorsSignUp.code ? (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
                         {errorsSignUp.code}
                       </p>
                     ) : (
-                      <p className='h-4 px-2 py-1 text-xs text-red-600'></p>
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
                     )}
                   </div>
                 </div>
@@ -621,7 +619,7 @@ const LoginRegisterMenu = ({
             <div className='flex items-center justify-center'>
               <button
                 type='submit'
-                className='block w-fit rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white'
+                className='block w-fit rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white mb-3'
               >
                 {signingin ? 'Ingresar' : 'Registrarse'}
               </button>
