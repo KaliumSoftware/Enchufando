@@ -4,8 +4,12 @@ const postCodes = async (req, res) => {
   try {
     const { discount } = req.body;
     const codeCreated = await createCodes(discount);
+
     if (!codeCreated)
-      throw new Error('The code could not be created');
+      throw new Error(
+        'Error de servidor, el código no se pudo crear'
+      );
+
     res.status(201).json(codeCreated);
   } catch (error) {
     console.error(error);
