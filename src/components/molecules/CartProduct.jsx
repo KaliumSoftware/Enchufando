@@ -12,15 +12,10 @@ import { setSpecificationsCart } from '@/redux/slices/cartSlice';
 export default function CartProduct(props) {
     const [specificationSelected, setSpecificationSelected] = useState(null);
     const [check, setCheck] = useState('');
-
     const [quantity, setQuantity] = useState('');
     const { name, image, specifications, id, localId, selectedSpec } = props;
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        console.log(quantity)
-
-    }, [quantity])
 
     const handleChange = (event) => {
         const selectedProduct = specifications?.find(
@@ -37,11 +32,8 @@ export default function CartProduct(props) {
 
     const handleCheck = (event) => {
 
-
         if (event.target.name === 'one') {
             setCheck('one');
-            setQuantity('1')
-
             setSpecificationSelected({ ...specificationSelected, pack: 'small' });
             dispatch(setSpecificationsCart({
                 selectedSpec: { ...selectedSpec, pack: 'small' },
@@ -49,8 +41,6 @@ export default function CartProduct(props) {
             }))
         } else {
             setCheck('two');
-            setQuantity('2')
-
             setSpecificationSelected({ ...specificationSelected, pack: 'big' });
             dispatch(setSpecificationsCart({
                 selectedSpec: { ...selectedSpec, pack: 'big' },

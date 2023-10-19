@@ -18,14 +18,12 @@ const cartSlice = createSlice({
       });
     },
     deleteCart: (state, action) => {
-      console.log(action.payload);
       state.cartProducts = state.cartProducts.filter(
         (product) => product.localId !== action.payload
       );
     },
     setSpecificationsCart: (state, action) => {
       const { selectedSpec, localId } = action.payload;
-      console.log(selectedSpec);
       state.cartProducts = state.cartProducts.map((product) => {
         if (product.localId === localId) {
           return {
