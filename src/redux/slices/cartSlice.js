@@ -18,13 +18,29 @@ const cartSlice = createSlice({
       });
     },
     deleteCart: (state, action) => {
-      console.log(action.payload);
       state.cartProducts = state.cartProducts.filter(
         (product) => product.localId !== action.payload
       );
+    },
+    setSpecificationsCart: (state, action) => {
+      const { selectedSpec, localId } = action.payload;
+      state.cartProducts = state.cartProducts.map((product) => {
+        if (product.localId === localId) {
+          return {
+            ...product,
+            selectedSpec
+          };
+        }
+        return product;
+      });
     }
   }
 });
 
-export const { getCart, addToCart, deleteCart } = cartSlice.actions;
+export const {
+  getCart,
+  addToCart,
+  deleteCart,
+  setSpecificationsCart
+} = cartSlice.actions;
 export default cartSlice.reducer;

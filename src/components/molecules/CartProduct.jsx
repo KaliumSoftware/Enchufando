@@ -1,42 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Select, Option, Checkbox } from '@material-tailwind/react';
 import TooltipReusable from '../atoms/TooltipReusable';
 import ButtonDelete from '../atoms/ButtonDelete';
 import ButtonAdd from '../atoms/ButtonAdd';
-import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { setSpecificationsCart } from '@/redux/slices/cartSlice';
+
 
 
 
 export default function CartProduct(props) {
-    const [product, setProduct] = useState(null);
-    const [checkOne, setCheckOne] = useState(false);
-    const [checkTwo, setCheckTwo] = useState(false);
+    const [specificationSelected, setSpecificationSelected] = useState(null);
+    const [check, setCheck] = useState('');
     const [quantity, setQuantity] = useState('');
-    const { name, image, specifications, id, localId } = props
+    const { name, image, specifications, id, localId, selectedSpec } = props;
+    const dispatch = useDispatch()
 
-    const handleChange = (value) => {
 
-
+    const handleChange = (event) => {
         const selectedProduct = specifications?.find(
-            (spec) => spec.size === value
+            (spec) => spec.size === event.target.value
         );
-
         if (selectedProduct) {
-            setProduct(selectedProduct);
+            setSpecificationSelected(selectedProduct);
+            dispatch(setSpecificationsCart({
+                selectedSpec: selectedProduct,
+                localId
+            }))
         }
     };
+
     const handleCheck = (event) => {
 
-        const { name } = event.target;
-
-        if (name === 'checkOne') {
-            setCheckOne(true);
-            setCheckTwo(false);
-            setProduct({ ...product, pack: 'small' });
+        if (event.target.name === 'one') {
+            setCheck('one');
+            setSpecificationSelected({ ...specificationSelected, pack: 'small' });
+            dispatch(setSpecificationsCart({
+                selectedSpec: { ...selectedSpec, pack: 'small' },
+                localId
+            }))
         } else {
-            setCheckOne(false);
-            setCheckTwo(true);
-            setProduct({ ...product, pack: 'big' });
+            setCheck('two');
+            setSpecificationSelected({ ...specificationSelected, pack: 'big' });
+            dispatch(setSpecificationsCart({
+                selectedSpec: { ...selectedSpec, pack: 'big' },
+                localId
+            }))
         }
     };
 
@@ -48,9 +57,6 @@ export default function CartProduct(props) {
             setQuantity(value);
         }
     };
-
-
-
 
     return (
         <div className='md:flex items-center py-8 border-t border-gray-200'>
@@ -65,50 +71,48 @@ export default function CartProduct(props) {
                 <p className='text-xl pb-6 leading-3 text-gray-800 md:pt-0 pt-4'>
                     {name}
                 </p>
-                <Select
+                <select
                     label='Medidas'
                     onChange={handleChange}
+                    value={selectedSpec?.size || specificationSelected?.size}
                 >
                     {specifications?.map((spec) => (
-                        <Option
+                        <option
                             key={spec.code}
                             value={spec.size}
                         >
                             {spec.size}
-                        </Option>
+                        </option>
                     ))}
-                </Select>
+                </select>
                 <TooltipReusable
                     text='Seleccione una medida'
-                    show={!Boolean(product)}
+                    show={false}
                     color='default'
                 >
 
                     <div className='flex flex-wrap mx-5 pt-6 gap-2 pb-4 '>
                         <div className='flex items-center'>
                             <label htmlFor={`${id}checkOne`}>
-                                Bolsita  {product ? `x ${product?.smallPack}` : 'Bolsita'}
+                                {specificationSelected ? `x ${specificationSelected?.smallPack}` : 'Bolsita'}
                             </label>
                             <Checkbox
                                 id={`${id}checkOne`}
-                                name='checkOne'
-                                checked={checkOne}
-                                onClick={handleCheck}
-                                disabled={!product}
+                                name='one'
+                                checked={selectedSpec?.pack === 'small'}
+                                onChange={handleCheck}
                             />
                         </div>
-
                         <div className='flex items-center'>
-                            <label htmlFor='checkTwo'>
-                                Bolsón {product ? `x ${product?.bigPack}` : 'Bolsón'}
+                            <label htmlFor={`${id}checkTwo`}>
+                                {specificationSelected ? `x ${specificationSelected?.bigPack}` : 'Bolsón'}
                             </label>
 
                             <Checkbox
                                 id={`${id}checkTwo`}
-                                name={`${id}checkTwo`}
-                                checked={checkTwo}
-                                onClick={handleCheck}
-                                disabled={!product}
+                                name='two'
+                                checked={selectedSpec?.pack === 'big'}
+                                onChange={handleCheck}
                             />
                         </div>
                     </div>
@@ -140,13 +144,13 @@ export default function CartProduct(props) {
                 /* user.discount &&  */ 'line-through'
                                 }`}
                         >
-                            $ {product?.price}
+                            $ {specificationSelected?.price}
                         </p>
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
-                            {(checkOne || checkTwo) &&
-                                product.price /* && user.discount */ &&
-                                (product?.price /* * user.discount */)
+                            {(check.one || check.two) &&
+                                specificationSelected.price /* && user.discount */ &&
+                                (specificationSelected?.price /* * user.discount */)
                             }
 
                         </p>
@@ -158,14 +162,14 @@ export default function CartProduct(props) {
                         </p>
                         <p className='text-lg font-bold text-gray-900 dark:text-white'>
                             $
-                            {(checkOne || checkTwo) &&
-                                product.price &&
+                            {(check.one || check.two) &&
+                                specificationSelected.price &&
                                 quantity &&
                                 (
-                                    product?.price *
-                                    (checkOne
-                                        ? product?.smallPack
-                                        : product?.bigPack) /* * user.discount */ *
+                                    specificationSelected?.price *
+                                    (check.one
+                                        ? specificationSelected?.smallPack
+                                        : specificationSelected?.bigPack) /* * user.discount */ *
                                     quantity
                                 )?.toFixed(2)}
                         </p>
