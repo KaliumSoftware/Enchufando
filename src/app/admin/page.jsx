@@ -1,16 +1,20 @@
 import Header from '@/admin-components/Header';
 import TopCards from '@/admin-components/TopCards';
 import BarChart from '@/admin-components/BarChart';
-import RecentOrders from '@/admin-components/RecentOrders';
+import PopularProducts from '@/admin-components/PopularProducts';
 
 const page = () => {
   return (
     <div className='min-h-full bg-gray-100'>
       <Header />
       <TopCards />
-      <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
-        <BarChart />
-        <RecentOrders />
+      <div className='h-[22rem] px-4 py-2 flex justify-between'>
+        <div>
+          <BarChart />
+        </div>
+        <div>
+          <PopularProducts />
+        </div>
       </div>
     </div>
   );
