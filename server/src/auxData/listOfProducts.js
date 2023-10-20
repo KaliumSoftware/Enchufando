@@ -261,11 +261,11 @@ KRONA	0425	Codo Soldable a 90°	25 MM	50	750	919,07	919,07	products/xulgxrjh08f5
 KRONA	0426	Codo Soldable a 90°	32 MM	25	500	1.503,07	1.503,07	products/xulgxrjh08f5vbdr4nvv	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823133/products/xulgxrjh08f5vbdr4nvv.jpg
 KRONA	0427	Codo Soldable a 90°	40 MM	10	300	2.451,22	2.451,22	products/xulgxrjh08f5vbdr4nvv	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823133/products/xulgxrjh08f5vbdr4nvv.jpg
 KRONA	0428	Codo Soldable a 90°	50 MM	25	150	4.231,21	4.231,21	products/xulgxrjh08f5vbdr4nvv	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823133/products/xulgxrjh08f5vbdr4nvv.jpg
-KRONA	0435	Cupla Soldable	20 MM	50	2000	358,84	358,84	products/qfxena7wv6pgmjmwbix5	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823343/products/qfxena7wv6pgmjmwbix5.jpg
-KRONA	0436	Cupla Soldable	25 MM	50	1400	540,03	540,03	products/qfxena7wv6pgmjmwbix5	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823343/products/qfxena7wv6pgmjmwbix5.jpg
-KRONA	0437	Cupla Soldable	32 MM	25	750	1.079,70	1.079,70	products/qfxena7wv6pgmjmwbix5	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823343/products/qfxena7wv6pgmjmwbix5.jpg
-KRONA	0438	Cupla Soldable	40 MM	10	450	1.779,99	1.779,99	products/qfxena7wv6pgmjmwbix5	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823343/products/qfxena7wv6pgmjmwbix5.jpg
-KRONA	0439	Cupla Soldable	50 MM	10	200	2.480,29	2.480,29	products/qfxena7wv6pgmjmwbix5	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697823343/products/qfxena7wv6pgmjmwbix5.jpg
+KRONA	0435	Cupla Soldable	20 MM	50	2000	358,84	358,84	products/topgqeidfvbj2w7hbwj7	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697838273/products/topgqeidfvbj2w7hbwj7.jpg
+KRONA	0436	Cupla Soldable	25 MM	50	1400	540,03	540,03	products/topgqeidfvbj2w7hbwj7	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697838273/products/topgqeidfvbj2w7hbwj7.jpg
+KRONA	0437	Cupla Soldable	32 MM	25	750	1.079,70	1.079,70	products/topgqeidfvbj2w7hbwj7	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697838273/products/topgqeidfvbj2w7hbwj7.jpg
+KRONA	0438	Cupla Soldable	40 MM	10	450	1.779,99	1.779,99	products/topgqeidfvbj2w7hbwj7	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697838273/products/topgqeidfvbj2w7hbwj7.jpg
+KRONA	0439	Cupla Soldable	50 MM	10	200	2.480,29	2.480,29	products/topgqeidfvbj2w7hbwj7	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697838273/products/topgqeidfvbj2w7hbwj7.jpg
 KRONA	0454	Tee Soldable	20 MM	50	1000	890,00	890,00	products/jtpm4ucberabr9o80wku	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756704/products/jtpm4ucberabr9o80wku.jpg
 KRONA	0455	Tee Soldable	25 MM	50	600	1.269,40	1.269,40	products/jtpm4ucberabr9o80wku	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756704/products/jtpm4ucberabr9o80wku.jpg
 KRONA	0456	Tee Soldable	32 MM	25	350	2.100,89	2.100,89	products/jtpm4ucberabr9o80wku	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756704/products/jtpm4ucberabr9o80wku.jpg
