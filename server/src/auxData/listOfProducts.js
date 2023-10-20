@@ -227,7 +227,7 @@ KRONA	0960	Val. Retención c/canasto	3/4”	6	300	3.860,94	3.860,94	products/dy2
 KRONA	0961	Val. Retención c/canasto	1”	6	210	5.258,23	5.258,23	products/dy2cdxxkurlorxroyft6	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756703/products/dy2cdxxkurlorxroyft6.jpg
 KRONA	0962	Val. Retención c/canasto	1 1/2”	3	96	10.483,30	10.483,30	products/dy2cdxxkurlorxroyft6	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756703/products/dy2cdxxkurlorxroyft6.jpg
 KRONA	0963	Val. Retención c/canasto	2”	2	60	16.601,40	16.601,40	products/dy2cdxxkurlorxroyft6	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756703/products/dy2cdxxkurlorxroyft6.jpg
-KRONA	0668	Val. Antirretorno con adap.	110 MM	1	12	69.034,76	69.034,76	products/klycthkjzkmgryqrq24n	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697820648/products/klycthkjzkmgryqrq24n.jpg
+KRONA	0668	Val. Antirretorno con adap.	110 MM	1	12	69.034,76	69.034,76	products/xks1rc8txdg2xfdwp5pv	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697837397/products/xks1rc8txdg2xfdwp5pv.jpg
 KRONA	0781	Canilla Jardín	1/2”- 3/4” PVC	6	168	3.652,14	3.652,14	products/ohs9mvbvnh0w8sisc5m6	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697820993/products/ohs9mvbvnh0w8sisc5m6.jpg
 KRONA	0570	Val. Esférica Media Union	1/2”	10	240	8.019,06	8.019,06	products/dktxjwggvbwjsytkjemw	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756703/products/dktxjwggvbwjsytkjemw.jpg
 KRONA	0571	Val. Esférica Media Union	3/4”	10	150	11.010,27	11.010,27	products/dktxjwggvbwjsytkjemw	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756703/products/dktxjwggvbwjsytkjemw.jpg
