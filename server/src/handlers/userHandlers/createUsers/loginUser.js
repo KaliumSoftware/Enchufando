@@ -12,6 +12,8 @@ const loginUser = async (req, res) => {
       return res
         .status(401)
         .json({ message: 'La contraseña no es correcta' });
+    } else if (!access) {
+      throw new Error('Ocurrió un error en el servidor');
     }
 
     return res.status(200).json(access);

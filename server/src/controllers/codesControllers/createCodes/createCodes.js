@@ -31,7 +31,7 @@ const createCodes = async (discount) => {
   } catch (error) {
     console.error(error);
 
-    return error.message;
+    return false;
   }
 };
 

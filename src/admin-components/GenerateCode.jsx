@@ -16,12 +16,9 @@ const GenerateCode = ({ setShowDiscountMenu }) => {
 
   useEffect(() => {
     const createCode = async () => {
-      // const apiUrl = `${NEXT_PUBLIC_API_URL}/api/user/login`;
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/codes`;
       try {
-        const { data } = await axios.post(
-          'http://localhost:3000/api/codes',
-          codeForm
-        );
+        const { data } = await axios.post(apiUrl, codeForm);
 
         if (data.code) {
           setShowCode(data.code);

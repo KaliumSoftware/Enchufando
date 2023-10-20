@@ -26,31 +26,37 @@ module.exports = function defineProductModel(sequelize) {
       },
       type: {
         type: DataTypes.ENUM,
-        values: ['ROSCADO', 'ESPIGA', 'KRONA']
+        values: ['ROSCADO', 'ESPIGA', 'KRONA'],
+        allowNull: false
       },
       category: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
       },
       image: {
         type: DataTypes.JSON,
-        allowNull: false,
+        values: {
+          public_id: DataTypes.STRING,
+          secure_url: DataTypes.STRING
+        },
         validate: {
           validateFormat(value) {
-            if (!value.url) {
+            if (!value.secure_url) {
               throw new Error(
-                'The "image" object must have "url" property.'
+                'The "image" object must have "secure_url" property.'
               );
             }
 
             const imageUrlRegex =
               /^(https?:\/\/)?[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?$/;
-            if (!imageUrlRegex.test(value.url)) {
+            if (!imageUrlRegex.test(value.secure_url)) {
               throw new Error(
-                "The 'url' property does not meet the required format"
+                "The 'secure_url' property does not meet the required format"
               );
             }
           }
-        }
+        },
+        allowNull: false
       },
       active: {
         type: DataTypes.BOOLEAN,

@@ -13,7 +13,7 @@ const findAllProducts = require('./productControllers/readProducts/findAllProduc
 const findAllMeasures = require('./productControllers/readProducts/findAllMeasures');
 const findProductByPk = require('./productControllers/readProducts/findProductByPk');
 const createProduct = require('./productControllers/createProducts/createProduct');
-const deleteProduct = require('./productControllers/deleteProduct');
+const deleteProduct = require('./productControllers/deleteProducts/deleteProduct');
 const isActiveProduct = require('./productControllers/modifyProduct/isActiveProduct');
 const putProduct = require('./productControllers/modifyProduct/putProduct');
 //codes
