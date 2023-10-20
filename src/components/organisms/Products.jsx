@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from './../../redux/slices/productSlice';
 import axios from 'axios';
 import Product from '../molecules/Product';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const Products = () => {
   const allProducts = useSelector(
@@ -13,9 +14,7 @@ const Products = () => {
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios(
-        'http://localhost:3000/api/product'
-      );
+      const { data } = await axios(`${apiUrl}/product`);
 
       dispatch(getAllProducts(data));
     };
@@ -24,7 +23,7 @@ const Products = () => {
   }, []);
 
   return (
-    <div className='w-50 m-5 grid gap-4 justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
+    <div className='m-5 mt-10 grid gap-4 justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5'>
       {allProducts?.map((product) => (
         <Product
           key={product.id}

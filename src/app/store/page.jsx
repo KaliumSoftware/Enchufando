@@ -5,7 +5,6 @@ export default function Store() {
   return (
     <div>
       <Products />
-
     </div>
   );
 }
