@@ -8,7 +8,6 @@ import { setSpecificationsCart } from '@/redux/slices/cartSlice';
 
 
 export default function CartProduct(props) {
-    const [quantity, setQuantity] = useState('');
     const { name, image, specifications, id, localId, selectedSpec } = props;
     const dispatch = useDispatch()
 
@@ -42,9 +41,11 @@ export default function CartProduct(props) {
     const handleQuantityChange = (event) => {
         const { value } = event.target;
         const numberRegex = /^[1-9]\d*$/;
-
         if (numberRegex.test(value) || value.length === 0) {
-            setQuantity(value);
+            dispatch(setSpecificationsCart({
+                selectedSpec: { ...selectedSpec, quantity: value },
+                localId
+            }))
         }
     };
 
@@ -119,7 +120,7 @@ export default function CartProduct(props) {
                                 placeholder='Cantidad'
                                 className='peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm'
                                 onChange={handleQuantityChange}
-                                value={quantity}
+                                value={selectedSpec?.quantity}
                             />
 
                             <span className='absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'>
@@ -154,13 +155,13 @@ export default function CartProduct(props) {
                             $
                             {(selectedSpec?.pack === 'small' || selectedSpec?.pack === 'big') &&
                                 selectedSpec?.price &&
-                                quantity &&
+                                selectedSpec?.quantity &&
                                 (
                                     selectedSpec?.price *
                                     (selectedSpec?.pack === 'small'
                                         ? selectedSpec?.smallPack
                                         : selectedSpec?.bigPack) /* * user.discount */ *
-                                    quantity
+                                    selectedSpec?.quantity
                                 )?.toFixed(2)}
                         </p>
                     </div>
