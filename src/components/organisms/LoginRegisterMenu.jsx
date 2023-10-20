@@ -6,7 +6,7 @@ import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
 import { setLoggedUser } from '@/redux/slices/userSlice';
 import Swal from 'sweetalert2';
-// const { NEXT_PUBLIC_API_URL } = process.env;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const LoginRegisterMenu = ({
   setShowLoginMenu,
@@ -50,10 +50,9 @@ const LoginRegisterMenu = ({
   // LOGIN
   useEffect(() => {
     const loginUser = async () => {
-      // const apiUrl = `${NEXT_PUBLIC_API_URL}/api/user/login`;
       try {
         const { data } = await axios.post(
-          'http://localhost:3000/api/user/login',
+          `${apiUrl}/user/login`,
           login
         );
 
@@ -109,12 +108,8 @@ const LoginRegisterMenu = ({
   // SIGN UP
   useEffect(() => {
     const signUpUser = async () => {
-      // const apiUrl = `${NEXT_PUBLIC_API_URL}/api/user/login`;
       try {
-        const { data } = await axios.post(
-          'http://localhost:3000/api/user',
-          signUp
-        );
+        const { data } = await axios.post(`${apiUrl}/user`, signUp);
 
         if (data.message === 'Usuario creado con éxito') {
           if (data.user.isAdmin) router.push('/admin');
