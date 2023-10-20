@@ -2,7 +2,7 @@ const { createProduct } = require('../../../controllers');
 const postProduct = async (req, res) => {
   try {
     const newProduct = req.body;
-    const imagen = req.files.imagen;
+    const imagen = req.files?.imagen;
 
     const product = await createProduct(newProduct, imagen);
 

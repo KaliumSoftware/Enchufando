@@ -43,7 +43,7 @@ module.exports = function defineProductModel(sequelize) {
           validateFormat(value) {
             if (!value.secure_url) {
               throw new Error(
-                'The "image" object must have "url" property.'
+                'The "image" object must have "secure_url" property.'
               );
             }
 
@@ -51,7 +51,7 @@ module.exports = function defineProductModel(sequelize) {
               /^(https?:\/\/)?[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?$/;
             if (!imageUrlRegex.test(value.secure_url)) {
               throw new Error(
-                "The 'url' property does not meet the required format"
+                "The 'secure_url' property does not meet the required format"
               );
             }
           }
