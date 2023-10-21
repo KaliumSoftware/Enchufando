@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useValidation from '@/hooks/useValidation';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const GenerateCode = ({ setShowDiscountMenu }) => {
   const [codeForm, setCodeForm] = useState({
@@ -16,9 +17,11 @@ const GenerateCode = ({ setShowDiscountMenu }) => {
 
   useEffect(() => {
     const createCode = async () => {
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/codes`;
       try {
-        const { data } = await axios.post(apiUrl, codeForm);
+        const { data } = await axios.post(
+          `${apiUrl}/codes`,
+          codeForm
+        );
 
         if (data.code) {
           setShowCode(data.code);
