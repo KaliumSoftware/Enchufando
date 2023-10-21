@@ -13,7 +13,7 @@ const TopCards = () => {
   return (
     <div className='px-4 py-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full'>
       <BoxWrapper>
-        <div className='rounded-full h-12 w-12 flex items-center justify-center bg-sky-500'>
+        <div className='rounded-full bg-blue-500 h-12 w-12 flex items-center justify-center bg-sky-500'>
           <IoBagHandle className='text-2xl text-white' />
         </div>
         <div className='pl-4'>

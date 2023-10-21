@@ -29,7 +29,15 @@ const BarChart = () => {
 
   useEffect(() => {
     setChartData({
-      labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+      labels: [
+        'Lunes',
+        'Martes',
+        'Miercoles',
+        'Jueves',
+        'Viernes',
+        'Sabado',
+        'Domingo'
+      ],
       datasets: [
         {
           label: 'Sales $',
@@ -55,14 +63,14 @@ const BarChart = () => {
   }, []);
 
   return (
-    <>
-      <div className='w-full lg:w-[85rem] xl:w-[85rem] h-full bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1'>
+    <div className='w-[80%]'>
+      <div className='w-full h-full bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1'>
         <Bar
           data={chartData}
           options={chartOptions}
         />
       </div>
-    </>
+    </div>
   );
 };
 
