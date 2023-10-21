@@ -9,12 +9,8 @@ const page = () => {
       <Header />
       <TopCards />
       <div className='h-[22rem] px-4 py-2 flex justify-between'>
-        <div>
-          <BarChart />
-        </div>
-        <div>
-          <PopularProducts />
-        </div>
+        <BarChart />
+        <PopularProducts />
       </div>
     </div>
   );
