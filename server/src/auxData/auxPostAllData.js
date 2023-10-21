@@ -12,6 +12,8 @@ productRouter.post('/all', async (req, res) => {
     const smallPacks = arraysOfColumns[4].map((elem) => elem.trim());
     const bigPacks = arraysOfColumns[5].map((elem) => elem.trim());
     const prices = arraysOfColumns[6].map((elem) => elem.trim());
+    const publicIds = arraysOfColumns[8].map((elem) => elem.trim());
+    const secureUrls = arraysOfColumns[9].map((elem) => elem.trim());
 
     const allProducts = [];
 
@@ -25,7 +27,8 @@ productRouter.post('/all', async (req, res) => {
         name: names[index],
         category: 'Agregar categoría',
         image: {
-          url: 'https://img.freepik.com/vector-premium/conjunto-ilustracion-dibujos-animados-tubos-acero-iconos-aislados-conexiones-tuberias-metalicas-valvulas-bridas-desagues-sistemas-agua-o-aceite_74855-20730.jpg'
+          public_id: publicIds[index],
+          secure_url: secureUrls[index]
         },
         specifications: {
           code: codes[index],
@@ -92,4 +95,5 @@ productRouter.post('/all', async (req, res) => {
     console.error(error);
     res.status(500).json({ message: error.message });
   }
-}); */
+});
+*/
