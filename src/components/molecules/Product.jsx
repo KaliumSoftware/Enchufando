@@ -31,24 +31,24 @@ const Product = (props) => {
   };
 
   return (
-    <div className='max-w-full w-full m-2 md:m-0 md:mb-5 md:w-fit flex md:block bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+    <div className='max-h-[405px] max-w-full w-full m-2 md:m-0 md:mb-5 md:w-fit flex md:block bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
       <div className='w-32 md:w-full md:flex md:justify-center'>
         <img
-          className='rounded-l-lg md:rounded-t-lg md:w-fit'
+          className='rounded-l-lg md:rounded-t-lg md:w-64'
           src={image.secure_url}
           alt={`imagen de ${name}`}
         />
       </div>
 
-      <div className='p-3 pl-5 md:p-5 bg-gray-200'>
-        <div className='md:w-80 text-clip'>
-          <h5 className='mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-800 dark:text-white'>
+      <div className='md:h-[148px] p-3 pl-5 w-full md:p-5 bg-gray-200 overflow-x-clip'>
+        <div className='md:w-[250px] pr-5 overflow-x-hidden'>
+          <h5 className='mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-800 whitespace-break-spaces'>
             {name}
           </h5>
         </div>
         <button
           onClick={() => handleAddCart(props)}
-          className='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+          className='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
         >
           Agregar al Carrito
           <svg
