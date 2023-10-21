@@ -5,8 +5,8 @@ const Product = (props) => {
   const { name, image, handleAddCart } = useProduct(props);
 
   return (
-    <div className='max-h-[405px] max-w-full w-full m-2 md:m-0 md:mb-5 md:w-fit flex md:block bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-      <div className='w-32 md:w-full md:flex md:justify-center'>
+    <div className='max-h-[405px] max-w-full w-full m-2 md:m-0 md:mb-5 md:w-fit flex md:block bg-white border border-gray-200 rounded-lg shadow'>
+      <div className='w-32 md:w-full flex items-center md:justify-center'>
         <img
           className='rounded-l-lg md:rounded-t-lg md:w-64'
           src={image.secure_url}
