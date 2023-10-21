@@ -1,34 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../redux/slices/cartSlice';
-import { v4 as uuidv4 } from 'uuid';
-import Swal from 'sweetalert2';
+import useProduct from '@/hooks/useProduct';
 
 const Product = (props) => {
-  const loggedUser = useSelector((state) => state.user.loggedUser);
-  const dispatch = useDispatch();
-  const { name, image } = props;
-
-  // add products to cart logic
-
-  const handleAddCart = (product) => {
-    if (loggedUser.id) {
-      product = {
-        ...product,
-        localId: uuidv4()
-      };
-
-      if (product) {
-        return dispatch(addToCart(product));
-      }
-    } else {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Ups...',
-        text: 'Para agregar productos al carrito primero debes iniciar sesión'
-      });
-    }
-  };
+  const { name, image, handleAddCart } = useProduct(props);
 
   return (
     <div className='max-h-[405px] max-w-full w-full m-2 md:m-0 md:mb-5 md:w-fit flex md:block bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
