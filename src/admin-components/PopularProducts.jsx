@@ -3,7 +3,7 @@ const PopularProducts = () => {
   return (
     <div className='h-full w-[20rem] bg-white p-4 rounded-sm border border-gray-200'>
       <strong className='text-gray-700 font-medium'>
-        Servicios populares
+        Productos mas vendidos
       </strong>
       <div className='mt-4 flex flex-col gap-3'>
         {popularProducts.map((product) => (

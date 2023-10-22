@@ -1,9 +1,10 @@
 'use client';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from './../../redux/slices/productSlice';
 import axios from 'axios';
 import Product from '../molecules/Product';
+
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const Products = () => {
@@ -15,7 +16,6 @@ const Products = () => {
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await axios(`${apiUrl}/product`);
-
       dispatch(getAllProducts(data));
     };
 
