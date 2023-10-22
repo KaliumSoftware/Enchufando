@@ -1,5 +1,5 @@
 import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
-import { data } from '../../../data/data';
+import { data } from '../../../../utils/data';
 
 const page = () => {
   return (
