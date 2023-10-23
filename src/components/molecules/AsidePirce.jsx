@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import ButtonSendOrder from '../atoms/ButtonSendOrder'
 
 export default function AsidePirce() {
     const allInCart = useSelector(state => state.cart.cartProducts)
@@ -19,16 +20,6 @@ export default function AsidePirce() {
     }).reduce((a, b) => a + b, 0)
 
     const totalFinal = subTotal * (userCode / 100)
-
-
-    const sendOrder = () => {
-        if (isNaN(totalFinal)) {
-            alert('Hay productos incompletos, por favor seleccione todas las caracteristicas')
-        } else {
-            alert('Gracias por su compra')
-        }
-    }
-
 
     return (
         <div className=' md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full'>
@@ -63,12 +54,9 @@ export default function AsidePirce() {
                             {isNaN(totalFinal) ? 0 : totalFinal.toLocaleString("es-AR", { style: "currency", currency: "ARS", minimumFractionDigits: 2 })}
                         </p>
                     </div>
-                    <button
-                        onClick={() => sendOrder()}
-                        className='text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white'
-                    >
-                        Enviar Pedido
-                    </button>
+                    <ButtonSendOrder
+                        totalFinal={totalFinal}
+                        allInCart={allInCart} />
                 </div>
             </div>
         </div>
