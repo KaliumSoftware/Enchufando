@@ -1,18 +1,17 @@
 import {
   HiOutlineViewGrid,
   HiOutlineCube,
-  HiOutlineShoppingCart,
   HiOutlineUsers,
   HiOutlineDocumentText,
   HiOutlineQuestionMarkCircle,
-  HiOutlineCog,
-  HiOutlineAnnotation
+  HiOutlineCog
 } from 'react-icons/hi';
+import { HiOutlineReceiptPercent } from 'react-icons/hi2';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'home-admin',
-    label: 'Inicio admin',
+    label: 'Inicio',
     path: '/admin',
     icon: <HiOutlineViewGrid />
   },
@@ -41,7 +40,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     key: 'generate-code',
     label: 'Generar código',
     path: '#',
-    icon: <HiOutlineAnnotation />
+    icon: <HiOutlineReceiptPercent />
   }
 ];
 
@@ -49,7 +48,7 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
   {
     key: 'configuración',
     label: 'Configuración',
-    path: '/dashboard/configuration',
+    path: '/dashboard/settings',
     icon: <HiOutlineCog />
   },
   {
