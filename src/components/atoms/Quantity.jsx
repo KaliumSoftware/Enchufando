@@ -13,7 +13,7 @@ export default function Quantity(props) {
         const numberRegex = /^[1-9]\d*$/;
         if (numberRegex.test(value) || value.length === 0) {
             dispatch(setSpecificationsCart({
-                selectedSpec: { ...selectedSpec, quantity: value },
+                selectedSpec: { ...selectedSpec, quantity: Number(value) },
                 localId
             }))
         }
