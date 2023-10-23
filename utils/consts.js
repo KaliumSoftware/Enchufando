@@ -26,20 +26,14 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'products',
     label: 'Productos',
-    path: '/admin/clients',
+    path: '/admin/products',
     icon: <HiOutlineCube />
   },
 
   {
-    key: 'buys',
-    label: 'Compras',
-    path: '/dashboard/buys',
-    icon: <HiOutlineShoppingCart />
-  },
-  {
     key: 'transactions',
     label: 'Transacciones',
-    path: '/dashboard/transacciones',
+    path: '/admin/transactions',
     icon: <HiOutlineDocumentText />
   },
 
