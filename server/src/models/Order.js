@@ -23,7 +23,10 @@ module.exports = function defineOrderModel(sequelize) {
 
       products: {
         type: DataTypes.ARRAY(DataTypes.JSON)
-
+      },
+      totalPrice: {
+        type: DataTypes.FLOAT,
+        allowNull: false
       }
     },
     {
