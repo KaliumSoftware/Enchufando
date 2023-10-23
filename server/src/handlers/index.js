@@ -7,6 +7,7 @@ const loginUser = require('./../handlers/userHandlers/createUsers/loginUser');
 const deleteUsers = require('./../handlers/userHandlers/deleteUsers/deleteUsers');
 //orders
 const getAllOrders = require('../handlers/orderHandlers/readOrders/getAllOrders');
+const postOrder = require('../handlers/orderHandlers/createOrders/postOrder');
 //products
 const getAllProducts = require('../handlers/productHandlers/readProducts/getAllProducts');
 const getAllMeasures = require('../handlers/productHandlers/readProducts/getAllMeaures');
@@ -31,6 +32,7 @@ module.exports = {
 
   //orders
   getAllOrders,
+  postOrder,
 
   //products
   getAllMeasures,
