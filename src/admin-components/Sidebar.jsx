@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FcBullish } from 'react-icons/fc';
 import { HiOutlineLogout } from 'react-icons/hi';
-import classNames from 'classnames';
 import {
   DASHBOARD_SIDEBAR_LINKS,
   DASHBOARD_SIDEBAR_BOTTOM_LINKS
