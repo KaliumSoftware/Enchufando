@@ -1,6 +1,4 @@
-import { HiOutlineSearch } from 'react-icons/hi';
-
-const SearchBar = () => {
+const SearchBar = ({ filterByName }) => {
   return (
     <div className='relative mx-2'>
       <HiOutlineSearch
@@ -10,6 +8,7 @@ const SearchBar = () => {
       <input
         type='text'
         placeholder='Buscar...'
+        onChange={(e) => filterByName}
         className='text-sm focus:outline-none text-black active:outline:none h-10 w-[24rem] border border-gray-300 rounded-sm px-4 pl-11'
       />
     </div>

@@ -1,11 +1,15 @@
 'use client';
 import axios from 'axios';
-import SearchBar from './SearchBar';
+import { HiOutlineSearch } from 'react-icons/hi';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../redux/slices/userSlice';
+import {
+  getAllUsers,
+  filterUsersByName
+} from '../redux/slices/userSlice';
 import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
-import { Input } from '@nextui-org/react';
+import Pagination from '@/components/molecules/Pagination';
+import usePagination from '@/hooks/usePagination';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -20,6 +24,7 @@ const Clients = () => {
     (user) => user.isAdmin === false
   );
   const dispatch = useDispatch();
+  const { currentPageData } = usePagination(8, allClients);
 
   useEffect(() => {
     const allUsers = async () => {
@@ -30,11 +35,27 @@ const Clients = () => {
     if (!allUsers || !allUsers.length) allUsers();
   }, []);
 
+  const filterByName = (e) => {
+    dispatch(filterUsersByName(e.target.value));
+  };
+
   return (
     <div className='bg-gray-100 min-h-screen'>
       <div className='p-4'>
         <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto'>
-          <SearchBar />
+          <div className='relative mx-2'>
+            <HiOutlineSearch
+              fontSize={20}
+              className='text-gray-400 absolute top-1/2 -translate-y-1/2 left-3'
+            />
+            <input
+              type='text'
+              placeholder='Buscar...'
+              onChange={(e) => filterByName(e)}
+              className='text-sm focus:outline-none text-black active:outline:none h-10 w-[24rem] border border-gray-300 rounded-sm px-4 pl-11'
+            />
+          </div>
+
           <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
             <span>Name</span>
             <span className='sm:text-left text-right'>Email</span>
@@ -64,6 +85,12 @@ const Clients = () => {
               </li>
             ))}
           </ul>
+          <div className='flex justify-center py-4'>
+            <Pagination
+              num={8}
+              data={currentPageData}
+            />
+          </div>
         </div>
       </div>
     </div>
