@@ -1,9 +1,12 @@
 const { Order } = require('../../../db');
 
-const createOrder = async (products, totalPrice) => {
+const createOrder = async (products, totalPrice, userId) => {
   try {
-    const createdOrder = await Order.create(products, totalPrice);
-    if (!createdOrder) return false;
+    const createdOrder = await Order.create(
+      products,
+      totalPrice,
+      userId
+    );
     return createdOrder;
   } catch (error) {
     console.error(error);
