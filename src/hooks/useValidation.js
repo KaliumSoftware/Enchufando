@@ -1,9 +1,13 @@
 const useValidation = () => {
+  const emailRegex =
+    /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const spaceBetweenWordsRegex = /^.*\s+.*$/;
+  const notNumbersRegex = /^[^\d]+$/;
+  const numbersAndLettersRegex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
+  const onlyNumbersRegex = /^[0-9]+$/;
+
   const loginValidation = (login) => {
     const errors = {};
-
-    const emailRegex =
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     // email validation
     if (login.email.trim().length === 0) {
@@ -26,12 +30,6 @@ const useValidation = () => {
 
   const signUpValidation = (signUp) => {
     const errors = {};
-
-    const emailRegex =
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const spaceBetweenWordsRegex = /^.*\s+.*$/;
-    const notNumbersRegex = /^[^\d]+$/;
-    const numbersAndLettersRegex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
 
     // name validation
     if (signUp.name.trim().length === 0) {
@@ -115,7 +113,61 @@ const useValidation = () => {
     return errors;
   };
 
-  return { loginValidation, signUpValidation, discountValidation };
+  const contactUsValidation = (contactUsForm) => {
+    const errors = {};
+
+    // name validation
+    if (contactUsForm.name.trim().length === 0) {
+      errors.name = 'Ingrese su nombre';
+    } else if (!notNumbersRegex.test(contactUsForm.name)) {
+      errors.name = 'El nombre no puede contener números';
+    } else {
+      errors.name = '';
+    }
+
+    // email validation
+    if (contactUsForm.email.trim().length === 0) {
+      errors.email = 'Ingrese un email';
+    } else if (!emailRegex.test(contactUsForm.email)) {
+      errors.email = 'Ingrese un email válido';
+    } else {
+      errors.email = '';
+    }
+
+    // subject validation
+    if (contactUsForm.subject.trim().length === 0) {
+      errors.subject = 'Ingrese un asunto';
+    } else {
+      errors.subject = '';
+    }
+
+    // phone validation
+    if (!onlyNumbersRegex.test(contactUsForm.phone)) {
+      errors.phone = 'El teléfono debe contener sólo números';
+    } else if (contactUsForm.phone.trim().length === 0) {
+      errors.phone = 'Ingrese un teléfono';
+    } else {
+      errors.phone = '';
+    }
+
+    // message validation
+    if (contactUsForm.message.trim().length === 0) {
+      errors.message = 'Ingrese un mensaje';
+    } else if (contactUsForm.message.trim().length < 50) {
+      errors.message = 'El mensaje debe tener al menos 50 caracteres';
+    } else {
+      errors.message = '';
+    }
+
+    return errors;
+  };
+
+  return {
+    loginValidation,
+    signUpValidation,
+    discountValidation,
+    contactUsValidation
+  };
 };
 
 export default useValidation;
