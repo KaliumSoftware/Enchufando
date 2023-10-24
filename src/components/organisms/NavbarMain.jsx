@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Navbar,
@@ -33,6 +33,14 @@ export default function NavbarMain() {
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    const userOnLS = JSON.parse(localStorage.getItem('loggedUser'));
+
+    if (!loggedUser.id && userOnLS?.id) {
+      dispatch(setLoggedUser(userOnLS));
+    }
+  }, []);
 
   const menuItems = ['Inicio', 'Tienda', 'Contacto'];
 
