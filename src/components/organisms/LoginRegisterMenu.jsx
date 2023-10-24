@@ -173,7 +173,7 @@ const LoginRegisterMenu = ({
   };
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center h-full w-full'>
+    <div className='fixed inset-0 flex items-center justify-center h-full w-full z-30'>
       <div className='fixed mx-auto px-4 py-16 sm:px-6 lg:px-8 z-20'>
         <div className='mx-auto mt-14 md:mt-0 bg-white z-10 rounded-2xl py-6 md:py-16 md:pt-16 px-5 md:px-10 w-[85vw] md:w-[55vw] 2xl:w-[55vw] md:h-full'>
           <h1 className='text-center text-2xl font-bold text-indigo-600 sm:text-3xl'>
