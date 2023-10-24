@@ -1,14 +1,20 @@
 const { createOrder } = require('../../../controllers');
 
-const postOrder = (req, res) => {
+const postOrder = async (req, res) => {
   try {
-    const { products, totalPrice } = req.body;
-    const finalOrder = createOrder(products, totalPrice);
+    const { products, totalPrice, userId } = req.body;
 
-    if (!products || !totalPrice)
+    if (!products || !totalPrice || !userId) {
       res
         .status(404)
         .json({ message: 'No hay productos o precio total' });
+    }
+
+    const finalOrder = await createOrder({
+      products: products,
+      totalPrice: totalPrice,
+      userId: userId
+    });
 
     return res.status(200).json(finalOrder);
   } catch (error) {

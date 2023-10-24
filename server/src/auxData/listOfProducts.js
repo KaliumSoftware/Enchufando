@@ -1,4 +1,4 @@
-// Crear una tabla de excel que tenga columnas con medidas (sacarlas de la columna ”nombre”) y pegarla acá para poder crear bien los productos
+/*// Crear una tabla de excel que tenga columnas con medidas (sacarlas de la columna ”nombre”) y pegarla acá para poder crear bien los productos
 let excelData = `
 ROSCADO	50015	 Codo HH a 90º	1/2” 	100	1200	371,46	371,46	products/w5wklevdee8oligrtv5n	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756706/products/w5wklevdee8oligrtv5n.jpg
 ROSCADO	50016	 Codo HH a 90º	3/4” 	50	750	570,60	570,6	products/w5wklevdee8oligrtv5n	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756706/products/w5wklevdee8oligrtv5n.jpg
@@ -317,3 +317,4 @@ for (let i = 0; i < columns[0].length; i++) {
 // }
 
 module.exports = arraysOfColumns;
+*/
