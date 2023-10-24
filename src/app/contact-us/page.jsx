@@ -1,7 +1,12 @@
+'use client';
 import contactUs from './../../../assets/contact-us-2.jpg';
 import Image from 'next/image';
+import useContactUsForm from '@/hooks/useContactUsForm';
 
 const ContactUs = () => {
+  const { contactUsForm, errors, handleChange, validate } =
+    useContactUsForm();
+
   return (
     <div className='flex flex-col items-center justify-center'>
       <div className='z-0 w-full translate-y-0'>
@@ -32,10 +37,7 @@ const ContactUs = () => {
                   Vamos a necesitar los siguientes datos para poder
                   contactarte y darte una respuesta mas eficiente
                 </p>
-                <form
-                  action='#'
-                  className='space-y-5 md:space-y-8 md:px-20'
-                >
+                <form className='space-y-5 md:space-y-8 md:px-20'>
                   <div className='md:flex md:gap-5 space-y-5 md:space-y-0'>
                     <div className='md:w-[50%]'>
                       <label
@@ -44,14 +46,28 @@ const ContactUs = () => {
                       >
                         Nombre
                       </label>
-                      <input
-                        type='text'
-                        id='name'
-                        name='name'
-                        className='block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500'
-                        placeholder='¿Como podemos ayudar?'
-                        required
-                      />
+                      <div>
+                        <input
+                          onChange={handleChange}
+                          value={contactUsForm.name}
+                          type='text'
+                          id='name'
+                          name='name'
+                          className={`block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 ${
+                            errors.name
+                              ? 'border-red-600 border'
+                              : 'border-gray-200 border'
+                          }`}
+                          placeholder='¿Como podemos ayudar?'
+                        />
+                        {errors.name ? (
+                          <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                            {errors.name}
+                          </p>
+                        ) : (
+                          <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                        )}
+                      </div>
                     </div>
 
                     <div className='md:w-[50%]'>
@@ -61,14 +77,29 @@ const ContactUs = () => {
                       >
                         Email
                       </label>
-                      <input
-                        type='email'
-                        id='email'
-                        name='email'
-                        className='block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500'
-                        placeholder='email@gmail.com'
-                        required
-                      />
+                      <div>
+                        <input
+                          onChange={handleChange}
+                          value={contactUsForm.email}
+                          type='email'
+                          id='email'
+                          name='email'
+                          className={`block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 ${
+                            errors.email
+                              ? 'border-red-600 border'
+                              : 'border-gray-200 border'
+                          }`}
+                          placeholder='email@gmail.com'
+                          required
+                        />
+                        {errors.email ? (
+                          <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                            {errors.email}
+                          </p>
+                        ) : (
+                          <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                        )}
+                      </div>
                     </div>
                   </div>
 
@@ -80,14 +111,29 @@ const ContactUs = () => {
                       >
                         Asunto
                       </label>
-                      <input
-                        type='text'
-                        id='subject'
-                        name='subject'
-                        className='block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500'
-                        placeholder='¿Como podemos ayudar?'
-                        required
-                      />
+                      <div>
+                        <input
+                          onChange={handleChange}
+                          value={contactUsForm.subject}
+                          type='text'
+                          id='subject'
+                          name='subject'
+                          className={`block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 ${
+                            errors.subject
+                              ? 'border-red-600 border'
+                              : 'border-gray-200 border'
+                          }`}
+                          placeholder='¿Como podemos ayudar?'
+                          required
+                        />
+                        {errors.subject ? (
+                          <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                            {errors.subject}
+                          </p>
+                        ) : (
+                          <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                        )}
+                      </div>
                     </div>
 
                     <div className='md:w-[50%]'>
@@ -97,14 +143,29 @@ const ContactUs = () => {
                       >
                         Teléfono
                       </label>
-                      <input
-                        type='text'
-                        id='phone'
-                        name='phone'
-                        className='block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500'
-                        placeholder='011 1234 5678'
-                        required
-                      />
+                      <div>
+                        <input
+                          onChange={handleChange}
+                          value={contactUsForm.phone}
+                          type='text'
+                          id='phone'
+                          name='phone'
+                          className={`block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 ${
+                            errors.phone
+                              ? 'border-red-600 border'
+                              : 'border-gray-200 border'
+                          }`}
+                          placeholder='011 1234 5678'
+                          required
+                        />
+                      </div>
+                      {errors.phone ? (
+                        <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                          {errors.phone}
+                        </p>
+                      ) : (
+                        <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                      )}
                     </div>
                   </div>
 
@@ -116,13 +177,28 @@ const ContactUs = () => {
                       Mensaje
                     </label>
                     <textarea
+                      onChange={handleChange}
+                      value={contactUsForm.message}
+                      name='message'
                       id='message'
                       rows='6'
-                      className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'
+                      className={`block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ${
+                        errors.message
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                      }`}
                       placeholder='Escribí tu mensaje'
                     ></textarea>
+                    {errors.message ? (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'>
+                        {errors.message}
+                      </p>
+                    ) : (
+                      <p className='h-6 lg:h-4 px-2 py-1 text-xs text-red-600'></p>
+                    )}
                   </div>
                   <button
+                    onClick={validate}
                     type='submit'
                     className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
                   >

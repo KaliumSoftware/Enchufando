@@ -13,6 +13,11 @@ const userSlice = createSlice({
       state.allUsers = action.payload;
     },
     setLoggedUser: (state, action) => {
+      localStorage.setItem(
+        'loggedUser',
+        JSON.stringify(action.payload)
+      );
+
       state.loggedUser = action.payload;
     }
   }
