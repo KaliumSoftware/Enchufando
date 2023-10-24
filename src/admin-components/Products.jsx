@@ -9,12 +9,12 @@ import {
 import Image from 'next/image';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import PaginationCustom from '@/components/molecules/Pagination';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const Products = () => {
   const allProds = useSelector((state) => state.product.allProducts);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,6 +32,7 @@ const Products = () => {
   return (
     <div className='bg-gray-100 min-h-screen'>
       <div className='p-4'>
+        <PaginationCustom />
         <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto'>
           <div className='relative mx-2'>
             <HiOutlineSearch
