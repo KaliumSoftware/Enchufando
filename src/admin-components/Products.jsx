@@ -9,8 +9,8 @@ import {
 import Image from 'next/image';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import PaginationCustom from '@/components/molecules/Pagination';
-
+import Pagination from '../components/molecules/Pagination';
+import usePagination from '@/hooks/usePagination';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const Products = () => {
@@ -25,14 +25,15 @@ const Products = () => {
 
     if (!allProds || !allProds.length) allProducts();
   }, []);
+  const { currentPageData } = usePagination(6, allProds);
 
   const filterByName = (e) => {
     dispatch(filterProductsByName(e.target.value));
   };
+
   return (
     <div className='bg-gray-100 min-h-screen'>
       <div className='p-4'>
-        <PaginationCustom />
         <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto'>
           <div className='relative mx-2'>
             <HiOutlineSearch
@@ -54,7 +55,7 @@ const Products = () => {
             <span className='hidden sm:grid'>Tipo</span>
           </div>
           <ul>
-            {allProds.map((product, id) => (
+            {currentPageData.map((product, id) => (
               <li
                 key={id}
                 className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
@@ -85,6 +86,12 @@ const Products = () => {
               </li>
             ))}
           </ul>
+          <div className='flex justify-center py-4'>
+            <Pagination
+              num={6}
+              data={allProds}
+            />
+          </div>
         </div>
       </div>
     </div>

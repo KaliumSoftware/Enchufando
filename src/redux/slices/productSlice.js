@@ -16,18 +16,19 @@ const productSlice = createSlice({
 
     filterProductsByName: (state, action) => {
       const searchTerm = action.payload.toLowerCase();
-
-      const filteredProducts = allProductsCopy.filter((product) => {
-        if (product.name) {
-          const productNameNormalized = product.name
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
-          return productNameNormalized
-            .toLowerCase()
-            .includes(searchTerm);
+      const filteredProducts = state.allProductsCopy.filter(
+        (product) => {
+          if (product.name) {
+            const productNameNormalized = product.name
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '');
+            return productNameNormalized
+              .toLowerCase()
+              .includes(searchTerm);
+          }
+          return true;
         }
-        return true;
-      });
+      );
       state.allProducts = filteredProducts;
     }
   }

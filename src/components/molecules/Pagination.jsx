@@ -1,36 +1,44 @@
-import { useState } from 'react';
-import { Pagination } from '@nextui-org/react';
+'use client';
+import { useSelector } from 'react-redux';
+import usePagination from '../../hooks/usePagination';
 
-export default function PaginationCustom({ data }) {
-  const pageNum = [];
+const Pagination = ({ num, data }) => {
+  const currentPage = useSelector(
+    (state) => state.pagination.currentPage
+  );
 
-  for (let i = 1; i <= Math.ceil(countries / countriesPerPage); i++) {
-    pageNum.push(i);
-  }
-
-  const handleInputChange = (event) => {
-    setInputPage(event.target.value);
-  };
-
-  const goToPage = () => {
-    const parsedInput = parseInt(inputPage, 10);
-    if (parsedInput >= 1 && parsedInput <= pageNum.length) {
-      setCurrentPage(parsedInput);
-      setInputPage('');
-      scrollToTop();
-    } else {
-      alert('Debe ingresar un número entre 1 y ' + pageNum.length);
-      setInputPage(currentPage);
-    }
-  };
-  const scrollToTop = () => {
-    window.scrollTo({ top: 100, behavior: 'smooth' });
-  };
+  const pagination = usePagination(num, data);
 
   return (
-    <Pagination
-      total={10}
-      initialPage={1}
-    />
+    <div className=''>
+      <button
+        disabled={currentPage === 1}
+        className=''
+        onClick={pagination.handleClickPrev}
+      >
+        Anterior
+      </button>
+
+      {pagination.pages.map((page) => (
+        <button
+          key={page}
+          onClick={pagination.handleClick}
+          value={page}
+          className=''
+        >
+          {page}
+        </button>
+      ))}
+
+      <button
+        disabled={currentPage === pagination.totalPages}
+        className=''
+        onClick={pagination.handleClickNext}
+      >
+        Siguiente
+      </button>
+    </div>
   );
-}
+};
+
+export default Pagination;

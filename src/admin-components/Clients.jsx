@@ -8,6 +8,8 @@ import {
   filterUsersByName
 } from '../redux/slices/userSlice';
 import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
+import Pagination from '@/components/molecules/Pagination';
+import usePagination from '@/hooks/usePagination';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -22,6 +24,7 @@ const Clients = () => {
     (user) => user.isAdmin === false
   );
   const dispatch = useDispatch();
+  const { currentPageData } = usePagination(8, allClients);
 
   useEffect(() => {
     const allUsers = async () => {
@@ -82,6 +85,12 @@ const Clients = () => {
               </li>
             ))}
           </ul>
+          <div className='flex justify-center py-4'>
+            <Pagination
+              num={8}
+              data={currentPageData}
+            />
+          </div>
         </div>
       </div>
     </div>
