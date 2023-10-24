@@ -27,6 +27,14 @@ module.exports = function defineOrderModel(sequelize) {
       totalPrice: {
         type: DataTypes.FLOAT,
         allowNull: false
+      },
+      userId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       }
     },
     {
