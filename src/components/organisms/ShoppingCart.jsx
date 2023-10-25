@@ -1,14 +1,27 @@
 'use client';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCart } from '@/redux/slices/cartSlice';
 import CartProduct from '../molecules/CartProduct';
 import { v4 as uuidv4 } from 'uuid';
 import AsidePrice from '../molecules/AsidePirce';
 
-
 function ShoppingCart() {
   const [show, setShow] = useState(false);
-  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const cartProducts = useSelector(
+    (state) => state.cart.cartProducts
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const productsOnLS = JSON.parse(
+      localStorage.getItem('cartProducts')
+    );
+
+    if (productsOnLS.length) {
+      dispatch(setCart(productsOnLS));
+    }
+  }, []);
 
   return (
     <>
