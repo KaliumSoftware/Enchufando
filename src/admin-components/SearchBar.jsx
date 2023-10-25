@@ -8,7 +8,7 @@ const SearchBar = ({ filterByName }) => {
       <input
         type='text'
         placeholder='Buscar...'
-        onChange={(e) => filterByName}
+        onChange={() => filterByName}
         className='text-sm focus:outline-none text-black active:outline:none h-10 w-[24rem] border border-gray-300 rounded-sm px-4 pl-11'
       />
     </div>
