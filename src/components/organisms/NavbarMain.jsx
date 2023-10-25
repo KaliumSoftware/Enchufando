@@ -14,15 +14,16 @@ import {
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
-  Avatar,
   Button
 } from '@nextui-org/react';
-import logoBlack from './../../../assets/logo-black-png-transformed.png';
+import logoBlack from '@/../assets/logo-black-png-transformed.png';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import ShoppingCart from './ShoppingCart';
 import LoginRegisterMenu from './LoginRegisterMenu';
 import { setLoggedUser } from '@/redux/slices/userSlice';
+import { setCart } from '@/redux/slices/cartSlice';
+import userCog from './../../../assets/user-cog.svg';
 
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,6 +61,7 @@ export default function NavbarMain() {
 
   const handleLogOut = () => {
     dispatch(setLoggedUser({}));
+    dispatch(setCart([]));
   };
 
   return (
@@ -127,6 +129,8 @@ export default function NavbarMain() {
             as='div'
             justify='end'
           >
+            {loggedUser.id && <ShoppingCart />}
+
             {!loggedUser.id ? (
               <NavbarContent justify='end'>
                 <NavbarItem className='hidden lg:flex'>
@@ -155,16 +159,12 @@ export default function NavbarMain() {
             ) : (
               <Dropdown placement='bottom-end'>
                 <DropdownTrigger>
-                  <Avatar
-                    isBordered
-                    as='button'
-                    className='transition-transform'
-                    color='secondary'
-                    name='Jason Hughes'
-                    size='sm'
-                    // CAMBIAR POR IMAGEN DE USUARIO
-                    src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
-                  />
+                  <div className='opacity-70 mx-5'>
+                    <Image
+                      src={userCog}
+                      alt='User'
+                    />
+                  </div>
                 </DropdownTrigger>
                 <DropdownMenu
                   aria-label='Profile Actions'
@@ -179,7 +179,10 @@ export default function NavbarMain() {
                   <DropdownItem key='settings'>
                     Mis compras
                   </DropdownItem>
-                  <DropdownItem key='help_and_feedback'>
+                  <DropdownItem
+                    key='help_and_feedback'
+                    onClick={() => router.push('/contact-us')}
+                  >
                     Ayuda
                   </DropdownItem>
                   <DropdownItem
@@ -213,7 +216,6 @@ export default function NavbarMain() {
               </NavbarMenuItem>
             ))}
           </NavbarMenu>
-          <ShoppingCart />
         </Navbar>
       )}
 
