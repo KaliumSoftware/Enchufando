@@ -132,46 +132,48 @@ export default function NavbarMain() {
                 </NavbarItem>
               </NavbarContent>
             ) : (
-              <Dropdown placement='bottom-end'>
-                <DropdownTrigger>
-                  <div className='opacity-70 mx-5'>
-                    <Image
-                      src={userCog}
-                      alt='User'
-                    />
-                  </div>
-                </DropdownTrigger>
-                <DropdownMenu
-                  aria-label='Profile Actions'
-                  variant='flat'
-                >
-                  <DropdownItem
-                    key='profile'
-                    className='h-14 gap-2 font-bold bg-gray-100'
+              <div className='z-0'>
+                <Dropdown placement='bottom-end'>
+                  <DropdownTrigger>
+                    <div className='opacity-70 mx-5 cursor-pointer'>
+                      <Image
+                        src={userCog}
+                        alt='User'
+                      />
+                    </div>
+                  </DropdownTrigger>
+                  <DropdownMenu
+                    aria-label='Profile Actions'
+                    variant='flat'
                   >
-                    {`Bienvenido ${loggedUser.name.split(' ')[0]}`}
-                  </DropdownItem>
-                  <DropdownItem key='settings'>
-                    Mis compras
-                  </DropdownItem>
-                  <DropdownItem
-                    key='help_and_feedback'
-                    onClick={() => router.push('/contact-us')}
-                  >
-                    Ayuda
-                  </DropdownItem>
-                  <DropdownItem
-                    key='logout'
-                    color='danger'
-                    onClick={handleLogOut}
-                  >
-                    Cerrar sesión
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+                    <DropdownItem
+                      key='profile'
+                      className='h-14 gap-2 font-bold bg-gray-100'
+                    >
+                      {`Bienvenido ${loggedUser.name.split(' ')[0]}`}
+                    </DropdownItem>
+                    <DropdownItem key='settings'>
+                      Mis compras
+                    </DropdownItem>
+                    <DropdownItem
+                      key='help_and_feedback'
+                      onClick={() => router.push('/contact-us')}
+                    >
+                      Ayuda
+                    </DropdownItem>
+                    <DropdownItem
+                      key='logout'
+                      color='danger'
+                      onClick={handleLogOut}
+                    >
+                      Cerrar sesión
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
             )}
           </NavbarContent>
-          <NavbarMenu className='z-50'>
+          <NavbarMenu className='z-0'>
             {menuItems.map((item, index) => (
               <NavbarMenuItem key={`${item}-${index}`}>
                 <div
