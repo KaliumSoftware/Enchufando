@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   Navbar,
   NavbarMenu,
-  NavbarMenuItem,
   NavbarMenuToggle,
   NavbarBrand,
   NavbarContent,
@@ -23,6 +22,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import ShoppingCart from './ShoppingCart';
 import LoginRegisterMenu from './LoginRegisterMenu';
 import { setLoggedUser } from '@/redux/slices/userSlice';
+import SearchBar from '../atoms/SearchBar';
 
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,7 +66,8 @@ export default function NavbarMain() {
     <>
       {pathname.split('/')[1] !== 'admin' && (
         <Navbar
-          className={'w-full'}
+          position={pathname === '/store' ? 'static' : 'sticky'}
+          className='w-full'
           isBordered
           isMenuOpen={isMenuOpen}
           onMenuOpenChange={setIsMenuOpen}
@@ -90,37 +91,8 @@ export default function NavbarMain() {
             </NavbarBrand>
           </NavbarContent>
 
-          <NavbarContent
-            className='hidden sm:flex gap-4'
-            justify='center'
-          >
-            <NavbarItem isActive={pathname === '/'}>
-              <div
-                onClick={() => router.push('/')}
-                className='cursor-pointer'
-                color='foreground'
-              >
-                Inicio
-              </div>
-            </NavbarItem>
-            <NavbarItem isActive={pathname === '/store'}>
-              <div
-                onClick={() => router.push('/store')}
-                className='cursor-pointer'
-                color='foreground'
-              >
-                Tienda
-              </div>
-            </NavbarItem>
-            <NavbarItem isActive={pathname === '/contact-us'}>
-              <div
-                onClick={() => router.push('/contact-us')}
-                className='cursor-pointer'
-                color='foreground'
-              >
-                Contacto
-              </div>
-            </NavbarItem>
+          <NavbarContent>
+            <SearchBar />
           </NavbarContent>
 
           <NavbarContent
@@ -192,28 +164,8 @@ export default function NavbarMain() {
                 </DropdownMenu>
               </Dropdown>
             )}
+            <ShoppingCart />
           </NavbarContent>
-          <NavbarMenu className='z-50'>
-            {menuItems.map((item, index) => (
-              <NavbarMenuItem key={`${item}-${index}`}>
-                <div
-                  className='w-full cursor-pointer'
-                  color={
-                    index === 2
-                      ? 'warning'
-                      : index === menuItems.length - 1
-                      ? 'danger'
-                      : 'foreground'
-                  }
-                  onClick={() => router.push('/')}
-                  size='lg'
-                >
-                  {item}
-                </div>
-              </NavbarMenuItem>
-            ))}
-          </NavbarMenu>
-          <ShoppingCart />
         </Navbar>
       )}
 
@@ -224,6 +176,43 @@ export default function NavbarMain() {
           setSigningin={setSigningin}
         />
       )}
+      <nav
+        position='static'
+        className='bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+      >
+        <ul
+          className='hidden sm:flex gap-4'
+          justify='center'
+        >
+          <li isActive={pathname === '/'}>
+            <div
+              onClick={() => router.push('/')}
+              className='cursor-pointer'
+              color='foreground'
+            >
+              Inicio
+            </div>
+          </li>
+          <li isActive={pathname === '/store'}>
+            <div
+              onClick={() => router.push('/store')}
+              className='cursor-pointer'
+              color='foreground'
+            >
+              Tienda
+            </div>
+          </li>
+          <div isActive={pathname === '/contact-us'}>
+            <div
+              onClick={() => router.push('/contact-us')}
+              className='cursor-pointer'
+              color='foreground'
+            >
+              Contacto
+            </div>
+          </div>
+        </ul>
+      </nav>
     </>
   );
 }

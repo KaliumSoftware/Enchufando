@@ -5,10 +5,11 @@ import CartProduct from '../molecules/CartProduct';
 import { v4 as uuidv4 } from 'uuid';
 import AsidePrice from '../molecules/AsidePirce';
 
-
 function ShoppingCart() {
   const [show, setShow] = useState(false);
-  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const cartProducts = useSelector(
+    (state) => state.cart.cartProducts
+  );
 
   return (
     <>
@@ -16,7 +17,7 @@ function ShoppingCart() {
         <button
           type='button'
           onClick={() => setShow(!show)}
-          className='relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+          className='z-96 relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
           // className='py-2 px-10 rounded bg-black hover:bg-indigo-600  text-white'
         >
           {cartProducts?.length ? (

@@ -1,7 +1,7 @@
 const FilterStore = () => {
   return (
-    <div className='w-1/3'>
-      <div>
+    <div className='w-1/4 pl-8 py-4'>
+      <article className='flex gap-2'>
         <p>Ordenar por</p>
         <select
           name=''
@@ -10,7 +10,7 @@ const FilterStore = () => {
           <option value=''>Mayor precio</option>
           <option value=''>Menor precio</option>
         </select>
-      </div>
+      </article>
     </div>
   );
 };
