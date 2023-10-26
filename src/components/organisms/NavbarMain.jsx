@@ -6,6 +6,7 @@ import {
   Navbar,
   NavbarMenu,
   NavbarMenuToggle,
+  NavbarMenuItem,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
@@ -26,7 +27,6 @@ import { setCart } from '@/redux/slices/cartSlice';
 //images
 import logoBlack from '@/../assets/logo-black-png-transformed.png';
 import userCog from './../../../assets/user-cog.svg';
-
 
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,8 +71,8 @@ export default function NavbarMain() {
     <>
       {pathname.split('/')[1] !== 'admin' && (
         <Navbar
-          position={pathname === '/store' ? 'static' : 'sticky'}
-          className='w-full'
+          className='w-full bg-white'
+          position={pathname !== '/store' ? 'sticky' : 'static'}
           isBordered
           isMenuOpen={isMenuOpen}
           onMenuOpenChange={setIsMenuOpen}
@@ -170,7 +170,6 @@ export default function NavbarMain() {
                 </DropdownMenu>
               </Dropdown>
             )}
-            <ShoppingCart />
           </NavbarContent>
           <NavbarMenu className='z-50'>
             {menuItems.map((item, index) => (
@@ -203,8 +202,11 @@ export default function NavbarMain() {
         />
       )}
       <nav
-        position='static'
-        className='bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+        className={
+          pathname !== '/store'
+            ? 'fixed z-50 top-15 w-full bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+            : ' bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+        }
       >
         <ul
           className='hidden sm:flex gap-4'
