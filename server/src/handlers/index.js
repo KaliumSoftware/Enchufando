@@ -7,12 +7,14 @@ const loginUser = require('./../handlers/userHandlers/createUsers/loginUser');
 const deleteUsers = require('./../handlers/userHandlers/deleteUsers/deleteUsers');
 //orders
 const getAllOrders = require('../handlers/orderHandlers/readOrders/getAllOrders');
+const getAllUserOrders = require('./orderHandlers/readOrders/getAllUserOrders');
 const postOrder = require('../handlers/orderHandlers/createOrders/postOrder');
 //products
 const getAllProducts = require('../handlers/productHandlers/readProducts/getAllProducts');
 const getAllMeasures = require('../handlers/productHandlers/readProducts/getAllMeaures');
 const getProductById = require('../handlers/productHandlers/readProducts/getProductById');
 const postProduct = require('../handlers/productHandlers/createProducts/postProduct');
+const postAllProducts = require('./productHandlers/createProducts/postAllProducts');
 const handleProductDelete = require('../handlers/productHandlers/handleDeleteProduct');
 const handleIsActive = require('../handlers/productHandlers/handleModifyProducts/handleIsActive');
 const handlePutProduct = require('../handlers/productHandlers/handleModifyProducts/handlePutProduct');
@@ -32,12 +34,14 @@ module.exports = {
 
   //orders
   getAllOrders,
+  getAllUserOrders,
   postOrder,
 
   //products
   getAllMeasures,
   getAllProducts,
   postProduct,
+  postAllProducts,
   getProductById,
   handleProductDelete,
   handleIsActive,
