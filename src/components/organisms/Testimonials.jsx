@@ -12,7 +12,7 @@ const Testimonials = () => {
             <div className='flex items-center gap-4'>
               <img
                 alt='Man'
-                src='https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80'
+                src='https://lh3.googleusercontent.com/a-/ALV-UjVjgePrWbtN0dA_sTBJv7Mvx0vz8n-AddzCjHgPDtE3w0E=w60-h60-p-rp-mo-br100'
                 className='h-14 w-14 rounded-full object-cover'
               />
 
@@ -61,17 +61,14 @@ const Testimonials = () => {
                 </div>
 
                 <p className='mt-0.5 text-lg font-medium text-gray-900'>
-                  Paul Starr
+                  KAYAK GO ARGENTINA
                 </p>
               </div>
             </div>
 
             <p className='mt-4 text-gray-700'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Culpa sit rerum incidunt, a consequuntur
-              recusandae ab saepe illo est quia obcaecati neque
-              quibusdam eius accusamus error officiis atque voluptates
-              magnam!
+              Productos de alta calidad. Precios competitivos.
+              Servicio confiable. ¡Muy satisfecho!
             </p>
           </blockquote>
 
@@ -79,7 +76,7 @@ const Testimonials = () => {
             <div className='flex items-center gap-4'>
               <img
                 alt='Man'
-                src='https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80'
+                src='https://lh3.googleusercontent.com/a-/ALV-UjXyZo3s_vxOay4EsvUvNC_8CBwusu_esF4ka6OZMA5wprig=w60-h60-p-rp-mo-br100'
                 className='h-14 w-14 rounded-full object-cover'
               />
 
@@ -128,17 +125,13 @@ const Testimonials = () => {
                 </div>
 
                 <p className='mt-0.5 text-lg font-medium text-gray-900'>
-                  Paul Starr
+                  Fernando Gerez
                 </p>
               </div>
             </div>
 
             <p className='mt-4 text-gray-700'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Culpa sit rerum incidunt, a consequuntur
-              recusandae ab saepe illo est quia obcaecati neque
-              quibusdam eius accusamus error officiis atque voluptates
-              magnam!
+              Muy buena fabrica, excelente gente
             </p>
           </blockquote>
 
@@ -146,7 +139,7 @@ const Testimonials = () => {
             <div className='flex items-center gap-4'>
               <img
                 alt='Man'
-                src='https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80'
+                src='https://lh3.googleusercontent.com/a-/ALV-UjUrseUmWe4-29TYJu382X4zCEYAtnpkRkxYVcMPFGpTKls=w60-h60-p-rp-mo-ba3-br100'
                 className='h-14 w-14 rounded-full object-cover'
               />
 
@@ -195,18 +188,12 @@ const Testimonials = () => {
                 </div>
 
                 <p className='mt-0.5 text-lg font-medium text-gray-900'>
-                  Paul Starr
+                  Javier Ramírez
                 </p>
               </div>
             </div>
 
-            <p className='mt-4 text-gray-700'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Culpa sit rerum incidunt, a consequuntur
-              recusandae ab saepe illo est quia obcaecati neque
-              quibusdam eius accusamus error officiis atque voluptates
-              magnam!
-            </p>
+            <p className='mt-4 text-gray-700'>Buena atención.</p>
           </blockquote>
         </div>
       </div>

@@ -1,63 +1,53 @@
 'use client';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { Typography } from '@material-tailwind/react';
+import Image from 'next/image';
+import logoBlack from '../../../assets/logo-black-png-transformed.png';
 
 const Footer = () => {
-  const router = useRouter();
   const pathname = usePathname();
 
   return (
     <>
       {pathname.split('/')[1] !== 'admin' && (
-        <footer className='bg-gray-100 rounded-lg shadow dark:bg-gray-900'>
-          <div className='w-full max-w-screen-2xl mx-auto p-4 md:py-14'>
-            <div className='sm:flex sm:items-center sm:justify-between'>
-              <div
-                onClick={() => router.push('/')}
-                className='flex items-center mb-4 sm:mb-0 cursor-pointer'
-              >
-                <span className='self-center  text-4xl font-semibold whitespace-nowrap dark:text-white'>
-                  Enchufando
-                </span>
-              </div>
-              <ul className='flex flex-wrap items-center mb-6 text-lg font-medium  sm:mb-0 dark:text-gray-400'>
-                <li>
-                  <div
-                    onClick={() => router.push('/')}
-                    className='mr-4 hover:underline md:mr-6 cursor-pointer'
-                  >
-                    LinkedIn
-                  </div>
-                </li>
-                <li>
-                  <div
-                    onClick={() => router.push('/')}
-                    className='mr-4 hover:underline md:mr-6 cursor-pointer'
-                  >
-                    Facebook
-                  </div>
-                </li>
-                <li>
-                  <div
-                    onClick={() => router.push('/contact-us')}
-                    className='hover:underline cursor-pointer'
-                  >
-                    Contactanos
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <hr className='my-6 border-black sm:mx-auto dark:border-gray-700 lg:my-8' />
-            <span className='block text-sm  sm:text-center dark:text-gray-400'>
-              © 2023{' '}
-              <div
-                onClick={() => router.push('/')}
-                className='hover:underline cursor-pointer'
-              >
-                Kalium Software
-              </div>
-              . Todos los derechos reservados.
-            </span>
+        <footer className='w-full bg-white p-8'>
+          <div className='flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between'>
+            <Image
+              src={logoBlack}
+              width={50}
+              height={50}
+              alt='logo Empresa'
+            />
+            <ul className='flex flex-wrap items-center gap-y-2 gap-x-8'>
+              <li>
+                <Typography
+                  as='a'
+                  href='#'
+                  color='blue-gray'
+                  className='font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
+                >
+                  Sobre nosotros
+                </Typography>
+              </li>
+              <li>
+                <Typography
+                  as='a'
+                  href='#'
+                  color='blue-gray'
+                  className='font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
+                >
+                  Contactános
+                </Typography>
+              </li>
+            </ul>
           </div>
+          <hr className='my-8 border-blue-gray-50' />
+          <Typography
+            color='blue-gray'
+            className='text-center font-normal'
+          >
+            &copy; 2023 Kalium Software
+          </Typography>
         </footer>
       )}
     </>
