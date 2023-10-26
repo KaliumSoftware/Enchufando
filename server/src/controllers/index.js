@@ -7,12 +7,14 @@ const compareUser = require('./userControllers/createUsers/compareUser');
 const deleteUser = require('./userControllers/deleteUsers/deleteUser');
 //orders
 const findAllOrders = require('./orderControllers/readOrders/findAllOrders');
+const findAllUserOrders = require('./orderControllers/readOrders/findAllUserOrders');
 const createOrder = require('./orderControllers/createOrders/createOrder');
 //products
 const findAllProducts = require('./productControllers/readProducts/findAllProducts');
 const findAllMeasures = require('./productControllers/readProducts/findAllMeasures');
 const findProductByPk = require('./productControllers/readProducts/findProductByPk');
 const createProduct = require('./productControllers/createProducts/createProduct');
+const createAllProducts = require('./productControllers/createProducts/createAllProducts');
 const deleteProduct = require('./productControllers/deleteProducts/deleteProduct');
 const isActiveProduct = require('./productControllers/modifyProduct/isActiveProduct');
 const putProduct = require('./productControllers/modifyProduct/putProduct');
@@ -31,9 +33,11 @@ module.exports = {
   deleteUser,
   //orders
   findAllOrders,
+  findAllUserOrders,
   createOrder,
   //products
   createProduct,
+  createAllProducts,
   findAllProducts,
   findProductByPk,
   findAllMeasures,

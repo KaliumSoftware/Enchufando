@@ -61,7 +61,7 @@ const GenerateCode = ({ setShowDiscountMenu }) => {
   };
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center h-full w-full'>
+    <div className='fixed inset-0 flex items-center justify-center h-full w-full z-50'>
       <div className='fixed mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 z-20'>
         <div className='mx-auto bg-white z-10 rounded-2xl py-16 px-32 w-[60vw] h-[50vh]'>
           {showCode ? (

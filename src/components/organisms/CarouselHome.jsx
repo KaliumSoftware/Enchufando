@@ -31,7 +31,7 @@ export default function CarouselHome() {
           prevArrow={({ handlePrev }) => (
             <IconButton
               variant='text'
-              color='black'
+              color='gray'
               size='lg'
               onClick={handlePrev}
               className='!absolute top-2/4 left-4 -translate-y-2/4'
@@ -55,7 +55,7 @@ export default function CarouselHome() {
           nextArrow={({ handleNext }) => (
             <IconButton
               variant='text'
-              color='black'
+              color='gray'
               size='lg'
               onClick={handleNext}
               className='!absolute top-2/4 !right-4 -translate-y-2/4'
