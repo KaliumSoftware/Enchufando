@@ -22,10 +22,20 @@ productRouter.post('/all', async (req, res) => {
         prices[index].replace('.', '').replace(',', '.')
       );
 
+      const category = '';
+
+      if (names[index].split(' ')[0] === 'Rosca'){
+        category = 'Rosca con tuerca';
+      } else if (names[index].split(' ')[0] === 'Val.') {
+        category = 'Valvula';
+      } else {
+        category = names[index].split(' ')[0];
+      }
+
       const newProduct = {
         type: types[index],
         name: names[index],
-        category: 'Agregar categoría',
+        category,
         image: {
           public_id: publicIds[index],
           secure_url: secureUrls[index]
