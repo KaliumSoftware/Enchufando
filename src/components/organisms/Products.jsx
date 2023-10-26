@@ -30,7 +30,7 @@ const Products = () => {
     <div className='bg-gray-100 flex pt-8'>
       <FilterStore />
       <div className='w-full'>
-        <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-200 gap-4'>
+        <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-100 gap-4'>
           {currentPageData?.map((product) => (
             <Product
               key={product.id}

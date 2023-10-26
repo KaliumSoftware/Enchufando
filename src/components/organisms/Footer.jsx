@@ -23,7 +23,6 @@ const Footer = () => {
                 <Typography
                   as='a'
                   href='#'
-                  color='blue-gray'
                   className='font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
                 >
                   Sobre nosotros
@@ -33,7 +32,6 @@ const Footer = () => {
                 <Typography
                   as='a'
                   href='#'
-                  color='blue-gray'
                   className='font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
                 >
                   Contactános
@@ -42,10 +40,7 @@ const Footer = () => {
             </ul>
           </div>
           <hr className='my-8 border-blue-gray-50' />
-          <Typography
-            color='blue-gray'
-            className='text-center font-normal'
-          >
+          <Typography className='text-center font-normal'>
             &copy; 2023 Kalium Software
           </Typography>
         </footer>

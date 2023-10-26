@@ -6,7 +6,7 @@ const Product = (props) => {
   const { name, image, handleAddCart } = useProduct(props);
 
   return (
-    <article className='py-4 flex flex-col items-center bg-white border-b-2 border-gray-200'>
+    <article className='py-4 flex flex-col items-center bg-white border-b-2 border-gray-200 rounded-xl'>
       <h5 className='mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-800 whitespace-break-spaces'>
         {name}
       </h5>

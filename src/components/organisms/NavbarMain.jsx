@@ -214,7 +214,7 @@ export default function NavbarMain() {
           className='hidden sm:flex gap-4'
           justify='center'
         >
-          <li isActive={pathname === '/'}>
+          <li>
             <div
               onClick={() => router.push('/')}
               className='cursor-pointer'
@@ -223,7 +223,7 @@ export default function NavbarMain() {
               Inicio
             </div>
           </li>
-          <li isActive={pathname === '/store'}>
+          <li>
             <div
               onClick={() => router.push('/store')}
               className='cursor-pointer'
@@ -232,7 +232,7 @@ export default function NavbarMain() {
               Tienda
             </div>
           </li>
-          <div isActive={pathname === '/contact-us'}>
+          <div>
             <div
               onClick={() => router.push('/contact-us')}
               className='cursor-pointer'
