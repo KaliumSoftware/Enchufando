@@ -204,7 +204,7 @@ export default function NavbarMain() {
       <nav
         className={
           pathname !== '/store'
-            ? 'fixed z-50 top-15 w-full bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+            ? 'fixed z-30 top-15 w-full bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
             : ' bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
         }
       >
