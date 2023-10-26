@@ -9,7 +9,7 @@ const SectionProducts = () => {
   const router = useRouter();
 
   return (
-    <section>
+    <section className='mt-20'>
       <div className='mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2 items-center'>
           <div className='bg-white p-8 md:p-12 lg:px-16 lg:py-24'>
@@ -19,9 +19,8 @@ const SectionProducts = () => {
               </h2>
 
               <p className='block text-black sm:mt-4 sm:block'>
-                ¡Conectate a la calidad! Descubrí nuestros accesorios
-                para tuberías de agua y mangueras de riego líderes en
-                el mercado. 💧🌱
+                Descubrí nuestros accesorios para tuberías de agua y
+                mangueras de riego líderes en el mercado. 💧🌱
               </p>
 
               <div className='mt-4 md:mt-8'>
