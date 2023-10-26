@@ -19,7 +19,7 @@ function ShoppingCart() {
       localStorage.getItem('cartProducts')
     );
 
-    if (productsOnLS.length) {
+    if (productsOnLS?.length) {
       dispatch(setCart(productsOnLS));
     }
   }, []);

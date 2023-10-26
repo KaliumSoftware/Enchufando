@@ -20,7 +20,7 @@ const SectionProducts = () => {
 
               <p className='block text-black sm:mt-4 sm:block'>
                 Descubrí nuestros accesorios para tuberías de agua y
-                mangueras de riego líderes en el mercado. 💧🌱
+                mangueras de riego líderes en el mercado.
               </p>
 
               <div className='mt-4 md:mt-8'>
