@@ -1,25 +1,26 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import enchufandoStock1 from '@/../assets/enchufando-galpon.jpeg';
+import enchufandoStock2 from '@/../assets/enchufando-galpon2.jpeg';
+import Image from 'next/image';
 
 const SectionProducts = () => {
   const router = useRouter();
 
   return (
-    <section>
+    <section className='mt-20'>
       <div className='mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8'>
-        <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+        <div className='grid grid-cols-1 gap-4 md:grid-cols-2 items-center'>
           <div className='bg-white p-8 md:p-12 lg:px-16 lg:py-24'>
             <div className='mx-auto max-w-xl text-center'>
               <h2 className='text-2xl font-bold text-black md:text-3xl'>
-                Tecnología de Conexión de Agua Innovadora: Descubrí
-                Nuestros Destacados
+                Stock Permanente Garantizado
               </h2>
 
-              <p className='hidden text-black sm:mt-4 sm:block'>
-                ¡Conectate a la calidad! Descubrí nuestros accesorios
-                para tuberías de agua y mangueras de riego líderes en
-                el mercado. 💧🌱
+              <p className='block text-black sm:mt-4 sm:block'>
+                Descubrí nuestros accesorios para tuberías de agua y
+                mangueras de riego líderes en el mercado.
               </p>
 
               <div className='mt-4 md:mt-8'>
@@ -33,18 +34,22 @@ const SectionProducts = () => {
             </div>
           </div>
 
-          <div className='grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2'>
-            <img
-              alt='Student'
-              src='https://images.unsplash.com/photo-1621274790572-7c32596bc67f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80'
-              className='h-40 w-full object-cover sm:h-56 md:h-full'
-            />
+          <div className='grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2 '>
+            <div className='md:h-[60vh]'>
+              <Image
+                alt='Stock'
+                src={enchufandoStock1}
+                className='w-full object-cover sm:h-56 md:h-full'
+              />
+            </div>
 
-            <img
-              alt='Student'
-              src='https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-              className='h-40 w-full object-cover sm:h-56 md:h-full'
-            />
+            <div className='md:h-[60vh]'>
+              <Image
+                alt='Stock'
+                src={enchufandoStock2}
+                className='w-full object-cover sm:h-56 md:h-full'
+              />
+            </div>
           </div>
         </div>
       </div>

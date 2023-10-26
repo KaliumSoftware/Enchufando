@@ -11,7 +11,7 @@ const SectionBrand = () => {
         <div className='mx-auto max-w-xl text-center'>
           <h1 className='text-3xl font-extrabold sm:text-5xl'>
             Calidad que Fluye Con Vos
-            <strong className='font-extrabold text-blueMain sm:block'>
+            <strong className='font-extrabold text-blueMain block'>
               Mejora la Eficiencia
             </strong>
           </h1>

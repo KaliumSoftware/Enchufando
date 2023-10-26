@@ -13,6 +13,11 @@ const cartSlice = createSlice({
     },
     setCart: (state, action) => {
       state.cartProducts = action.payload;
+
+      localStorage.setItem(
+        'cartProducts',
+        JSON.stringify(state.cartProducts)
+      );
     },
     addToCart: (state, action) => {
       state.cartProducts.push({

@@ -11,6 +11,7 @@ function ShoppingCart() {
   const cartProducts = useSelector(
     (state) => state.cart.cartProducts
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {

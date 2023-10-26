@@ -6,8 +6,8 @@ import SectionProducts from '@/components/organisms/SectionProducts';
 export default function Home() {
   return (
     <div className='min-h-screen'>
-      {/* <CarouselHome /> */}
       <SectionBrand />
+      <CarouselHome />
       <SectionProducts />
       <Testimonials />
     </div>

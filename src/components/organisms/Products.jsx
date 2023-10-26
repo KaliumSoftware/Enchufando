@@ -27,22 +27,10 @@ const Products = () => {
   }, []);
 
   return (
-    <div className='bg-gray-100 flex'>
+    <div className='bg-gray-100 flex pt-8'>
       <FilterStore />
       <div className='w-full'>
-        <div className='h-32 bg-white my-4 flex flex-col justify-center items-center pb-4 gap-4'>
-          <div>
-            <input
-              className='w-96 gap-2 bg-white border-1 border-blue-500 shadow-lg rounded-lg outline-2 focus:outline-none text-black active:outline-none h-6 p-2'
-              type='text'
-              placeholder='Buscar...'
-            />
-            <button className='bg-blue-500 text-white rounded-lg px-2 py-1 ml-2'>
-              Buscar
-            </button>
-          </div>
-        </div>
-        <div className='shadow-lg rounded-lg p-2 bg-white'>
+        <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-200 gap-4'>
           {currentPageData?.map((product) => (
             <Product
               key={product.id}
@@ -55,10 +43,10 @@ const Products = () => {
               data={allProducts}
             />
           </div>
-        </div>
+        </section>
       </div>
 
-      <div className='w-1/3'></div>
+      <div className='w-1/4'></div>
     </div>
   );
 };

@@ -1,11 +1,12 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Navbar,
   NavbarMenu,
-  NavbarMenuItem,
   NavbarMenuToggle,
+  NavbarMenuItem,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
@@ -14,15 +15,18 @@ import {
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
-  Avatar,
   Button
 } from '@nextui-org/react';
-import logoBlack from './../../../assets/logo-black-png-transformed.png';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import ShoppingCart from './ShoppingCart';
 import LoginRegisterMenu from './LoginRegisterMenu';
 import { setLoggedUser } from '@/redux/slices/userSlice';
+import SearchBar from '../atoms/SearchBar';
+import { setCart } from '@/redux/slices/cartSlice';
+//images
+import logoBlack from '@/../assets/logo-black-png-transformed.png';
+import userCog from './../../../assets/user-cog.svg';
 
 export default function NavbarMain() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,13 +64,15 @@ export default function NavbarMain() {
 
   const handleLogOut = () => {
     dispatch(setLoggedUser({}));
+    dispatch(setCart([]));
   };
 
   return (
     <>
       {pathname.split('/')[1] !== 'admin' && (
         <Navbar
-          className={'w-full'}
+          className='w-full bg-white'
+          position={pathname !== '/store' ? 'sticky' : 'static'}
           isBordered
           isMenuOpen={isMenuOpen}
           onMenuOpenChange={setIsMenuOpen}
@@ -90,43 +96,16 @@ export default function NavbarMain() {
             </NavbarBrand>
           </NavbarContent>
 
-          <NavbarContent
-            className='hidden sm:flex gap-4'
-            justify='center'
-          >
-            <NavbarItem isActive={pathname === '/'}>
-              <div
-                onClick={() => router.push('/')}
-                className='cursor-pointer'
-                color='foreground'
-              >
-                Inicio
-              </div>
-            </NavbarItem>
-            <NavbarItem isActive={pathname === '/store'}>
-              <div
-                onClick={() => router.push('/store')}
-                className='cursor-pointer'
-                color='foreground'
-              >
-                Tienda
-              </div>
-            </NavbarItem>
-            <NavbarItem isActive={pathname === '/contact-us'}>
-              <div
-                onClick={() => router.push('/contact-us')}
-                className='cursor-pointer'
-                color='foreground'
-              >
-                Contacto
-              </div>
-            </NavbarItem>
+          <NavbarContent>
+            <SearchBar />
           </NavbarContent>
 
           <NavbarContent
             as='div'
             justify='end'
           >
+            {loggedUser.id && <ShoppingCart />}
+
             {!loggedUser.id ? (
               <NavbarContent justify='end'>
                 <NavbarItem className='hidden lg:flex'>
@@ -155,16 +134,12 @@ export default function NavbarMain() {
             ) : (
               <Dropdown placement='bottom-end'>
                 <DropdownTrigger>
-                  <Avatar
-                    isBordered
-                    as='button'
-                    className='transition-transform'
-                    color='secondary'
-                    name='Jason Hughes'
-                    size='sm'
-                    // CAMBIAR POR IMAGEN DE USUARIO
-                    src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
-                  />
+                  <div className='opacity-70 mx-5'>
+                    <Image
+                      src={userCog}
+                      alt='User'
+                    />
+                  </div>
                 </DropdownTrigger>
                 <DropdownMenu
                   aria-label='Profile Actions'
@@ -179,7 +154,10 @@ export default function NavbarMain() {
                   <DropdownItem key='settings'>
                     Mis compras
                   </DropdownItem>
-                  <DropdownItem key='help_and_feedback'>
+                  <DropdownItem
+                    key='help_and_feedback'
+                    onClick={() => router.push('/contact-us')}
+                  >
                     Ayuda
                   </DropdownItem>
                   <DropdownItem
@@ -213,7 +191,6 @@ export default function NavbarMain() {
               </NavbarMenuItem>
             ))}
           </NavbarMenu>
-          <ShoppingCart />
         </Navbar>
       )}
 
@@ -224,6 +201,46 @@ export default function NavbarMain() {
           setSigningin={setSigningin}
         />
       )}
+      <nav
+        className={
+          pathname !== '/store'
+            ? 'fixed z-30 top-15 w-full bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+            : ' bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+        }
+      >
+        <ul
+          className='hidden sm:flex gap-4'
+          justify='center'
+        >
+          <li isActive={pathname === '/'}>
+            <div
+              onClick={() => router.push('/')}
+              className='cursor-pointer'
+              color='foreground'
+            >
+              Inicio
+            </div>
+          </li>
+          <li isActive={pathname === '/store'}>
+            <div
+              onClick={() => router.push('/store')}
+              className='cursor-pointer'
+              color='foreground'
+            >
+              Tienda
+            </div>
+          </li>
+          <div isActive={pathname === '/contact-us'}>
+            <div
+              onClick={() => router.push('/contact-us')}
+              className='cursor-pointer'
+              color='foreground'
+            >
+              Contacto
+            </div>
+          </div>
+        </ul>
+      </nav>
     </>
   );
 }
