@@ -27,21 +27,27 @@ const Products = () => {
   }, []);
 
   return (
-    <div className='bg-gray-100 flex pt-8'>
+    <div className='min-h-[80vh] bg-gray-100 flex pt-8'>
       <FilterStore />
-      <div className='w-full'>
-        <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-200 gap-4'>
-          {currentPageData?.map((product) => (
-            <Product
-              key={product.id}
-              {...product}
-            />
-          ))}
+      <div className='w-full '>
+        <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-100 gap-4'>
+          {currentPageData.length > 0 ? (
+            currentPageData?.map((product) => (
+              <Product
+                key={product.id}
+                {...product}
+              />
+            ))
+          ) : (
+            <div>No hay productos</div>
+          )}
           <div className='flex justify-center items-center'>
-            <Pagination
-              num={6}
-              data={allProducts}
-            />
+            {allProducts.length > 6 && (
+              <Pagination
+                num={6}
+                data={allProducts}
+              />
+            )}
           </div>
         </section>
       </div>

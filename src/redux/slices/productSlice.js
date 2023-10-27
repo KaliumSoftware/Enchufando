@@ -30,10 +30,16 @@ const productSlice = createSlice({
         }
       );
       state.allProducts = filteredProducts;
+    },
+    restoreProducts: (state) => {
+      state.allProducts = state.allProductsCopy;
     }
   }
 });
 
-export const { getAllProducts, filterProductsByName } =
-  productSlice.actions;
+export const {
+  getAllProducts,
+  filterProductsByName,
+  restoreProducts
+} = productSlice.actions;
 export default productSlice.reducer;
