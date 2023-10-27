@@ -33,6 +33,30 @@ const productSlice = createSlice({
     },
     restoreProducts: (state) => {
       state.allProducts = state.allProductsCopy;
+    },
+    filterByCategory: (state, action) => {
+      if (action.payload.toLowerCase() === 'ver todos') {
+        state.allProducts = state.allProductsCopy;
+      } else {
+        const filteredProducts = state.allProductsCopy.filter(
+          (product) =>
+            product.category.toLowerCase() ===
+            action.payload.toLowerCase()
+        );
+        state.allProducts = filteredProducts;
+      }
+    },
+    filterByType: (state, action) => {
+      if (action.payload.toLowerCase() === 'todos') {
+        state.allProducts = state.allProductsCopy;
+      } else {
+        const filteredProducts = state.allProductsCopy.filter(
+          (product) =>
+            product.type.toLowerCase() ===
+            action.payload.toLowerCase()
+        );
+        state.allProducts = filteredProducts;
+      }
     }
   }
 });
@@ -40,6 +64,8 @@ const productSlice = createSlice({
 export const {
   getAllProducts,
   filterProductsByName,
-  restoreProducts
+  restoreProducts,
+  filterByCategory,
+  filterByType
 } = productSlice.actions;
 export default productSlice.reducer;
