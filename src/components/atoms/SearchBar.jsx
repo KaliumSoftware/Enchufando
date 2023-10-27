@@ -4,7 +4,10 @@ import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 //redux
 import { useDispatch } from 'react-redux';
-import { filterProductsByName } from '../../redux/slices/productSlice';
+import {
+  filterProductsByName,
+  restoreProducts
+} from '../../redux/slices/productSlice';
 //icon
 import { AiOutlineSearch } from 'react-icons/ai';
 
@@ -21,6 +24,8 @@ const SearchBar = () => {
   const handleClick = () => {
     if (search) {
       dispatch(filterProductsByName(search));
+    } else {
+      dispatch(restoreProducts());
     }
 
     if (pathname !== '/store') {
