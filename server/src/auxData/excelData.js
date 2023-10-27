@@ -1,4 +1,3 @@
-/*// Crear una tabla de excel que tenga columnas con medidas (sacarlas de la columna ”nombre”) y pegarla acá para poder crear bien los productos
 let excelData = `
 ROSCADO	50015	 Codo HH a 90º	1/2” 	100	1200	371,46	371,46	products/w5wklevdee8oligrtv5n	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756706/products/w5wklevdee8oligrtv5n.jpg
 ROSCADO	50016	 Codo HH a 90º	3/4” 	50	750	570,60	570,6	products/w5wklevdee8oligrtv5n	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697756706/products/w5wklevdee8oligrtv5n.jpg
@@ -288,33 +287,4 @@ KRONA	1324	Montura	50 x 1/2”	10	160	4.961,29	4.961,29	products/aqmk8yvlamscff0
 KRONA	1325	Montura	50 x 3/4”	10	160	5.179,71	5.179,71	products/aqmk8yvlamscff0nnwdn	https://res.cloudinary.com/djbeg0zrq/image/upload/v1697822874/products/aqmk8yvlamscff0nnwdn.jpg
 `;
 
-let rows = excelData.trim().split('\n');
-
-let columns = rows.map((row) => row.split('\t'));
-
-let arraysOfColumns = [];
-
-for (let i = 0; i < columns[0].length; i++) {
-  let column = [];
-
-  for (let j = 0; j < columns.length; j++) {
-    column.push(columns[j][i]);
-  }
-
-  arraysOfColumns.push(column);
-}
-
-// console.log(arraysOfColumns[0].length);
-// console.log(arraysOfColumns[1].length);
-// console.log(arraysOfColumns[2].length);
-// console.log(arraysOfColumns[3].length);
-// console.log(arraysOfColumns[4].length);
-// console.log(arraysOfColumns[5].length);
-// console.log(arraysOfColumns[6].length);
-
-// for (let index = 0; index < arraysOfColumns[0].length; index++) {
-//   console.log(index);
-// }
-
-module.exports = arraysOfColumns;
-*/
+module.exports = excelData;

@@ -30,14 +30,16 @@ export default function CartProduct(props) {
         />
         <TooltipReusable
           text='Seleccione una medida'
-          show={false}
+          show={!selectedSpec?.size}
           color='default'
         >
-          <Check
-            selectedSpec={selectedSpec}
-            localId={localId}
-            id={id}
-          />
+          <div>
+            <Check
+              selectedSpec={selectedSpec}
+              localId={localId}
+              id={id}
+            />
+          </div>
         </TooltipReusable>
         <Quantity
           selectedSpec={selectedSpec}

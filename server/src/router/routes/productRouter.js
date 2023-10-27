@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload');
 const {
   getAllProducts,
   postProduct,
+  postAllProducts,
   getProductById,
   getAllMeasures,
   handleProductDelete,
@@ -15,6 +16,8 @@ const productRouter = Router();
 productRouter.get('/', getAllProducts);
 productRouter.get('/measures', getAllMeasures);
 productRouter.get('/:id', getProductById);
+
+// productRouter.post('/all', postAllProducts);
 productRouter.post(
   '/',
   fileUpload({
@@ -23,6 +26,7 @@ productRouter.post(
   }),
   postProduct
 );
+
 productRouter.patch('/:id', handleIsActive);
 productRouter.put('/:id', handlePutProduct);
 productRouter.delete('/:id', handleProductDelete);

@@ -19,7 +19,7 @@ const usePagination = (num, data) => {
   const firstIndex = cardsPerPage * (currentPage - 1);
   const lastIndex = cardsPerPage * currentPage - 1;
 
-  if (data.length > 0) {
+  if (data?.length > 0) {
     currentPageData = data?.slice(firstIndex, lastIndex + 1);
   }
 

@@ -152,7 +152,10 @@ export default function NavbarMain() {
                     >
                       {`Bienvenido ${loggedUser.name.split(' ')[0]}`}
                     </DropdownItem>
-                    <DropdownItem key='settings'>
+                    <DropdownItem
+                      key='purchases'
+                      onClick={() => router.push('/purchases')}
+                    >
                       Mis compras
                     </DropdownItem>
                     <DropdownItem
@@ -217,7 +220,9 @@ export default function NavbarMain() {
           <li>
             <div
               onClick={() => router.push('/')}
-              className='cursor-pointer'
+              className={`cursor-pointer ${
+                pathname === '/' && 'font-bold'
+              }`}
               color='foreground'
             >
               Inicio
@@ -226,21 +231,25 @@ export default function NavbarMain() {
           <li>
             <div
               onClick={() => router.push('/store')}
-              className='cursor-pointer'
+              className={`cursor-pointer ${
+                pathname === '/store' && 'font-bold'
+              }`}
               color='foreground'
             >
               Tienda
             </div>
           </li>
-          <div>
+          <li>
             <div
               onClick={() => router.push('/contact-us')}
-              className='cursor-pointer'
+              className={`cursor-pointer ${
+                pathname === '/contact-us' && 'font-bold'
+              }`}
               color='foreground'
             >
               Contacto
             </div>
-          </div>
+          </li>
         </ul>
       </nav>
     </>
