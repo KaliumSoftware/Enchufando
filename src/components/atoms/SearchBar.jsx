@@ -8,6 +8,7 @@ import {
   filterProductsByName,
   restoreProducts
 } from '../../redux/slices/productSlice';
+import { setCurrentPage } from '../../redux/slices/paginationSlice';
 //icon
 import { AiOutlineSearch } from 'react-icons/ai';
 
@@ -22,6 +23,7 @@ const SearchBar = () => {
   };
 
   const handleClick = () => {
+    dispatch(setCurrentPage(1));
     if (search) {
       dispatch(filterProductsByName(search));
     } else {

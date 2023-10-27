@@ -58,3 +58,29 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
     icon: <HiOutlineQuestionMarkCircle />
   }
 ];
+
+export const types = ['Todos', 'Roscado', 'Krona', 'Espiga'];
+
+export const category = [
+  'Ver todos',
+  'Acople',
+  'Adaptador',
+  'Brida',
+  'Buje',
+  'Canilla',
+  'Codo',
+  'Cruz',
+  'Cupla',
+  'Curva',
+  'Enchufe',
+  'Flexible',
+  'Junta',
+  'Montura',
+  'Niple',
+  'Rosca con tuerca',
+  'Tapón',
+  'Tapa',
+  'Tee',
+  'Unión',
+  'Valvula'
+];
