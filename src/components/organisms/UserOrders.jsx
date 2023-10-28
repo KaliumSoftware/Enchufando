@@ -1,53 +1,83 @@
 'use client';
-import React, { useEffect } from 'react';
-import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUserOrders } from '@/redux/slices/orderSlice';
+import React, { useEffect, useState } from 'react';
+import { BsThreeDotsVertical, BsFillCartFill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 import Pagination from '../molecules/Pagination';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const UserOrders = () => {
-  const allUserOrders = useSelector(
-    (state) => state.order.allUserOrders
-  );
+  const [allUserOrders, setAllUserOrders] = useState([]);
   const userId = useSelector((state) => state.user.loggedUser.id);
-  const dispatch = useDispatch();
+  const loggedUser = useSelector((state) => state.user.loggedUser);
 
   useEffect(() => {
-    if (userId) {
-      dispatch(getAllUserOrders(userId));
-    }
+    const getAllOrders = async () => {
+      try {
+        const { data } = await axios.get(`/api/order/${userId}`);
+
+        setAllUserOrders(data);
+      } catch (error) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Ups...',
+          text: 'No se encontraron pedidos registrados'
+        });
+      }
+    };
+
+    if (!allUserOrders || !allUserOrders.length) getAllOrders();
   }, []);
 
-  useEffect(() => {
-    console.log(allUserOrders);
-  }, [allUserOrders]);
+  const dateTransform = (date) => {
+    const formattedDate = new Date(date);
+
+    return formattedDate.toLocaleDateString('es-AR', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
+  const priceTransform = (price) => {
+    return price.toLocaleString('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
+      minimumFractionDigits: 2
+    });
+  };
 
   return (
-    <div>
-      <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
-        <span>Name</span>
-        <span className='sm:text-left text-right'>Email</span>
-        <span className='hidden md:grid'>Last Order</span>
-        <span className='hidden sm:grid'>Descuento</span>
+    <div className='h-[60vh]'>
+      <div className='mt-24 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between'>
+        <span>Fecha de pedido</span>
+        <span className='sm:text-left text-right'>
+          Cantidad de productos
+        </span>
+        <span className='hidden md:grid'>Descuento ($)</span>
+        <span className='hidden sm:grid'>Total final</span>
       </div>
       <ul>
-        {allUserOrders?.map((client, id) => (
+        {allUserOrders?.map((order) => (
           <li
-            key={id}
+            key={order.id}
             className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
           >
             <div className='flex items-center'>
               <div className='bg-black/90 p-3 rounded-lg'>
-                <BsPersonFill className='text-white' />
+                <BsFillCartFill className='text-white' />
               </div>
-              <p className='pl-4'>{client.name}</p>
+              <p className='pl-4'>{dateTransform(order.createdAt)}</p>
             </div>
             <p className='text-gray-600 sm:text-left text-right'>
-              {client.email}
+              {order.products.length}
             </p>
-            <p className='hidden md:flex'>{client.date}</p>
+            <p className='hidden md:flex'>
+              {priceTransform(order.totalPrice * loggedUser.discount)}
+            </p>
             <div className='sm:flex hidden justify-between items-center'>
-              <p>{discountToPorcentage(client.discount)}</p>
+              <p>{priceTransform(order.totalPrice)}</p>
               <BsThreeDotsVertical />
             </div>
           </li>
@@ -55,7 +85,7 @@ const UserOrders = () => {
       </ul>
       <div className='flex justify-center py-4'>
         <Pagination
-          num={8}
+          num={6}
           data={allUserOrders}
         />
       </div>
