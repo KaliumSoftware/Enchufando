@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { BsThreeDotsVertical, BsFillCartFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
-import Pagination from '../molecules/Pagination';
+import Pagination from '@/components/molecules/Pagination';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import OrderDetail from '@/components/molecules/OrderDetail';
 
 const UserOrders = () => {
   const [allUserOrders, setAllUserOrders] = useState([]);
+  const [detail, setDetail] = useState({ show: false, index: null });
   const userId = useSelector((state) => state.user.loggedUser.id);
   const loggedUser = useSelector((state) => state.user.loggedUser);
 
@@ -59,10 +61,11 @@ const UserOrders = () => {
         <span className='hidden sm:grid'>Total final</span>
       </div>
       <ul>
-        {allUserOrders?.map((order) => (
+        {allUserOrders?.map((order, index) => (
           <li
             key={order.id}
             className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
+            onClick={() => setDetail({ show: true, index })}
           >
             <div className='flex items-center'>
               <div className='bg-black/90 p-3 rounded-lg'>
@@ -89,6 +92,15 @@ const UserOrders = () => {
           data={allUserOrders}
         />
       </div>
+
+      {detail.show && (
+        <OrderDetail
+          setDetail={setDetail}
+          products={allUserOrders[detail.index].products}
+          discount={loggedUser.discount}
+          totalPrice={allUserOrders[detail.index].totalPrice}
+        />
+      )}
     </div>
   );
 };
