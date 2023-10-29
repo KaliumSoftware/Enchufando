@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import getUserOrders from '../../../utils/apiFunctions/getUserOrders';
 
 const initialState = {
   orderProducts: [],
   allUserOrders: []
 };
-// id, name, image, selectedSpec, precio total, discount
+
 const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -13,13 +12,11 @@ const orderSlice = createSlice({
     setOrder: (state, action) => {
       state.orderProducts = action.payload;
     },
-    getAllUserOrders: (state, action) => {
-      getUserOrders(action.payload).then(
-        (response) => (state.allUserOrders = response)
-      );
+    setAllUserOrders: (state, action) => {
+      state.allUserOrders = action.payload;
     }
   }
 });
 
-export const { setOrder, getAllUserOrders } = orderSlice.actions;
+export const { setOrder, setAllUserOrders } = orderSlice.actions;
 export default orderSlice.reducer;

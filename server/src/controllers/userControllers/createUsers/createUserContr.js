@@ -21,7 +21,7 @@ const createUserContr = async (
 
     if (!codeExists) throw new Error('El código no existe');
 
-    const discount = codeExists.discount;
+    const discount = codeExists.discount / 100;
 
     const userCreated = await User.create({
       name,
