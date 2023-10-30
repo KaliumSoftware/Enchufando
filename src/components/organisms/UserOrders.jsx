@@ -6,12 +6,14 @@ import Pagination from '@/components/molecules/Pagination';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import OrderDetail from '@/components/molecules/OrderDetail';
+import usePagination from '@/hooks/usePagination';
 
 const UserOrders = () => {
   const [allUserOrders, setAllUserOrders] = useState([]);
   const [detail, setDetail] = useState({ show: false, index: null });
   const userId = useSelector((state) => state.user.loggedUser.id);
   const loggedUser = useSelector((state) => state.user.loggedUser);
+  const { currentPageData } = usePagination(6, allUserOrders);
 
   useEffect(() => {
     const getAllOrders = async () => {
@@ -51,7 +53,7 @@ const UserOrders = () => {
   };
 
   return (
-    <div className='h-[60vh]'>
+    <div className='max-h-[50vh]'>
       <div className='mt-24 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between'>
         <span>Fecha de pedido</span>
         <span className='sm:text-left text-right'>
@@ -61,7 +63,7 @@ const UserOrders = () => {
         <span className='hidden sm:grid'>Total final</span>
       </div>
       <ul>
-        {allUserOrders?.map((order, index) => (
+        {currentPageData?.map((order, index) => (
           <li
             key={order.id}
             className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
