@@ -6,12 +6,14 @@ import Pagination from '@/components/molecules/Pagination';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import OrderDetail from '@/components/molecules/OrderDetail';
+import usePagination from '@/hooks/usePagination';
 
 const UserOrders = () => {
   const [allUserOrders, setAllUserOrders] = useState([]);
   const [detail, setDetail] = useState({ show: false, index: null });
   const userId = useSelector((state) => state.user.loggedUser.id);
   const loggedUser = useSelector((state) => state.user.loggedUser);
+  const { currentPageData } = usePagination(6, allUserOrders);
 
   useEffect(() => {
     const getAllOrders = async () => {
@@ -51,37 +53,42 @@ const UserOrders = () => {
   };
 
   return (
-    <div className='h-[60vh]'>
+    <div className='max-h-[50vh]'>
       <div className='mt-24 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between'>
-        <span>Fecha de pedido</span>
-        <span className='sm:text-left text-right'>
+        <span className='flex justify-center'>Fecha de pedido</span>
+        <span className='hidden md:flex justify-center'>
           Cantidad de productos
         </span>
-        <span className='hidden md:grid'>Descuento ($)</span>
-        <span className='hidden sm:grid'>Total final</span>
+        <span className='hidden md:flex justify-center'>
+          Descuento ($)
+        </span>
+        <span className='flex justify-center'>Total final</span>
       </div>
       <ul>
-        {allUserOrders?.map((order, index) => (
+        {currentPageData?.map((order, index) => (
           <li
             key={order.id}
             className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
             onClick={() => setDetail({ show: true, index })}
           >
-            <div className='flex items-center'>
+            <div className='flex justify-center items-center'>
               <div className='bg-black/90 p-3 rounded-lg'>
                 <BsFillCartFill className='text-white' />
               </div>
               <p className='pl-4'>{dateTransform(order.createdAt)}</p>
             </div>
-            <p className='text-gray-600 sm:text-left text-right'>
-              {order.products.length}
-            </p>
-            <p className='hidden md:flex'>
-              {priceTransform(order.totalPrice * loggedUser.discount)}
-            </p>
-            <div className='sm:flex hidden justify-between items-center'>
+            <div className='hidden md:flex justify-center items-center'>
+              <p className='text-gray-600'>{order.products.length}</p>
+            </div>
+            <div className='hidden md:flex justify-center items-center'>
+              <p className='flex'>
+                {priceTransform(
+                  order.totalPrice * loggedUser.discount
+                )}
+              </p>
+            </div>
+            <div className='flex justify-center items-center'>
               <p>{priceTransform(order.totalPrice)}</p>
-              <BsThreeDotsVertical />
             </div>
           </li>
         ))}

@@ -29,11 +29,12 @@ const usePagination = (num, data) => {
   };
 
   const handleClickPrev = () => {
-    dispatch(setCurrentPage(currentPage - 1));
+    if (currentPage !== 1) dispatch(setCurrentPage(currentPage - 1));
   };
 
   const handleClickNext = () => {
-    dispatch(setCurrentPage(currentPage + 1));
+    if (currentPage !== totalPages)
+      dispatch(setCurrentPage(currentPage + 1));
   };
 
   return {
