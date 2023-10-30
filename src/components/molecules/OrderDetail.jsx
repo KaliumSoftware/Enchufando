@@ -17,11 +17,11 @@ const OrderDetail = ({
 
   return (
     <div className='fixed inset-0 flex items-center justify-center h-full w-full z-30'>
-      <div className='fixed mx-auto px-4 py-10 sm:px-6 lg:px-8 z-20 bg-white h-[75vh] w-[75vw] lg:w-[50vw] overflow-y-auto'>
+      <div className='fixed mx-auto px-4 py-10 sm:px-6 lg:px-8 z-20 bg-white max-h-[75vh] w-[75vw] lg:w-[50vw] overflow-y-auto'>
         <h2 className='text-2xl font-bold text-center mb-3'>
           Detalle del pedido
         </h2>
-        <div className='flex flex-col '>
+        <div className='flex flex-col items-center md:items-stretch'>
           {products?.map((product) => (
             <div className='md:flex items-center py-8 border-t border-gray-300'>
               <div className='flex mx-5'>

@@ -8,7 +8,7 @@ const Footer = () => {
   const pathname = usePathname();
 
   return (
-    <div className='relative bottom-0 w-full'>
+    <div className='relative mt-4 w-full'>
       {pathname.split('/')[1] !== 'admin' && (
         <footer className='w-full bg-white p-8'>
           <div className='flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between'>

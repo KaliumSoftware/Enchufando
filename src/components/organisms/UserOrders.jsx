@@ -53,7 +53,7 @@ const UserOrders = () => {
   };
 
   return (
-    <div className='max-h-[50vh]'>
+    <div className='md:min-h-[56vh] h-full'>
       <div className='mt-24 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between'>
         <span className='flex justify-center'>Fecha de pedido</span>
         <span className='hidden md:flex justify-center'>
