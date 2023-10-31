@@ -15,6 +15,6 @@ export default function ButtonAdd({ props }) {
         }
     }
     return (
-        <button onClick={() => handleAddCart(props)}>Agregar otro</button>
+        <button className="flex items-center justify-center text-white bg-black hover:bg-green-700 font-medium rounded-2xl text-sm px-3 py-1.5 cursor-pointer select-none text-center m-1" onClick={() => handleAddCart(props)}>Agregar otro</button>
     )
 }
