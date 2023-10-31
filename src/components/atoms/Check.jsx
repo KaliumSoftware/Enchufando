@@ -24,7 +24,7 @@ export default function Check(props) {
     }
   };
   return (
-    <div className='flex flex-wrap mx-5 pt-6 gap-2 pb-4 '>
+    <div className='flex '>
       <div className='flex items-center'>
         <label htmlFor={`${id}checkOne`}>
           {selectedSpec ? `x ${selectedSpec?.smallPack}` : 'Bolsita'}
