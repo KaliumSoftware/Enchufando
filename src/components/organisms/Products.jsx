@@ -41,15 +41,15 @@ const Products = () => {
           ) : (
             <div>No hay productos</div>
           )}
-          <div className='flex justify-center items-center'>
-            {allProducts.length > 6 && (
-              <Pagination
-                num={6}
-                data={allProducts}
-              />
-            )}
-          </div>
         </section>
+        <div className='flex justify-center items-center'>
+          {allProducts.length > 6 && (
+            <Pagination
+              num={6}
+              data={allProducts}
+            />
+          )}
+        </div>
       </div>
 
       <div className='w-1/4'></div>
