@@ -9,8 +9,26 @@ const Pagination = ({ num, data }) => {
 
   const pagination = usePagination(num, data);
 
+  const slicer = () => {
+    if (pagination.pages.length < 4) {
+      return { start: 0, end: pagination.pages.length };
+    } else if (currentPage === 1 || currentPage === 2) {
+      return { start: 0, end: 5 };
+    } else if (
+      currentPage === pagination.totalPages ||
+      currentPage === pagination.totalPages - 1
+    ) {
+      return {
+        start: pagination.totalPages - 5,
+        end: pagination.totalPages
+      };
+    } else {
+      return { start: currentPage - 3, end: currentPage + 2 };
+    }
+  };
+
   return (
-    <div className='my-5 flex'>
+    <div className='my-5 flex justify-center md:w-full'>
       <button
         disabled={currentPage === 1}
         className='m-1 p-2 flex items-center justify-center border rounded-xl w-8 bg-gray-500 hover:bg-blue-700 text-white font-bold'
@@ -29,18 +47,20 @@ const Pagination = ({ num, data }) => {
         </svg>
       </button>
 
-      {pagination.pages.map((page) => (
-        <button
-          key={page}
-          onClick={pagination.handleClick}
-          value={page}
-          className={`m-1 p-2 flex items-center justify-center border rounded-xl w-8 ${
-            currentPage == page ? 'bg-blue-700' : 'bg-gray-500'
-          } hover:bg-blue-700 text-white`}
-        >
-          {page}
-        </button>
-      ))}
+      {pagination.pages
+        .map((page) => (
+          <button
+            key={page}
+            onClick={pagination.handleClick}
+            value={page}
+            className={`m-1 p-2 flex items-center justify-center border rounded-xl w-8 ${
+              currentPage == page ? 'bg-blue-700' : 'bg-gray-500'
+            } hover:bg-blue-700 text-white`}
+          >
+            {page}
+          </button>
+        ))
+        .slice(slicer().start, slicer().end)}
 
       <button
         disabled={currentPage === pagination.totalPages}
