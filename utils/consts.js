@@ -62,7 +62,7 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 export const types = ['Todos', 'Roscado', 'Krona', 'Espiga'];
 
 export const category = [
-  'Ver todos',
+  'Ver todas',
   'Acople',
   'Adaptador',
   'Brida',

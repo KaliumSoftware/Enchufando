@@ -6,14 +6,14 @@ const OrderByType = () => {
   const dispatch = useDispatch();
 
   const handleType = (e) => {
-    console.log(e.target.value);
     dispatch(filterByType(e.target.value));
   };
 
   return (
-    <article className='flex gap-2'>
-      <p>Ordenar por</p>
+    <article className='flex flex-col mr-6 md:mr-0 lg:flex-row gap-2'>
+      <h3 className='mb-2 text-xl md:text-md'>Ordenar por</h3>
       <select
+        className='mr-3'
         onChange={handleType}
         name=''
         id=''

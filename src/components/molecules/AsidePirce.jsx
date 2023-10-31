@@ -19,7 +19,7 @@ export default function AsidePirce() {
         }
     }).reduce((a, b) => a + b, 0)
 
-    const totalFinal = subTotal * (userCode / 100)
+    const totalFinal = subTotal * userCode
 
     return (
         <div className=' md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full'>
@@ -33,7 +33,7 @@ export default function AsidePirce() {
                             Sub Total
                         </p>
                         <p className='text-base leading-none text-gray-800'>
-                            ${subTotal}
+                            {subTotal.toLocaleString("es-AR", { style: "currency", currency: "ARS", minimumFractionDigits: 2 })}
                         </p>
                     </div>
                     <div className='flex items-center justify-between pt-5'>
@@ -41,7 +41,7 @@ export default function AsidePirce() {
                             Descuento
                         </p>
                         <p className='text-base leading-none text-gray-800'>
-                            {userCode}%
+                            {userCode * 100}%
                         </p>
                     </div>
                 </div>
