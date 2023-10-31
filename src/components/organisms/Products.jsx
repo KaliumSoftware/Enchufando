@@ -14,12 +14,14 @@ const Products = () => {
   const allProducts = useSelector(
     (state) => state.product.allProducts
   );
+  const userId = useSelector((state) => state.user.loggedUser.id);
   const dispatch = useDispatch();
   const { currentPageData } = usePagination(6, allProducts);
-
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios(`${apiUrl}/product`);
+      const { data } = await axios(
+        `${apiUrl}/product?userId=${userId || 'notLogged'}`
+      );
       dispatch(getAllProducts(data));
     };
 

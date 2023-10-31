@@ -10,6 +10,12 @@ const createUserContr = async (
   isAdmin
 ) => {
   try {
+    const userExists = await User.findOne({
+      where: {
+        email
+      }
+    });
+    if (userExists) throw new Error('El correo ya esta en uso');
     //Password hashing
     const hashedPassword = await bcrypt.hash(password, 10);
 

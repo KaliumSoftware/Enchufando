@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const fileUpload = require('express-fileupload');
+const isLogged = require('../../middlewares/isLogged');
+const authAdminMiddleware = require('../../middlewares/authAdminMiddleware');
 const {
   getAllProducts,
   postProduct,
@@ -15,7 +17,7 @@ const productRouter = Router();
 
 productRouter.get('/', getAllProducts);
 productRouter.get('/measures', getAllMeasures);
-productRouter.get('/:id', getProductById);
+productRouter.get('/:id', authAdminMiddleware(getProductById));
 
 // productRouter.post('/all', postAllProducts);
 productRouter.post(
