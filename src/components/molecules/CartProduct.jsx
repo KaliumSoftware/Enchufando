@@ -5,6 +5,7 @@ import ButtonAdd from '../atoms/ButtonAdd';
 import Quantity from '../atoms/Quantity';
 import Check from '../atoms/Check';
 import Measure from '../atoms/Measure';
+import UnitPriceAndDiscount from '../atoms/UnitPriceAndDiscount';
 
 export default function CartProduct(props) {
   const { name, image, specifications, id, localId, selectedSpec } =
@@ -23,30 +24,38 @@ export default function CartProduct(props) {
         <p className='text-xl pb-6 leading-3 text-gray-800 md:pt-0 pt-4'>
           {name}
         </p>
+
         <Measure
           selectedSpec={selectedSpec}
           localId={localId}
           specifications={specifications}
         />
-        <TooltipReusable
-          text='Seleccione una medida'
-          show={!selectedSpec?.size}
-          color='default'
-        >
-          <div>
-            <Check
-              selectedSpec={selectedSpec}
-              localId={localId}
-              id={id}
-            />
-          </div>
-        </TooltipReusable>
-        <Quantity
+        <div className='flex justify-around py-5'>
+          <TooltipReusable
+            text='Seleccione una medida'
+            show={!selectedSpec?.size}
+            color='default'
+          >
+            <div>
+              <Check
+                selectedSpec={selectedSpec}
+                localId={localId}
+                id={id}
+              />
+            </div>
+          </TooltipReusable>
+
+          <Quantity
+            selectedSpec={selectedSpec}
+            localId={localId}
+            id={id}
+          />
+        </div>
+
+        <UnitPriceAndDiscount
           selectedSpec={selectedSpec}
           localId={localId}
-          id={id}
-        />
-
+          id={id} />
         <div className='flex items-center justify-between pt-5 pr-6'>
           <div className='flex itemms-center'>
             <ButtonAdd props={props} />
