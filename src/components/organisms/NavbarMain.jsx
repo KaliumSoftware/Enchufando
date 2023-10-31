@@ -85,7 +85,7 @@ export default function NavbarMain() {
             <NavbarBrand>
               <div
                 onClick={() => router.push('/')}
-                className='cursor-pointer'
+                className='cursor-pointer hidden sm:block'
               >
                 <Image
                   className='w-10 h-10'
@@ -132,11 +132,12 @@ export default function NavbarMain() {
                 </NavbarItem>
               </NavbarContent>
             ) : (
-              <div className='z-0'>
+              <div className='flex justify-center items-center bg-blue-700 rounded-lg hover:bg-blue-800'>
                 <Dropdown placement='bottom-end'>
                   <DropdownTrigger>
-                    <div className='opacity-70 mx-5 cursor-pointer'>
+                    <div className='opacity-70cursor-pointer min-h-[40px] min-w-[48px] max-h-[40px] max-w-[48px] flex items-center justify-center'>
                       <Image
+                        className='min-h-[23px] min-w-[28px] max-h-[23px] max-w-[28px]'
                         src={userCog}
                         alt='User'
                       />
@@ -154,9 +155,15 @@ export default function NavbarMain() {
                     </DropdownItem>
                     <DropdownItem
                       key='purchases'
-                      onClick={() => router.push('/purchases')}
+                      onClick={() => {
+                        return loggedUser.isAdmin
+                          ? router.push('/admin')
+                          : router.push('/purchases');
+                      }}
                     >
-                      Mis compras
+                      {loggedUser.isAdmin
+                        ? 'Panel de administrador'
+                        : 'Mis compras'}
                     </DropdownItem>
                     <DropdownItem
                       key='help_and_feedback'
@@ -209,8 +216,8 @@ export default function NavbarMain() {
       <nav
         className={
           pathname !== '/store'
-            ? 'fixed z-30 top-15 w-full bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
-            : ' bg-blue-500 text-white flex justify-center items-center gap-4 py-4'
+            ? 'fixed z-30 top-15 w-full bg-blue-500 text-white hidden md:flex justify-center items-center gap-4 py-4'
+            : ' bg-blue-500 text-white hidden md:flex justify-center items-center gap-4 py-4'
         }
       >
         <ul

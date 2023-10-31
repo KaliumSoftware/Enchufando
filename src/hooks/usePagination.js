@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../redux/slices/paginationSlice';
+import { useEffect } from 'react';
 
 const usePagination = (num, data) => {
   const currentPage = useSelector(
@@ -10,6 +11,10 @@ const usePagination = (num, data) => {
   const cardsPerPage = num;
   let currentPageData = [];
   const totalPages = Math.ceil(data?.length / cardsPerPage);
+
+  if (currentPage > totalPages) {
+    dispatch(setCurrentPage(1));
+  }
 
   const pages = Array.from(
     { length: totalPages },
@@ -25,7 +30,7 @@ const usePagination = (num, data) => {
 
   const handleClick = (event) => {
     const { value } = event.target;
-    dispatch(setCurrentPage(value));
+    dispatch(setCurrentPage(Number(value)));
   };
 
   const handleClickPrev = () => {

@@ -35,7 +35,7 @@ const productSlice = createSlice({
       state.allProducts = state.allProductsCopy;
     },
     filterByCategory: (state, action) => {
-      if (action.payload.toLowerCase() === 'ver todos') {
+      if (action.payload.toLowerCase() === 'ver todas') {
         state.allProducts = state.allProductsCopy;
       } else {
         const filteredProducts = state.allProductsCopy.filter(

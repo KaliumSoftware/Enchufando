@@ -27,7 +27,7 @@ const Products = () => {
   }, []);
 
   return (
-    <div className='min-h-[80vh] bg-gray-100 flex pt-8'>
+    <div className='min-h-[80vh] bg-gray-100 flex flex-col md:flex-row pt-8'>
       <FilterStore />
       <div className='w-full '>
         <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-100 gap-4'>
@@ -41,15 +41,15 @@ const Products = () => {
           ) : (
             <div>No hay productos</div>
           )}
-          <div className='flex justify-center items-center'>
-            {allProducts.length > 6 && (
-              <Pagination
-                num={6}
-                data={allProducts}
-              />
-            )}
-          </div>
         </section>
+        <div className='flex justify-center items-center'>
+          {allProducts.length > 6 && (
+            <Pagination
+              num={6}
+              data={allProducts}
+            />
+          )}
+        </div>
       </div>
 
       <div className='w-1/4'></div>
