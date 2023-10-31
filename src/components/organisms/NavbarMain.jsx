@@ -154,9 +154,15 @@ export default function NavbarMain() {
                     </DropdownItem>
                     <DropdownItem
                       key='purchases'
-                      onClick={() => router.push('/purchases')}
+                      onClick={() => {
+                        return loggedUser.isAdmin
+                          ? router.push('/admin')
+                          : router.push('/purchases');
+                      }}
                     >
-                      Mis compras
+                      {loggedUser.isAdmin
+                        ? 'Panel de administrador'
+                        : 'Mis compras'}
                     </DropdownItem>
                     <DropdownItem
                       key='help_and_feedback'
