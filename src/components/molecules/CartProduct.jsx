@@ -57,7 +57,7 @@ export default function CartProduct(props) {
           localId={localId}
           id={id} />
         <div className='flex items-center justify-between pt-5 pr-6'>
-          <div className='flex itemms-center'>
+          <div className='flex items-center'>
             <ButtonAdd props={props} />
             <ButtonDelete localId={localId} />
           </div>

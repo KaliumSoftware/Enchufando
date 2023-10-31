@@ -18,6 +18,8 @@ export default function Quantity(props) {
             }))
         }
     };
+
+    const isQuantityEnabled = !!selectedSpec?.pack;
     return (
         <div>
             <div>
@@ -32,6 +34,7 @@ export default function Quantity(props) {
                         className='peer h-8 w-full border-none bg-transparent p-0  text-lg placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm'
                         onChange={handleQuantityChange}
                         value={selectedSpec?.quantity}
+                        disabled={!isQuantityEnabled}
                     />
 
                     <span className='absolute start-3 top-3 -translate-y-1/2 text-sm text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'>
