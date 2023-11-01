@@ -12,7 +12,7 @@ export default function CartProduct(props) {
     props;
 
   return (
-    <div className='md:flex items-center py-8 border-t border-gray-200'>
+    <div className='md:flex items-center py-8 mt-4 border-t border-gray-400'>
       <div className='w-1/4'>
         <img
           src={image?.secure_url}

@@ -33,7 +33,7 @@ export default function AsidePirce() {
                             Sub Total
                         </p>
                         <p className='text-base leading-none text-gray-800'>
-                            {subTotal.toLocaleString("es-AR", { style: "currency", currency: "ARS", minimumFractionDigits: 2 })}
+                            {isNaN(subTotal) ? 0 : subTotal.toLocaleString("es-AR", { style: "currency", currency: "ARS", minimumFractionDigits: 2 })}
                         </p>
                     </div>
                     <div className='flex items-center justify-between pt-5'>

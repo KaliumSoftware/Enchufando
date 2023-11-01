@@ -10,6 +10,7 @@ export default function Quantity(props) {
 
     const handleQuantityChange = (event) => {
         const { value } = event.target;
+        event.preventDefault();
         const numberRegex = /^[1-9]\d*$/;
         if (numberRegex.test(value) || value.length === 0) {
             dispatch(setSpecificationsCart({
@@ -31,9 +32,11 @@ export default function Quantity(props) {
                         type='number'
                         id={`${id}quantity`}
                         placeholder='Cantidad'
-                        className='peer h-8 w-full border-none bg-transparent p-0  text-lg placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm'
+                        className='peer h-8 w-full border-none bg-transparent p-0 text-lg placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm'
                         onChange={handleQuantityChange}
                         value={selectedSpec?.quantity}
+                        min={1}
+                        max={25}
                         disabled={!isQuantityEnabled}
                     />
 

@@ -40,7 +40,7 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
     return (
         <button
             onClick={() => handleSendOrder()}
-            className='text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white'
+            className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         >
             Enviar Pedido
         </button>
