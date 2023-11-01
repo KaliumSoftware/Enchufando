@@ -46,7 +46,11 @@ export default function NavbarMain() {
     }
   }, []);
 
-  const menuItems = ['Inicio', 'Tienda', 'Contacto'];
+  const menuItems = [
+    { name: 'Inicio', url: '/' },
+    { name: 'Tienda', url: '/store' },
+    { name: 'Contacto', url: '/contact' }
+  ];
 
   const handleClick = (event) => {
     const { name } = event.target;
@@ -185,7 +189,7 @@ export default function NavbarMain() {
           </NavbarContent>
           <NavbarMenu className='z-0'>
             {menuItems.map((item, index) => (
-              <NavbarMenuItem key={`${item}-${index}`}>
+              <NavbarMenuItem key={`${item.name}-${index}`}>
                 <div
                   className='w-full cursor-pointer'
                   color={
@@ -195,10 +199,10 @@ export default function NavbarMain() {
                       ? 'danger'
                       : 'foreground'
                   }
-                  onClick={() => router.push('/')}
+                  onClick={() => router.push(item.url)}
                   size='lg'
                 >
-                  {item}
+                  {item.name}
                 </div>
               </NavbarMenuItem>
             ))}
