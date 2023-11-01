@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const useProduct = (props) => {
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const dispatch = useDispatch();
-  const { name, image } = props;
+  const { name, image, specifications } = props;
 
   // add products to cart logic
   const handleAddCart = (product) => {
