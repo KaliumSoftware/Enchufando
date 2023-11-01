@@ -3,7 +3,8 @@ const {
   orderRouter,
   productRouter,
   userRouter,
-  codesRouter
+  codesRouter,
+  mailsRouter
 } = require('./routes');
 
 const router = Router();
@@ -15,5 +16,7 @@ router.use('/api/product', productRouter);
 router.use('/api/user', userRouter);
 
 router.use('/api/codes', codesRouter);
+
+router.use('/api/mails', mailsRouter);
 
 module.exports = router;
