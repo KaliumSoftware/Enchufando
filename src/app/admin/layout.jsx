@@ -1,11 +1,26 @@
+'use client';
 import Sidebar from '@/admin-components/Sidebar';
-import Header from '@/admin-components/Header';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 const layout = ({ children }) => {
+  const loggedUser = useSelector((state) => state.user.loggedUser);
+
+  useEffect(() => {
+    if (!loggedUser?.isAdmin) {
+      window.location.href = '/';
+    }
+  }, []);
+
   return (
-    <div className='flex flex-row h-screen'>
-      <Sidebar />
-      <div className=' w-full'>{children}</div>
-    </div>
+    <>
+      {loggedUser.isAdmin && (
+        <div className='flex flex-row h-screen'>
+          <Sidebar />
+          <div className=' w-full'>{children}</div>
+        </div>
+      )}
+    </>
   );
 };
 
