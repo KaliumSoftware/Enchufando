@@ -9,8 +9,8 @@ export default function Quantity(props) {
     const { id, localId, selectedSpec } = props;
 
     const handleQuantityChange = (event) => {
-        const { value } = event.target;
         event.preventDefault();
+        const { value } = event.target;
         const numberRegex = /^[1-9]\d*$/;
         if (numberRegex.test(value) || value.length === 0) {
             dispatch(setSpecificationsCart({
@@ -25,13 +25,12 @@ export default function Quantity(props) {
         <div>
             <div>
                 <label
-                    htmlFor={`${id}quantity`}
+                    htmlFor={`${localId}quantity`}
                     className='relative block overflow-hidden rounded-md border border-gray-200 px-9 pt-3 shadow-sm focus-within:border-black focus-within:ring-1 focus-within:ring-black selection:'
                 >
                     <input
                         type='number'
-                        id={`${id}quantity`}
-                        placeholder='Cantidad'
+                        id={`${localId}quantity`}
                         className='peer h-8 w-full border-none bg-transparent p-0 text-lg placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm'
                         onChange={handleQuantityChange}
                         value={selectedSpec?.quantity}
