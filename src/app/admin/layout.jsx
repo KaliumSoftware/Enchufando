@@ -7,8 +7,10 @@ const layout = ({ children }) => {
   const loggedUser = useSelector((state) => state.user.loggedUser);
 
   useEffect(() => {
-    if (!loggedUser?.isAdmin) {
-      window.location.href = '/';
+    if (loggedUser.id) {
+      if (!loggedUser.isAdmin) {
+        window.location.href = '/';
+      }
     }
   }, []);
 
