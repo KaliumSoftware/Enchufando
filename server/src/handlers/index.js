@@ -23,6 +23,10 @@ const getAllCodes = require('../handlers/codesHandlers/readCodes/getCodes');
 const postCodes = require('../handlers/codesHandlers/createCodes/postCodes');
 const deleteAllCodes = require('../handlers/codesHandlers/deleteCodes/deleteAllCodes');
 const deleteCodeByName = require('../handlers/codesHandlers/deleteCodes/deleteCodeByName');
+//mails
+const sendClientMails = require('../handlers/mailsHandlers/createMails/sendClientMails');
+const sendAdminMails = require('../handlers/mailsHandlers/createMails/sendAdminMails');
+const sendOrderMails = require('../handlers/mailsHandlers/createMails/sendOrderMails');
 module.exports = {
   //users
   getAllUsers,
@@ -50,5 +54,9 @@ module.exports = {
   getAllCodes,
   postCodes,
   deleteAllCodes,
-  deleteCodeByName
+  deleteCodeByName,
+  //mails
+  sendClientMails,
+  sendAdminMails,
+  sendOrderMails
 };

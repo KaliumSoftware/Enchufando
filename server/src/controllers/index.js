@@ -23,6 +23,11 @@ const findAllCodes = require('./codesControllers/readCodes/findAllCodes');
 const createCodes = require('./codesControllers/createCodes/createCodes');
 const removeAllCodes = require('./codesControllers/deleteCodes/removeAllCodes');
 const removeCodeByName = require('./codesControllers/deleteCodes/removeCodeByName');
+//mails
+const createOrderMails = require('./mailsControllers/createMails/createOrderMails');
+const createClientMails = require('./mailsControllers/createMails/createClientMails');
+const createAdminMails = require('./mailsControllers/createMails/createAdminMails');
+
 module.exports = {
   //users
   findAllUsers,
@@ -48,5 +53,9 @@ module.exports = {
   findAllCodes,
   createCodes,
   removeAllCodes,
-  removeCodeByName
+  removeCodeByName,
+  //mails
+  createAdminMails,
+  createClientMails,
+  createOrderMails
 };
