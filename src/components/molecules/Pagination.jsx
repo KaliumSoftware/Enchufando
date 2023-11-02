@@ -19,7 +19,10 @@ const Pagination = ({ num, data }) => {
       currentPage === pagination.totalPages - 1
     ) {
       return {
-        start: pagination.totalPages - 5,
+        start:
+          pagination.totalPages - 5 > 0
+            ? pagination.totalPages - 5
+            : 0,
         end: pagination.totalPages
       };
     } else {
