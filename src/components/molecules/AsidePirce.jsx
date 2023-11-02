@@ -28,7 +28,7 @@ export default function AsidePirce() {
     })
     .reduce((a, b) => a + b, 0);
 
-  const totalFinal = subTotal * userCode;
+  const totalFinal = subTotal - subTotal * userCode;
 
   return (
     <div className=' md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full'>
