@@ -12,7 +12,7 @@ export default function CartProduct(props) {
     props;
 
   return (
-    <div className='md:flex items-center py-8 border-t border-gray-200'>
+    <div className='md:flex items-center py-8 mt-4 border-t border-gray-400'>
       <div className='w-1/4'>
         <img
           src={image?.secure_url}
@@ -30,7 +30,7 @@ export default function CartProduct(props) {
           localId={localId}
           specifications={specifications}
         />
-        <div className='flex justify-around py-5'>
+        <div className='flex justify-around py-10'>
           <TooltipReusable
             text='Seleccione una medida'
             show={!selectedSpec?.size}
@@ -57,7 +57,7 @@ export default function CartProduct(props) {
           localId={localId}
           id={id} />
         <div className='flex items-center justify-between pt-5 pr-6'>
-          <div className='flex itemms-center'>
+          <div className='flex items-center'>
             <ButtonAdd props={props} />
             <ButtonDelete localId={localId} />
           </div>
