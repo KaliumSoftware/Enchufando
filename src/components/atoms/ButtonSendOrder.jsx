@@ -32,7 +32,7 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
           alert('Pedido Enviado');
         }
       } catch (error) {
-        console.log(error);
+        alert(error.response.data.message);
       }
     } else if (isNaN(totalFinal) && allInCart.length > 0) {
       alert(
