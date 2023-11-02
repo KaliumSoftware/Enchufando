@@ -56,6 +56,7 @@ const createUserContr = async (
       discount: userCreated.discount
     };
 
+    console.log(process.env.EMAIL);
     return user;
   } catch (error) {
     console.error('error in createUser: ' + error);

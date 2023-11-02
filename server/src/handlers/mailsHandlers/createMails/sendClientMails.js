@@ -2,7 +2,8 @@ const { createClientMails } = require('../../../controllers');
 
 const sendClientMails = (req, res) => {
   try {
-    const response = createClientMails();
+    const firstName = 'Joshua';
+    const response = createClientMails(firstName);
     if (response) {
       res.status(200).send({ message: 'Mails enviados' });
     }
