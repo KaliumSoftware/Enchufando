@@ -30,7 +30,7 @@ export default function CartProduct(props) {
           localId={localId}
           specifications={specifications}
         />
-        <div className='flex justify-around py-5'>
+        <div className='flex justify-around py-10'>
           <TooltipReusable
             text='Seleccione una medida'
             show={!selectedSpec?.size}
