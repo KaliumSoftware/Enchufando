@@ -30,8 +30,9 @@ function ShoppingCart() {
         <button
           type='button'
           onClick={() => setShow(!show)}
-          className={`${show && 'hidden'
-            } relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
+          className={`${
+            show && 'hidden'
+          } relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
         >
           {cartProducts?.length ? (
             <svg
@@ -120,6 +121,7 @@ function ShoppingCart() {
                 className='flex items-center justify-between w-full'
                 onClick={() => setShow(!show)}
               >
+
                 <button className="group flex items-center justify-center space-x-2 text-white bg-black border border-gray-800 hover:bg-primary hover:border-blue-800 rounded-lg px-5 py-1 text-center mr-2 mb-2 transform origin-right scale-x-90 hover:scale-x-100 transition-transform">
                   <svg className="h-4 w-4 mr-1 transform scale-0 group-hover:scale-125 transition-transform"
                     xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024">
@@ -127,7 +129,6 @@ function ShoppingCart() {
                   </svg>
                   <span>Volver</span>
                 </button>
-
 
               </div>
               <p className='text-5xl font-black leading-10 text-gray-800 pt-3'>
@@ -144,7 +145,7 @@ function ShoppingCart() {
             <AsidePrice />
           </div>
         </div>
-      </div >
+      </div>
 
       <style>
         {` /* width */

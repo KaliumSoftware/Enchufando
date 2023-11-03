@@ -1,4 +1,4 @@
-/* const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const { CLIENT_ID, CLIENT_SECRET, EMAIL, REFRESH_TOKEN } =
   process.env;
@@ -45,4 +45,3 @@ const mailSender = async (mailOptions) => {
 };
 
 module.exports = mailSender;
- */

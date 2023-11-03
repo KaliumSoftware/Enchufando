@@ -1,15 +1,23 @@
-const { mailSender } = require('../../../utils/nodemailer');
 const { User } = require('../../../db');
+const mailSender = require('../../../utils/nodemailer');
 
-const createClientMails = async () => {
+const { newProducts } = require('../../../utils/templates');
+
+const createClientMails = async (firstName) => {
   try {
     const allUsers = await User.findAll();
     if (allUsers.length === 0) {
       throw new Error('No hay usuarios');
     }
-    const allUsersEmails = allUsers.map((user) => user.email);
-    for (let i = 0; i < allUsersEmails.length; i++) {
-      newProductMail(allUsersEmails[i]);
+
+    for (let i = 0; i < allUsers.length; i++) {
+      const mailOptions = {
+        from: `ENCHUFANDO ${process.env.EMAIL}`,
+        to: allUsers[i].email,
+        subject: `Bienvenido ${allUsers[i].name}`,
+        html: newProducts
+      };
+      mailSender(mailOptions);
     }
   } catch (error) {
     console.error(error);
