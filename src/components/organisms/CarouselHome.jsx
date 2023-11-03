@@ -86,19 +86,21 @@ export default function CarouselHome() {
               />
             </div>
 
-            <div className='h-80 hidden md:flex flex-col items-center justify-center mx-10 px-32'>
+            <div className='h-full hidden md:flex flex-col items-center justify-center mx-10 lg:px-32'>
               <h2 className='text-xl font-extrabold sm:text-3xl'>
                 Materia prima de calidad
               </h2>
-              <p className='mt-4 sm:text-lg/relaxed'>
+              <p className='my-3 sm:text-lg/relaxed'>
                 Polipropileno Roscado (PPN) Los accesorios roscados
                 Enchufando están fabricados con polipropileno
                 homopolímero (PP-H), este material brinda a los
                 productos alta resistencia cuando son sometidos a
-                altas presiones y temperaturas. Además, posee un alto
-                grado de elasticidad otorgándole a las roscas la
-                necesaria rigidez para no deformarse ante exigencias
-                mecánicas.
+                altas presiones y temperaturas.{' '}
+                <span className='hidden lg:inline'>
+                  Además, posee un alto grado de elasticidad
+                  otorgándole a las roscas la necesaria rigidez para
+                  no deformarse ante exigencias mecánicas.
+                </span>
               </p>
             </div>
           </div>
@@ -112,7 +114,7 @@ export default function CarouselHome() {
               />
             </div>
 
-            <div className='h-80 hidden md:flex flex-col items-center justify-center mx-10 px-32'>
+            <div className='h-80 hidden md:flex flex-col items-center justify-center mx-10 lg:px-32'>
               <h2 className='text-xl font-extrabold sm:text-3xl'>
                 Polipropileno Riego (PPN)
               </h2>
@@ -120,10 +122,12 @@ export default function CarouselHome() {
                 Los accesorios Riego Enchufando están fabricados con
                 el polietileno de baja densidad. La característica de
                 este material, es altamente recomendado para su uso en
-                aguadas, bebederos, riego de campos y jardines. Su
-                aplicación es aconsejada especialmente para largos
-                tendidos en condiciones climáticas y de instalación
-                exigidas.
+                aguadas, bebederos, riego de campos y jardines.{' '}
+                <span className='hidden lg:inline'>
+                  Su aplicación es aconsejada especialmente para
+                  largos tendidos en condiciones climáticas y de
+                  instalación exigidas.
+                </span>
               </p>
             </div>
           </div>
@@ -137,7 +141,7 @@ export default function CarouselHome() {
               />
             </div>
 
-            <div className='h-80 hidden md:flex flex-col items-center justify-center mx-10 px-32'>
+            <div className='h-80 hidden md:flex flex-col items-center justify-center mx-10 lg:px-32'>
               <h2 className='text-xl font-extrabold sm:text-3xl'>
                 Marca Krona
               </h2>
