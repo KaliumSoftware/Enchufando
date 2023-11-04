@@ -1,14 +1,16 @@
 const { createClientMails } = require('../../../controllers');
 
-const sendClientMails = (req, res) => {
+const sendClientMails = async (req, res) => {
   try {
-    const firstName = 'Joshua';
-    const response = createClientMails(firstName);
-    if (response) {
-      res.status(200).send({ message: 'Mails enviados' });
+    const response = await createClientMails();
+    console.log(response);
+    if (response === 'Mails enviados') {
+      res.status(200).send({ message: response });
+    } else {
+      throw new Error('Error al enviar los mails');
     }
   } catch (error) {
-    res.status(400).send({ message: 'Error al enviar los mails' });
+    res.status(400).send({ message: error.message });
   }
 };
 

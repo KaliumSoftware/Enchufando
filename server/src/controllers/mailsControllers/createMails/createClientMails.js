@@ -3,7 +3,7 @@ const mailSender = require('../../../utils/nodemailer');
 
 const { newProducts } = require('../../../utils/templates');
 
-const createClientMails = async (firstName) => {
+const createClientMails = async () => {
   try {
     const allUsers = await User.findAll();
     if (allUsers.length === 0) {
@@ -19,6 +19,7 @@ const createClientMails = async (firstName) => {
       };
       mailSender(mailOptions);
     }
+    return 'Mails enviados';
   } catch (error) {
     console.error(error);
     return error;
