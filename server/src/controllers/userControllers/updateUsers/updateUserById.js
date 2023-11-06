@@ -8,7 +8,7 @@ const updateUserById = async (id, userUpdated) => {
 
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };

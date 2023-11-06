@@ -81,7 +81,7 @@ export default function NavbarMain() {
           isMenuOpen={isMenuOpen}
           onMenuOpenChange={setIsMenuOpen}
         >
-          <NavbarContent>
+          <NavbarContent className='flex justify-between'>
             <NavbarMenuToggle
               aria-label={isMenuOpen ? 'Cerrar menu' : 'Abrir menu'}
               className='sm:hidden'
@@ -89,7 +89,7 @@ export default function NavbarMain() {
             <NavbarBrand>
               <div
                 onClick={() => router.push('/')}
-                className='cursor-pointer hidden sm:block'
+                className='cursor-pointer sm:block '
               >
                 <Image
                   className='w-10 h-10'
@@ -101,7 +101,23 @@ export default function NavbarMain() {
           </NavbarContent>
 
           <NavbarContent>
-            <SearchBar />
+            {pathname === '/store' ? (
+              <SearchBar />
+            ) : (
+              <article className='hidden sm:block'>
+                <ul className='sm:flex flex-row gap-4'>
+                  {menuItems.map((item, index) => (
+                    <li
+                      key={index}
+                      className='cursor-pointer hover:text-blue-500'
+                      onClick={() => router.push(item.url)}
+                    >
+                      {item.name}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            )}
           </NavbarContent>
 
           <NavbarContent
@@ -217,52 +233,48 @@ export default function NavbarMain() {
           setSigningin={setSigningin}
         />
       )}
-      <nav
-        className={
-          pathname !== '/store'
-            ? 'fixed z-30 top-15 w-full bg-blue-500 text-white hidden md:flex justify-center items-center gap-4 py-4'
-            : ' bg-blue-500 text-white hidden md:flex justify-center items-center gap-4 py-4'
-        }
-      >
-        <ul
-          className='hidden sm:flex gap-4'
-          justify='center'
-        >
-          <li>
-            <div
-              onClick={() => router.push('/')}
-              className={`cursor-pointer ${
-                pathname === '/' && 'font-bold'
-              }`}
-              color='foreground'
-            >
-              Inicio
-            </div>
-          </li>
-          <li>
-            <div
-              onClick={() => router.push('/store')}
-              className={`cursor-pointer ${
-                pathname === '/store' && 'font-bold'
-              }`}
-              color='foreground'
-            >
-              Tienda
-            </div>
-          </li>
-          <li>
-            <div
-              onClick={() => router.push('/contact-us')}
-              className={`cursor-pointer ${
-                pathname === '/contact-us' && 'font-bold'
-              }`}
-              color='foreground'
-            >
-              Contacto
-            </div>
-          </li>
-        </ul>
-      </nav>
+      {pathname === '/store' && (
+        <nav className='w-full bg-blue-500 text-white hidden md:flex justify-center items-center gap-4 py-4'>
+          <ul
+            className='hidden sm:flex gap-4'
+            justify='center'
+          >
+            <li>
+              <div
+                onClick={() => router.push('/')}
+                className={`cursor-pointer ${
+                  pathname === '/' && 'font-bold'
+                }`}
+                color='foreground'
+              >
+                Inicio
+              </div>
+            </li>
+            <li>
+              <div
+                onClick={() => router.push('/store')}
+                className={`cursor-pointer ${
+                  pathname === '/store' && 'font-bold'
+                }`}
+                color='foreground'
+              >
+                Tienda
+              </div>
+            </li>
+            <li>
+              <div
+                onClick={() => router.push('/contact-us')}
+                className={`cursor-pointer ${
+                  pathname === '/contact-us' && 'font-bold'
+                }`}
+                color='foreground'
+              >
+                Contacto
+              </div>
+            </li>
+          </ul>
+        </nav>
+      )}
     </>
   );
 }
