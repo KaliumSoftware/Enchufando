@@ -81,7 +81,7 @@ export default function NavbarMain() {
           isMenuOpen={isMenuOpen}
           onMenuOpenChange={setIsMenuOpen}
         >
-          <NavbarContent>
+          <NavbarContent className='flex justify-between'>
             <NavbarMenuToggle
               aria-label={isMenuOpen ? 'Cerrar menu' : 'Abrir menu'}
               className='sm:hidden'
@@ -89,7 +89,7 @@ export default function NavbarMain() {
             <NavbarBrand>
               <div
                 onClick={() => router.push('/')}
-                className='cursor-pointer hidden sm:block'
+                className='cursor-pointer sm:block '
               >
                 <Image
                   className='w-10 h-10'
@@ -104,8 +104,8 @@ export default function NavbarMain() {
             {pathname === '/store' ? (
               <SearchBar />
             ) : (
-              <>
-                <ul className='hidden sm:flex flex-row gap-4'>
+              <article className='hidden sm:block'>
+                <ul className='sm:flex flex-row gap-4'>
                   {menuItems.map((item, index) => (
                     <li
                       key={index}
@@ -116,7 +116,7 @@ export default function NavbarMain() {
                     </li>
                   ))}
                 </ul>
-              </>
+              </article>
             )}
           </NavbarContent>
 
