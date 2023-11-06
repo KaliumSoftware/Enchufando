@@ -51,7 +51,7 @@ const Product = (props) => {
         </button>
         <button
           onClick={() => handleAddCart(props)}
-          className='w-40 inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+          className='w-40 inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-900 rounded-lg hover:bg-blueDark focus:ring-1 focus:outline-none focus:ring-blue-300'
         >
           Agregar al carrito
           <svg

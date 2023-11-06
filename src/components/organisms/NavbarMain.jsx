@@ -49,7 +49,8 @@ export default function NavbarMain() {
   const menuItems = [
     { name: 'Inicio', url: '/' },
     { name: 'Tienda', url: '/store' },
-    { name: 'Contacto', url: '/contact' }
+    { name: 'Empresa', url: '/about-us' },
+    { name: 'Contacto', url: '/contact-us' }
   ];
 
   const handleClick = (event) => {
@@ -109,7 +110,11 @@ export default function NavbarMain() {
                   {menuItems.map((item, index) => (
                     <li
                       key={index}
-                      className='cursor-pointer hover:text-blue-500'
+                      className={
+                        pathname === item.url
+                          ? 'text-blue-900'
+                          : 'cursor-pointer hover:text-blue-900'
+                      }
                       onClick={() => router.push(item.url)}
                     >
                       {item.name}
@@ -152,7 +157,7 @@ export default function NavbarMain() {
                 </NavbarItem>
               </NavbarContent>
             ) : (
-              <div className='flex justify-center items-center bg-blue-700 rounded-lg hover:bg-blue-800'>
+              <div className='flex justify-center items-center bg-blueDark rounded-lg hover:bg-blue-800'>
                 <Dropdown placement='bottom-end'>
                   <DropdownTrigger>
                     <div className='opacity-70cursor-pointer min-h-[40px] min-w-[48px] max-h-[40px] max-w-[48px] flex items-center justify-center'>
@@ -234,7 +239,7 @@ export default function NavbarMain() {
         />
       )}
       {pathname === '/store' && (
-        <nav className='w-full bg-blue-500 text-white hidden md:flex justify-center items-center gap-4 py-4'>
+        <nav className='w-full bg-blueDark text-white hidden md:flex justify-center items-center gap-4 py-4'>
           <ul
             className='hidden sm:flex gap-4'
             justify='center'
@@ -259,6 +264,17 @@ export default function NavbarMain() {
                 color='foreground'
               >
                 Tienda
+              </div>
+            </li>
+            <li>
+              <div
+                onClick={() => router.push('/about-us')}
+                className={`cursor-pointer ${
+                  pathname === '/about-us' && 'font-bold'
+                }`}
+                color='foreground'
+              >
+                Empresa
               </div>
             </li>
             <li>

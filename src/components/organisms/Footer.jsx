@@ -1,14 +1,18 @@
 'use client';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Typography } from '@material-tailwind/react';
 import Image from 'next/image';
 import logoBlack from '../../../assets/logo-black-png-transformed.png';
 
 const Footer = () => {
+  const router = useRouter();
+
   const pathname = usePathname();
 
+  const handleClick = (href) => {
+    router.push(href);
+  };
   return (
-
     <div className='relative mt-4 w-full'>
       {pathname.split('/')[1] !== 'admin' && (
         <footer className='w-full bg-white p-8'>
@@ -22,20 +26,18 @@ const Footer = () => {
             <ul className='flex flex-wrap items-center gap-y-2 gap-x-8'>
               <li>
                 <Typography
-                  as='a'
-                  href='#'
-                  className='font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
+                  onClick={() => handleClick('/about-us')}
+                  className='cursor-pointer font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
                 >
                   Sobre nosotros
                 </Typography>
               </li>
               <li>
                 <Typography
-                  as='a'
-                  href='#'
-                  className='font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
+                  onClick={() => handleClick('/contact-us')}
+                  className='cursor-pointer font-normal transition-colors hover:text-blue-500 focus:text-blue-500'
                 >
-                  Contactános
+                  Contactanos
                 </Typography>
               </li>
             </ul>

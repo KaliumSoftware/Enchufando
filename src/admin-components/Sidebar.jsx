@@ -84,6 +84,7 @@ function SideBarLink({ item }) {
           ? 'text-md transition-all flex items-center gap-2 font-light px-1 py-2 hover:bg-neutral-100 hover:no-underline active-neutral-600 rounded-sm bg-gray-200'
           : 'text-md transition-all hover:bg-gray-200 flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-100 hover:no-underline active-neutral-600 rounded-sm'
       }
+      target={item.path.includes('http') ? '_blank' : '_self'}
       href={item.path}
     >
       <span className='text-xl'>{item.icon}</span>
