@@ -8,7 +8,6 @@ const Product = (props) => {
   const [moreDetails, setMoreDetails] = useState(true);
 
   const { name, image, handleAddCart } = useProduct(props);
-  console.log(props);
   return (
     <article className='p-4 mx-2 md:mx-0 flex flex-col items-center bg-white border-b-2 border-gray-200 rounded-xl'>
       <h5 className='mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-800 whitespace-break-spaces'>

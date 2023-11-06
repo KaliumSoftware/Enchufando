@@ -6,7 +6,7 @@ const findUserById = async (id) => {
     if (!user) throw new Error('User not found with id:' + id);
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 };
