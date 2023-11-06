@@ -22,17 +22,12 @@ const SearchBar = () => {
     setSearch(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     dispatch(setCurrentPage(1));
-    if (search) {
-      dispatch(filterProductsByName(search));
-    } else {
-      dispatch(restoreProducts());
-    }
 
-    if (pathname !== '/store') {
-      router.push('/store');
-    }
+    dispatch(filterProductsByName(search));
+
+    if (pathname !== '/store') router.push('/store');
   };
 
   return (
