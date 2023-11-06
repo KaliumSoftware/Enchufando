@@ -19,7 +19,7 @@ productRouter.get('/', getAllProducts);
 productRouter.get('/measures', getAllMeasures);
 productRouter.get('/:id', authAdminMiddleware(getProductById));
 
-// productRouter.post('/all', postAllProducts);
+productRouter.post('/all', postAllProducts);
 productRouter.post(
   '/',
   fileUpload({

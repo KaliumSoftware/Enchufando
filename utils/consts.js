@@ -3,11 +3,10 @@ import {
   HiOutlineCube,
   HiOutlineUsers,
   HiOutlineDocumentText,
-  HiOutlineQuestionMarkCircle,
-  HiOutlineCog
+  HiOutlineQuestionMarkCircle
 } from 'react-icons/hi';
 import { HiOutlineReceiptPercent } from 'react-icons/hi2';
-
+import { BsHouse } from 'react-icons/bs';
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'home-admin',
@@ -46,15 +45,15 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
   {
-    key: 'configuración',
-    label: 'Configuración',
-    path: '/dashboard/settings',
-    icon: <HiOutlineCog />
+    key: 'volver-al-inicio',
+    label: 'Volver al inicio',
+    path: '/',
+    icon: <BsHouse />
   },
   {
     key: 'ayuda',
     label: 'Ayuda & Soporte',
-    path: '/support',
+    path: 'https://api.whatsapp.com/send?phone=+5491141739482&text=Crack, Fiera, Titan, una preguntita',
     icon: <HiOutlineQuestionMarkCircle />
   }
 ];

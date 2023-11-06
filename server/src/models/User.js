@@ -35,6 +35,7 @@ module.exports = function defineUserModel(sequelize) {
       },
       email: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false
       },
       password: {
