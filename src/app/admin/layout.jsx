@@ -20,16 +20,27 @@ const layout = ({ children }) => {
         if (!response.data.isAdmin) {
           router.push('/');
           setAccess(false);
+          return false;
         } else {
           setAccess(true);
+          return true;
         }
       } catch (error) {
         router.push('/');
+        return false;
       }
     };
 
-    authUser();
-  }, []);
+    loggedUser.id &&
+      authUser()
+        .then((res) => {
+          res && setAccess(true);
+        })
+        .catch(() => {
+          setAccess(false);
+          router.push('/');
+        });
+  }, [loggedUser]);
 
   return (
     <>
