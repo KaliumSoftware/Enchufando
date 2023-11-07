@@ -15,7 +15,7 @@ const {
 
 //read
 userRouter.get('/', authAdmin(getAllUsers));
-userRouter.get('/:id', authAdmin(getUserById));
+userRouter.get('/:id', isLogged(getUserById));
 //create
 userRouter.post('/', authAdmin(createUser));
 userRouter.post('/login', loginUser);
