@@ -4,7 +4,7 @@
   "semi": true,
   "jsxBracketSameLine": false,
   "trailingComma": "none",
-  "printWidth": 70,
+  "printWidth": 90,
   "tabWidth": 2,
   "singleAttributePerLine": true
 }
