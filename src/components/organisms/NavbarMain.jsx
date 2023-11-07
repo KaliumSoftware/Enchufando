@@ -102,27 +102,23 @@ export default function NavbarMain() {
           </NavbarContent>
 
           <NavbarContent>
-            {pathname === '/store' ? (
-              <SearchBar />
-            ) : (
-              <article className='hidden sm:block'>
-                <ul className='sm:flex flex-row gap-4'>
-                  {menuItems.map((item, index) => (
-                    <li
-                      key={index}
-                      className={
-                        pathname === item.url
-                          ? 'text-blue-900'
-                          : 'cursor-pointer hover:text-blue-900'
-                      }
-                      onClick={() => router.push(item.url)}
-                    >
-                      {item.name}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
+            <article className='hidden sm:block'>
+              <ul className='sm:flex flex-row gap-4'>
+                {menuItems.map((item, index) => (
+                  <li
+                    key={index}
+                    className={
+                      pathname === item.url
+                        ? 'text-blue-900'
+                        : 'cursor-pointer hover:text-blue-900'
+                    }
+                    onClick={() => router.push(item.url)}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </NavbarContent>
 
           <NavbarContent
@@ -240,55 +236,7 @@ export default function NavbarMain() {
       )}
       {pathname === '/store' && (
         <nav className='w-full bg-blueDark text-white hidden md:flex justify-center items-center gap-4 py-4'>
-          <ul
-            className='hidden sm:flex gap-4'
-            justify='center'
-          >
-            <li>
-              <div
-                onClick={() => router.push('/')}
-                className={`cursor-pointer ${
-                  pathname === '/' && 'font-bold'
-                }`}
-                color='foreground'
-              >
-                Inicio
-              </div>
-            </li>
-            <li>
-              <div
-                onClick={() => router.push('/store')}
-                className={`cursor-pointer ${
-                  pathname === '/store' && 'font-bold'
-                }`}
-                color='foreground'
-              >
-                Tienda
-              </div>
-            </li>
-            <li>
-              <div
-                onClick={() => router.push('/about-us')}
-                className={`cursor-pointer ${
-                  pathname === '/about-us' && 'font-bold'
-                }`}
-                color='foreground'
-              >
-                Empresa
-              </div>
-            </li>
-            <li>
-              <div
-                onClick={() => router.push('/contact-us')}
-                className={`cursor-pointer ${
-                  pathname === '/contact-us' && 'font-bold'
-                }`}
-                color='foreground'
-              >
-                Contacto
-              </div>
-            </li>
-          </ul>
+          <SearchBar />
         </nav>
       )}
     </>
