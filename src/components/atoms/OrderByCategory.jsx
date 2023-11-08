@@ -21,11 +21,11 @@ const OrderByCategory = () => {
     <div>
       <h3 className='md:mt-4 mb-3 text-xl'>Categorías</h3>
       <aside id="default-sidebar" class="hidden md:block md:top-0 left-0 z-40 w-64 transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-        <div class=" px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div class=" px-3 py-4 overflow-y-auto bg-white  rounded-lg">
           <ul class="space-y-2 font-medium">
             <li>
               {category.map((item) => (
-                <a class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                <a class="flex items-center p-1 text-gray-900 rounded-lg hover:bg-gray-300 group"
                   key={item}
                   value={item}
                   onClick={handleCategory}>
