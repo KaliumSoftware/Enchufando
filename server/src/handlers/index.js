@@ -12,6 +12,7 @@ const postOrder = require('../handlers/orderHandlers/createOrders/postOrder');
 //products
 const getAllProducts = require('../handlers/productHandlers/readProducts/getAllProducts');
 const getAllMeasures = require('../handlers/productHandlers/readProducts/getAllMeaures');
+const getBestSellers = require('../handlers/productHandlers/readProducts/getBestSellers');
 const getProductById = require('../handlers/productHandlers/readProducts/getProductById');
 const postProduct = require('../handlers/productHandlers/createProducts/postProduct');
 const postAllProducts = require('./productHandlers/createProducts/postAllProducts');
@@ -44,6 +45,7 @@ module.exports = {
   //products
   getAllMeasures,
   getAllProducts,
+  getBestSellers,
   postProduct,
   postAllProducts,
   getProductById,

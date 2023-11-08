@@ -23,6 +23,11 @@ module.exports = function defineProductModel(sequelize) {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false
       },
+      sales: {
+        defaultValue: 0,
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       type: {
         type: DataTypes.ENUM,
         values: ['ROSCADO', 'ESPIGA', 'KRONA'],
@@ -41,13 +46,10 @@ module.exports = function defineProductModel(sequelize) {
         validate: {
           validateFormat(value) {
             if (!value.secure_url) {
-              throw new Error(
-                'The "image" object must have "secure_url" property.'
-              );
+              throw new Error('The "image" object must have "secure_url" property.');
             }
 
-            const imageUrlRegex =
-              /^(https?:\/\/)?[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?$/;
+            const imageUrlRegex = /^(https?:\/\/)?[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?$/;
             if (!imageUrlRegex.test(value.secure_url)) {
               throw new Error(
                 "The 'secure_url' property does not meet the required format"

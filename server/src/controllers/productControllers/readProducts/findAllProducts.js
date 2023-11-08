@@ -13,7 +13,8 @@ const findAllProducts = async (userId) => {
 
     return mappedProducts;
   } catch (error) {
-    return error;
+    console.error(error.message);
+    return false;
   }
 };
 
