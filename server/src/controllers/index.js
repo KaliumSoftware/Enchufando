@@ -11,6 +11,7 @@ const findAllUserOrders = require('./orderControllers/readOrders/findAllUserOrde
 const createOrder = require('./orderControllers/createOrders/createOrder');
 //products
 const findAllProducts = require('./productControllers/readProducts/findAllProducts');
+const findAllBestSellers = require('./productControllers/readProducts/findBestSellers');
 const findAllMeasures = require('./productControllers/readProducts/findAllMeasures');
 const findProductByPk = require('./productControllers/readProducts/findProductByPk');
 const createProduct = require('./productControllers/createProducts/createProduct');
@@ -44,6 +45,7 @@ module.exports = {
   createProduct,
   createAllProducts,
   findAllProducts,
+  findAllBestSellers,
   findProductByPk,
   findAllMeasures,
   deleteProduct,
