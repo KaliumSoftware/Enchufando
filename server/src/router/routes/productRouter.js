@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const fileUpload = require('express-fileupload');
-const isLogged = require('../../middlewares/isLogged');
-const authAdminMiddleware = require('../../middlewares/authAdminMiddleware');
+// middlewares
+const authAdmin = require('../../middlewares/authAdmin');
+// handlers
 const {
   getAllProducts,
   postProduct,
@@ -17,9 +18,8 @@ const productRouter = Router();
 
 productRouter.get('/', getAllProducts);
 productRouter.get('/measures', getAllMeasures);
-productRouter.get('/:id', authAdminMiddleware(getProductById));
-
-productRouter.post('/all', postAllProducts);
+productRouter.get('/:id', authAdmin(getProductById));
+productRouter.post('/all', authAdmin(postAllProducts));
 productRouter.post(
   '/',
   fileUpload({
@@ -28,9 +28,8 @@ productRouter.post(
   }),
   postProduct
 );
-
-productRouter.patch('/:id', handleIsActive);
-productRouter.put('/:id', handlePutProduct);
-productRouter.delete('/:id', handleProductDelete);
+productRouter.patch('/:id', authAdmin(handleIsActive));
+productRouter.put('/:id', authAdmin(handlePutProduct));
+productRouter.delete('/:id', authAdmin(handleProductDelete));
 
 module.exports = productRouter;

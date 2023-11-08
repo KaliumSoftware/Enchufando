@@ -1,5 +1,8 @@
 const { Router } = require('express');
 const userRouter = Router();
+// middlewares
+const isLogged = require('../../middlewares/isLogged');
+const authAdmin = require('../../middlewares/authAdmin');
 // handlers
 const {
   getAllUsers,
@@ -11,14 +14,14 @@ const {
 } = require('../../handlers');
 
 //read
-userRouter.get('/', getAllUsers);
-userRouter.get('/:id', getUserById);
+userRouter.get('/', authAdmin(getAllUsers));
+userRouter.get('/:id', isLogged(getUserById));
 //create
-userRouter.post('/', createUser);
+userRouter.post('/', authAdmin(createUser));
 userRouter.post('/login', loginUser);
 //update
-userRouter.put('/:id', updateUser);
+userRouter.put('/:id', authAdmin(updateUser));
 //delete
-userRouter.delete('/delete/:id', deleteUsers);
+userRouter.delete('/delete/:id', authAdmin(deleteUsers));
 
 module.exports = userRouter;

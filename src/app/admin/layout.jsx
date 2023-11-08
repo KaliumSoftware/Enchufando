@@ -8,15 +8,13 @@ import axios from 'axios';
 const layout = ({ children }) => {
   const [access, setAccess] = useState(false);
   const loggedUser = useSelector((state) => state.user.loggedUser);
-  const router = useRouter();
+  const userId = loggedUser.id;
 
+  const router = useRouter();
   useEffect(() => {
     const authUser = async () => {
       try {
-        const response = await axios(
-          `${process.env.NEXT_PUBLIC_API_URL}/user/${loggedUser.id}`
-        );
-
+        const response = await axios(`${process.env.NEXT_PUBLIC_API_URL}/user/${userId}`);
         if (!response.data.isAdmin) {
           router.push('/');
           setAccess(false);
