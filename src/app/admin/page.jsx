@@ -6,7 +6,7 @@ import RecentOrders from '@/admin-components/RecentOrders';
 
 const page = () => {
   return (
-    <div className=' min-h-full bg-gray-100'>
+    <div className='min-h-screen bg-gray-100'>
       <Header />
       <TopCards />
       <div className='h-[22rem] px-4 py-2 flex justify-between'>
