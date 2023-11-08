@@ -10,6 +10,7 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
     if (!isNaN(totalFinal) && allInCart.length > 0) {
       const productsInOrder = allInCart.map((product) => {
         return {
+          id: product.id,
           name: product.name,
           image: product.image,
           size: product.selectedSpec.size,
@@ -27,6 +28,7 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
           totalPrice: totalFinal,
           userId: userId
         });
+        console.log(data);
         if (data.id) {
           dispatch(clearCart());
           alert('Pedido Enviado');
@@ -35,9 +37,7 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
         alert(error.response.data.message);
       }
     } else if (isNaN(totalFinal) && allInCart.length > 0) {
-      alert(
-        'Seleccione medida, empaque y cantidad para todos los productos del carrito'
-      );
+      alert('Seleccione medida, empaque y cantidad para todos los productos del carrito');
     } else if (allInCart.length === 0) {
       alert('No hay productos en el carrito');
     }
