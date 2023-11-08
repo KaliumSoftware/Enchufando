@@ -23,7 +23,7 @@ export default function Measure(props) {
         <Select
             label='Medidas'
             onChange={handleChange}
-            value={selectedSpec?.size}
+            value={localId}
         >
             {specifications?.map((spec) => (
                 <Option
