@@ -12,7 +12,7 @@ const updateUser = async (req, res) => {
       address,
       isAdmin
     };
-    console.log(isAdmin);
+
     const filledProperties = Object.entries(recibedProperties)
       .filter(([_, value]) => {
         return (
@@ -26,17 +26,13 @@ const updateUser = async (req, res) => {
 
     const filledObject = Object.fromEntries(filledProperties);
 
-    console.log(filledProperties);
-
     const user = await updateUserById(id, filledObject);
 
     if (!user) {
       throw new Error('el usuario no se pudo actualizar');
     }
 
-    return res
-      .status(200)
-      .json('el usuario fue actualizado con exito');
+    return res.status(200).json('el usuario fue actualizado con exito');
   } catch (error) {
     console.error(error);
     return res.status(400).json({ error: error.message });

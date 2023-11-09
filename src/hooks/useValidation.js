@@ -162,11 +162,18 @@ const useValidation = () => {
     return errors;
   };
 
+  const updateProductValidation = (productForm) => {
+    const errors = {};
+
+    return errors;
+  };
+
   return {
     loginValidation,
     signUpValidation,
     discountValidation,
-    contactUsValidation
+    contactUsValidation,
+    updateProductValidation
   };
 };
 

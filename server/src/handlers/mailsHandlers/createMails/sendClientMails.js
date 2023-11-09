@@ -3,7 +3,7 @@ const { createClientMails } = require('../../../controllers');
 const sendClientMails = async (req, res) => {
   try {
     const response = await createClientMails();
-    console.log(response);
+
     if (response === 'Mails enviados') {
       res.status(200).send({ message: response });
     } else {

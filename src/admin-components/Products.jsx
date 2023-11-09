@@ -1,6 +1,6 @@
 'use client';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllProducts,
@@ -8,12 +8,15 @@ import {
 } from '../redux/slices/productSlice';
 import Image from 'next/image';
 import { HiOutlineSearch } from 'react-icons/hi';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { Button } from '@nextui-org/react';
 import Pagination from '../components/molecules/Pagination';
 import usePagination from '@/hooks/usePagination';
+import EditModal from './EditModal';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const Products = () => {
+  const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const allProds = useSelector((state) => state.product.allProducts);
   const dispatch = useDispatch();
 
@@ -29,6 +32,16 @@ const Products = () => {
 
   const filterByName = (e) => {
     dispatch(filterProductsByName(e.target.value));
+  };
+
+  const handleClick = (buttonName) => {
+    if (buttonName === 'edit') {
+      setShowEdit(true);
+      setShowDelete(false);
+    } else {
+      setShowEdit(false);
+      setShowDelete(true);
+    }
   };
 
   return (
@@ -48,19 +61,24 @@ const Products = () => {
             />
           </div>
 
-          <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
-            <span>Name</span>
-            <span className='sm:text-left text-right'>Email</span>
-            <span className='hidden md:grid'>Last Order</span>
-            <span className='hidden sm:grid'>Tipo</span>
+          <div className='my-3 p-2 flex items-center'>
+            <div className='w-1/3 flex justify-start items-center'>
+              <span>Producto</span>
+            </div>
+            <div className='w-1/3 flex justify-center items-center'>
+              <span className='hidden sm:flex'>Tipo</span>
+            </div>
+            <div className='w-1/3 flex justify-center items-center'>
+              <span className='hidden sm:flex'>Opciones</span>
+            </div>
           </div>
           <ul>
             {currentPageData.map((product, id) => (
               <li
                 key={id}
-                className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
+                className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center'
               >
-                <div className='flex items-center'>
+                <div className='w-1/3 flex justify-start items-center'>
                   <div className='rounded-lg'>
                     <Image
                       className='filter brightness-110 mix-blend-multiply'
@@ -72,16 +90,34 @@ const Products = () => {
                   </div>
                   <p className='pl-4'>{product?.name}</p>
                 </div>
-                <p className='text-gray-600 sm:text-left text-right'>
-                  {product.email}
-                </p>
-                <p className='hidden md:flex'>{product.date}</p>
-                <div className='sm:flex hidden justify-between items-center'>
+
+                <div className='w-1/3 flex justify-center items-center'>
                   <p>
                     {product.type.charAt(0).toUpperCase() +
                       product.type.slice(1).toLowerCase()}
                   </p>
-                  <BsThreeDotsVertical />
+                </div>
+
+                <div className='w-1/3 flex justify-center items-center'>
+                  <Button
+                    className='mx-5'
+                    color='primary'
+                    variant='flat'
+                    name='login'
+                    onClick={() => handleClick('edit')}
+                  >
+                    Editar
+                  </Button>
+
+                  <Button
+                    className='mx-5'
+                    color='danger'
+                    variant='flat'
+                    name='login'
+                    onClick={() => handleClick('delete')}
+                  >
+                    Eliminar
+                  </Button>
                 </div>
               </li>
             ))}
@@ -94,6 +130,13 @@ const Products = () => {
           </div>
         </div>
       </div>
+      {showEdit && (
+        <EditModal
+          showEdit={showEdit}
+          setShowEdit={setShowEdit}
+        />
+      )}
+      {showDelete && <div>delete</div>}
     </div>
   );
 };

@@ -9,9 +9,6 @@ module.exports = function isLogged(handler) {
       else if (req.query.userId !== undefined) userId = req.query.userId;
       else if (req.params.id !== undefined) userId = req.params.id;
 
-      console.log(req.params);
-      console.log(userId);
-
       if (userId === 'notLogged') {
         return res.status(401).json({ error: 'Acceso no autorizado' });
       }
