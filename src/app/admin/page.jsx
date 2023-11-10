@@ -1,7 +1,8 @@
+'use client';
 import AdminHome from '@/components/organisms/AdminHome';
 
-const page = () => {
+const Page = () => {
   return <AdminHome />;
 };
 
-export default page;
+export default Page;

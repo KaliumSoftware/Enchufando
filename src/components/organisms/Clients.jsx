@@ -3,10 +3,7 @@ import axios from 'axios';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllUsers,
-  filterUsersByName
-} from '../redux/slices/userSlice';
+import { getAllUsers, filterUsersByName } from '../../redux/slices/userSlice';
 import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
 import Pagination from '@/components/molecules/Pagination';
 import usePagination from '@/hooks/usePagination';
@@ -20,9 +17,7 @@ const discountToPorcentage = (number) => {
 
 const Clients = () => {
   const allUsers = useSelector((state) => state.user.allUsers);
-  const allClients = allUsers.filter(
-    (user) => user.isAdmin === false
-  );
+  const allClients = allUsers.filter((user) => user.isAdmin === false);
   const dispatch = useDispatch();
   const { currentPageData } = usePagination(8, allClients);
 
@@ -74,9 +69,7 @@ const Clients = () => {
                   </div>
                   <p className='pl-4'>{client.name}</p>
                 </div>
-                <p className='text-gray-600 sm:text-left text-right'>
-                  {client.email}
-                </p>
+                <p className='text-gray-600 sm:text-left text-right'>{client.email}</p>
                 <p className='hidden md:flex'>{client.date}</p>
                 <div className='sm:flex hidden justify-between items-center'>
                   <p>{discountToPorcentage(client.discount)}</p>
