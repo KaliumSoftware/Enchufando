@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useValidation from '@/hooks/useValidation';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -18,10 +18,7 @@ const GenerateCode = ({ setShowDiscountMenu }) => {
   useEffect(() => {
     const createCode = async () => {
       try {
-        const { data } = await axios.post(
-          `${apiUrl}/codes`,
-          codeForm
-        );
+        const { data } = await axios.post(`${apiUrl}/codes`, codeForm);
 
         if (data.code) {
           setShowCode(data.code);
@@ -37,10 +34,7 @@ const GenerateCode = ({ setShowDiscountMenu }) => {
       }
     };
 
-    if (
-      errors.discount.length === 0 &&
-      codeForm.discount.length > 0
-    ) {
+    if (errors.discount.length === 0 && codeForm.discount.length > 0) {
       createCode();
     }
   }, [errors]);

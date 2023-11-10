@@ -1,10 +1,6 @@
-'use client';
-import {
-  IoBagHandle,
-  IoPieChart,
-  IoCart,
-  IoPeople
-} from 'react-icons/io5';
+import { IoBagHandle, IoPieChart, IoCart, IoPeople } from 'react-icons/io5';
+
+import BoxWrapper from '../atoms/BoxWrapper';
 
 const spanStyle = 'text-sm text-gray-500 font-light';
 const strongStyle = 'text-xl text-gray-700 font-semibold';
@@ -63,13 +59,5 @@ const TopCards = () => {
     </div>
   );
 };
-
-function BoxWrapper({ children }) {
-  return (
-    <div className='bg-white rounded-sm p-4 flex-1 border border-gray-200 flex items-center'>
-      {children}
-    </div>
-  );
-}
 
 export default TopCards;

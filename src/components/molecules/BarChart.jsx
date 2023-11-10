@@ -11,14 +11,7 @@ import {
   Legend
 } from 'chart.js';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChart = () => {
   const [chartData, setChartData] = useState({
@@ -29,15 +22,7 @@ const BarChart = () => {
 
   useEffect(() => {
     setChartData({
-      labels: [
-        'Lunes',
-        'Martes',
-        'Miercoles',
-        'Jueves',
-        'Viernes',
-        'Sabado',
-        'Domingo'
-      ],
+      labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
       datasets: [
         {
           label: 'Sales $',
@@ -63,7 +48,7 @@ const BarChart = () => {
   }, []);
 
   return (
-    <div className='w-[80%]'>
+    <div className=' lg:w-[80%]'>
       <div className='w-full h-full bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1'>
         <Bar
           data={chartData}
