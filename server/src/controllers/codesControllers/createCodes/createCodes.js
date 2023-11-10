@@ -19,7 +19,7 @@ const createCodes = async (discount) => {
     if (codeExists) throw new Error('The code already exists');
 
     const codeToCreate = {
-      discount,
+      discount: discount,
       code: finalCode
     };
 
