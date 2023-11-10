@@ -6,6 +6,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function ButtonSendOrder({ totalFinal, allInCart }) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.loggedUser.id);
+  console.log(userId)
   const handleSendOrder = async () => {
     if (!isNaN(totalFinal) && allInCart.length > 0) {
       const productsInOrder = allInCart.map((product) => {
@@ -28,7 +29,7 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
           totalPrice: totalFinal,
           userId: userId
         });
-        console.log(data);
+
         if (data.id) {
           dispatch(clearCart());
           alert('Pedido Enviado');
