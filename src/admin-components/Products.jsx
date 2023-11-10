@@ -2,10 +2,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllProducts,
-  filterProductsByName
-} from '../redux/slices/productSlice';
+import { getAllProducts, filterProductsByName } from '../redux/slices/productSlice';
 import Image from 'next/image';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { Button } from '@nextui-org/react';
@@ -27,7 +24,7 @@ const Products = () => {
     };
 
     if (!allProds || !allProds.length) allProducts();
-  }, []);
+  }, [allProds]);
   const { currentPageData } = usePagination(6, allProds);
 
   const filterByName = (e) => {
@@ -74,52 +71,60 @@ const Products = () => {
           </div>
           <ul>
             {currentPageData.map((product, id) => (
-              <li
-                key={id}
-                className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center'
-              >
-                <div className='w-1/3 flex justify-start items-center'>
-                  <div className='rounded-lg'>
-                    <Image
-                      className='filter brightness-110 mix-blend-multiply'
-                      width={75}
-                      height={75}
-                      alt={product?.name}
-                      src={product?.image.secure_url}
-                    />
+              <>
+                <li
+                  key={id}
+                  className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center'
+                >
+                  <div className='w-1/3 flex justify-start items-center'>
+                    <div className='rounded-lg'>
+                      <Image
+                        className='filter brightness-110 mix-blend-multiply'
+                        width={75}
+                        height={75}
+                        alt={product?.name}
+                        src={product?.image.secure_url}
+                      />
+                    </div>
+                    <p className='pl-4'>{product?.name}</p>
                   </div>
-                  <p className='pl-4'>{product?.name}</p>
-                </div>
 
-                <div className='w-1/3 flex justify-center items-center'>
-                  <p>
-                    {product.type.charAt(0).toUpperCase() +
-                      product.type.slice(1).toLowerCase()}
-                  </p>
-                </div>
+                  <div className='w-1/3 flex justify-center items-center'>
+                    <p>
+                      {product.type.charAt(0).toUpperCase() +
+                        product.type.slice(1).toLowerCase()}
+                    </p>
+                  </div>
 
-                <div className='w-1/3 flex justify-center items-center'>
-                  <Button
-                    className='mx-5'
-                    color='primary'
-                    variant='flat'
-                    name='login'
-                    onClick={() => handleClick('edit')}
-                  >
-                    Editar
-                  </Button>
+                  <div className='w-1/3 flex justify-center items-center'>
+                    <Button
+                      className='mx-5'
+                      color='primary'
+                      variant='flat'
+                      name='login'
+                      onClick={() => handleClick('edit')}
+                    >
+                      Editar
+                    </Button>
 
-                  <Button
-                    className='mx-5'
-                    color='danger'
-                    variant='flat'
-                    name='login'
-                    onClick={() => handleClick('delete')}
-                  >
-                    Eliminar
-                  </Button>
-                </div>
-              </li>
+                    <Button
+                      className='mx-5'
+                      color='danger'
+                      variant='flat'
+                      name='login'
+                      onClick={() => handleClick('delete')}
+                    >
+                      Eliminar
+                    </Button>
+                  </div>
+                </li>
+                {showEdit && (
+                  <EditModal
+                    setShowEdit={setShowEdit}
+                    product={product}
+                  />
+                )}
+              </>
             ))}
           </ul>
           <div className='flex justify-center py-4'>
@@ -130,12 +135,7 @@ const Products = () => {
           </div>
         </div>
       </div>
-      {showEdit && (
-        <EditModal
-          showEdit={showEdit}
-          setShowEdit={setShowEdit}
-        />
-      )}
+
       {showDelete && <div>delete</div>}
     </div>
   );

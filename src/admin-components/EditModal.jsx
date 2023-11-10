@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
 import useValidation from '@/hooks/useValidation';
+import { useDispatch } from 'react-redux';
 
-const EditModal = ({ setShowEdit }) => {
-  const [product, setProduct] = useState({
-    name: '',
-    email: '',
-    password: '',
-    repeatPassword: '',
-    address: '',
-    code: ''
+const EditModal = ({ setShowEdit, product }) => {
+  // id: "51ec44f0-f864-4086-9a38-610a21c12c4d"
+  // name: "Codo HH a 45º"
+  // type: "ROSCADO"
+  // category: "Codo"
+  // image: {public_id: 'products/oupjboripihspf85i5j0', secure_url: 'https://res.cloudinary.com/djbeg0zrq/image/upload/v1697824065/products/oupjboripihspf85i5j0.jpg'}
+  // sales: 0
+  // specifications: []
+  // active: true
+  // createdAt: "2023-11-08T21:49:27.573Z"
+  // updatedAt: "2023-11-08T21:49:27.573Z"
+  const [productForm, setProductForm] = useState({
+    id: product.id,
+    name: product.name,
+    type: product.type,
+    category: product.category,
+    image: product.image,
+    specifications: product.specifications
   });
   const [productErrors, setProductErrors] = useState({
+    id: '',
     name: '',
-    email: '',
-    password: '',
-    repeatPassword: '',
-    address: '',
-    code: ''
+    type: '',
+    category: '',
+    image: '',
+    specifications: ''
   });
 
   const dispatch = useDispatch();
@@ -25,15 +36,7 @@ const EditModal = ({ setShowEdit }) => {
   useEffect(() => {
     const updateProduct = async () => {
       try {
-        const { data } = await axios.post(`${apiUrl}/user`, product);
-
-        if (data.message === 'Usuario creado con éxito') {
-          if (data.user.isAdmin) router.push('/admin');
-          else router.push('/store');
-
-          setShowLoginMenu(false);
-          dispatch(setLoggedUser(data.user));
-        }
+        await axios.put(`${apiUrl}/product/${product.id}?userId=${userId}`, productForm);
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -50,12 +53,12 @@ const EditModal = ({ setShowEdit }) => {
       productErrors.repeatPassword.length === 0 &&
       productErrors.address.length === 0 &&
       productErrors.code.length === 0 &&
-      product.name.length > 0 &&
-      product.email.length > 0 &&
-      product.password.length > 0 &&
-      product.repeatPassword.length > 0 &&
-      product.address.length > 0 &&
-      product.code.length > 0
+      productForm.name.length > 0 &&
+      productForm.email.length > 0 &&
+      productForm.password.length > 0 &&
+      productForm.repeatPassword.length > 0 &&
+      productForm.address.length > 0 &&
+      productForm.code.length > 0
     ) {
       updateProduct();
     }
@@ -64,8 +67,8 @@ const EditModal = ({ setShowEdit }) => {
   const handleProductChange = (event) => {
     const { name, value } = event.target;
 
-    setProduct({
-      ...product,
+    setProductForm({
+      ...productForm,
       [name]: value
     });
   };
@@ -78,11 +81,11 @@ const EditModal = ({ setShowEdit }) => {
     event.preventDefault();
 
     if (form === 'login') {
-      const validatedErrors = updateProductValidation(product);
+      const validatedErrors = updateProductValidation(productForm);
 
       setErrors({ ...errors, ...validatedErrors });
     } else if (form === 'product') {
-      const validatedErrors = updateProductValidation(product);
+      const validatedErrors = updateProductValidation(productForm);
 
       setProductErrors({ ...productErrors, ...validatedErrors });
     }
@@ -172,12 +175,8 @@ const EditModal = ({ setShowEdit }) => {
                     }`}
                     placeholder='Email'
                     name='email'
-                    onChange={
-                      signingin
-                        ? handleLoginChange
-                        : handleProductChange
-                    }
-                    value={signingin ? login.email : product.email}
+                    onChange={signingin ? handleLoginChange : handleProductChange}
+                    value={signingin ? login.email : productForm.email}
                   />
                 </div>
 
@@ -227,14 +226,8 @@ const EditModal = ({ setShowEdit }) => {
                     }`}
                     placeholder='Contraseña'
                     name='password'
-                    onChange={
-                      signingin
-                        ? handleLoginChange
-                        : handleProductChange
-                    }
-                    value={
-                      signingin ? login.password : product.password
-                    }
+                    onChange={signingin ? handleLoginChange : handleProductChange}
+                    value={signingin ? login.password : productForm.password}
                   />
                 </div>
 
@@ -271,11 +264,7 @@ const EditModal = ({ setShowEdit }) => {
                   <div className='relative'>
                     <input
                       id='repeatPassword'
-                      type={
-                        showPassword.repeatPassword
-                          ? 'text'
-                          : 'password'
-                      }
+                      type={showPassword.repeatPassword ? 'text' : 'password'}
                       className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
                         productErrors.repeatPassword
                           ? 'border-red-600 border'
@@ -389,9 +378,7 @@ const EditModal = ({ setShowEdit }) => {
             </div>
 
             <p className='text-center text-sm text-gray-500'>
-              {signingin
-                ? '¿No tenés cuenta? '
-                : '¿Ya tenés cuenta? '}
+              {signingin ? '¿No tenés cuenta? ' : '¿Ya tenés cuenta? '}
               <span
                 className='underline cursor-pointer'
                 onClick={handleToggle}
