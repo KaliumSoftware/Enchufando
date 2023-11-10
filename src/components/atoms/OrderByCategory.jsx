@@ -20,8 +20,8 @@ const OrderByCategory = () => {
   return (
     <div>
       <h3 className='md:mt-4 mb-3 text-xl'>Categorías</h3>
-      <aside id="default-sidebar" class="hidden md:block md:top-0 left-0 z-40 w-64 transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-        <div class=" px-3 py-4 overflow-y-auto bg-white  rounded-lg">
+      <aside id="default-sidebar" class="hidden md:block md:top-0 left-0 z-40 w-64" aria-label="Sidebar">
+        <div class=" px-3 py-4 overflow-y-auto bg-white rounded-lg">
           <ul class="space-y-2 font-medium">
             <li>
               {category.map((item) => (
