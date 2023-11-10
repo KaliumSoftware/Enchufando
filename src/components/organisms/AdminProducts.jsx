@@ -2,10 +2,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllProducts,
-  filterProductsByName
-} from '../redux/slices/productSlice';
+import { getAllProducts, filterProductsByName } from '../redux/slices/productSlice';
 import Image from 'next/image';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { Button } from '@nextui-org/react';
@@ -14,7 +11,7 @@ import usePagination from '@/hooks/usePagination';
 import EditModal from './EditModal';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-const Products = () => {
+const AdminProducts = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const allProds = useSelector((state) => state.product.allProducts);
@@ -141,4 +138,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default AdminProducts;
