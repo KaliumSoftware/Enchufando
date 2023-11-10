@@ -1,7 +1,7 @@
-import Products from '@/admin-components/Products';
+import AdminProducts from '@/components/organisms/AdminProducts';
 
 const page = () => {
-  return <Products />;
+  return <AdminProducts />;
 };
 
 export default page;

@@ -32,7 +32,7 @@ const Product = (props) => {
           onClick={() => setMoreDetails(!moreDetails)}
           className='w-40 inline-flex gap-2 justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300'
         >
-          Ver más detalles
+          {moreDetails ? 'Ver más detalles' : 'Ocultar detalles'}
           <svg
             className='w-3.5 h-3.5'
             aria-hidden='true'

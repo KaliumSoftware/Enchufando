@@ -2,13 +2,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts, filterProductsByName } from '../redux/slices/productSlice';
+import { getAllProducts, filterProductsByName } from '../../redux/slices/productSlice';
 import Image from 'next/image';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { Button } from '@nextui-org/react';
-import Pagination from '../components/molecules/Pagination';
+import Pagination from '../molecules/Pagination';
 import usePagination from '@/hooks/usePagination';
-import EditModal from './EditModal';
+import EditProduct from '@/components/organisms/EditProduct';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const AdminProducts = () => {
@@ -119,7 +119,7 @@ const AdminProducts = () => {
                   </div>
                 </li>
                 {showEdit && (
-                  <EditModal
+                  <EditProduct
                     setShowEdit={setShowEdit}
                     product={product}
                   />
