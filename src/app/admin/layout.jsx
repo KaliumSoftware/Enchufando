@@ -1,5 +1,5 @@
 'use client';
-import Sidebar from '@/admin-components/Sidebar';
+import Sidebar from '@/components/organisms/Sidebar';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';

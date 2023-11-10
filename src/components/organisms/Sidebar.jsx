@@ -7,7 +7,7 @@ import { HiOutlineLogout } from 'react-icons/hi';
 import {
   DASHBOARD_SIDEBAR_LINKS,
   DASHBOARD_SIDEBAR_BOTTOM_LINKS
-} from '../../utils/consts';
+} from '../../../utils/consts';
 import GenerateCode from './GenerateCode';
 
 const Sidebar = () => {
@@ -16,9 +16,7 @@ const Sidebar = () => {
       <div className='flex flex-col gap-2'>
         <div className='flex items-center gap-2 px-1 py-3'>
           <FcBullish fontSize={24} />
-          <span className={'text-neutral-700 text-lg'}>
-            Auxie Admin
-          </span>
+          <span className={'text-neutral-700 text-lg'}>Auxie Admin</span>
         </div>
         <div className='flex flex-col gap-0.5 pt-2 border-t border-neutral-900'>
           {DASHBOARD_SIDEBAR_LINKS.map((item) => {
@@ -70,9 +68,7 @@ function SideBarLink({ item }) {
           <span className='text-xl'>{item.icon}</span>
           {item.label}
         </button>
-        {showDiscountMenu && (
-          <GenerateCode setShowDiscountMenu={setShowDiscountMenu} />
-        )}
+        {showDiscountMenu && <GenerateCode setShowDiscountMenu={setShowDiscountMenu} />}
       </div>
     );
   }
