@@ -14,10 +14,10 @@ const createOrder = async ({ products, totalPrice, userId }) => {
       await productToUpdate.save();
     });
 
-    const createdOrder = await Order.create(products, totalPrice, userId);
+    const createdOrder = await Order.create({ products, totalPrice, userId });
     return createdOrder;
   } catch (error) {
-    console.error(error.message);
+    console.log('error', error);
     return false;
   }
 };
