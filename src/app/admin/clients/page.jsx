@@ -1,4 +1,4 @@
-import Clients from '@/admin-components/Clients';
+import Clients from '@/components/organisms/Clients';
 const page = () => {
   return <Clients />;
 };

@@ -6,7 +6,6 @@ export default function AsidePirce() {
   const allInCart = useSelector((state) => state.cart.cartProducts);
   const userDiscount = useSelector((state) => state.user.loggedUser.discount);
 
-  console.log(userDiscount);
   const subTotal = allInCart
     .map((product) => {
       if (product.selectedSpec) {

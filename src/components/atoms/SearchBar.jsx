@@ -4,10 +4,7 @@ import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 //redux
 import { useDispatch } from 'react-redux';
-import {
-  filterProductsByName,
-  restoreProducts
-} from '../../redux/slices/productSlice';
+import { filterProductsByName, restoreProducts } from '../../redux/slices/productSlice';
 import { setCurrentPage } from '../../redux/slices/paginationSlice';
 //icon
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -38,7 +35,7 @@ const SearchBar = () => {
         onChange={handleSearch}
         placeholder='Productos...'
       />
-      <div className='relative top-1 right-8 cursor-pointer'>
+      <div className='z-0 relative top-1 right-8 cursor-pointer'>
         <AiOutlineSearch
           onClick={handleClick}
           className='text-black'
