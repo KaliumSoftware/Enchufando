@@ -8,16 +8,12 @@ import AsidePrice from '../molecules/AsidePirce';
 
 function ShoppingCart() {
   const [show, setShow] = useState(false);
-  const cartProducts = useSelector(
-    (state) => state.cart.cartProducts
-  );
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const productsOnLS = JSON.parse(
-      localStorage.getItem('cartProducts')
-    );
+    const productsOnLS = JSON.parse(localStorage.getItem('cartProducts'));
 
     if (productsOnLS?.length) {
       dispatch(setCart(productsOnLS));
@@ -92,9 +88,7 @@ function ShoppingCart() {
       </div>
       <div
         className={
-          show
-            ? 'fixed top-0 left-0 w-[99vw] h-screen bg-black bg-opacity-50'
-            : 'hidden'
+          show ? 'fixed top-0 left-0 w-[99vw] h-screen bg-black bg-opacity-50' : 'hidden'
         }
       ></div>
       <div
@@ -114,7 +108,7 @@ function ShoppingCart() {
             id='cart'
           >
             <div
-              className='lg:w-1/2 w-full md:pl-10 pl-4 pr-10 md:pr-4 md:py-12 py-8 bg-white overflow-y-auto overflow-x-hidden h-screen'
+              className='relative z-50 lg:w-1/2 w-full md:pl-10 pl-4 pr-10 md:pr-4 md:py-12 py-8 bg-white overflow-y-auto overflow-x-hidden h-screen'
               id='scroll'
             >
               <div

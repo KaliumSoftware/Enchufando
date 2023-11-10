@@ -11,7 +11,7 @@ import usePagination from '@/hooks/usePagination';
 import EditModal from './EditModal';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-const Products = () => {
+const AdminProducts = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const allProds = useSelector((state) => state.product.allProducts);
@@ -141,4 +141,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default AdminProducts;
