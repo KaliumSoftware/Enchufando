@@ -22,7 +22,12 @@ function ShoppingCart() {
     if (productsOnLS?.length) {
       dispatch(setCart(productsOnLS));
     }
-  }, []);
+    if (show) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [show]);
 
   return (
     <>
@@ -30,9 +35,8 @@ function ShoppingCart() {
         <button
           type='button'
           onClick={() => setShow(!show)}
-          className={`${
-            show && 'hidden'
-          } relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blueDark rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
+          className={`${show && 'hidden'
+            } relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blueDark rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
         >
           {cartProducts?.length ? (
             <svg
@@ -100,7 +104,7 @@ function ShoppingCart() {
       <div
         className={
           show
-            ? 'transition-all fixed w-full h-screen left-0 top-0 overflow-y-auto overflow-x-hidden z-50'
+            ? 'transition-all fixed w-full h-screen left-0 top-0 overflow-y-hidden overflow-x-hidden z-50'
             : ' fixed left-96'
         }
         id='chec-div'
