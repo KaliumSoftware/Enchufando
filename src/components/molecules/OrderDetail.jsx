@@ -1,12 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const OrderDetail = ({
-  setDetail,
-  products,
-  discount,
-  totalPrice
-}) => {
+const OrderDetail = ({ setDetail, products, discount, totalPrice }) => {
   const priceTransform = (price) => {
     return price.toLocaleString('es-AR', {
       style: 'currency',
@@ -18,9 +13,7 @@ const OrderDetail = ({
   return (
     <div className='fixed inset-0 flex items-center justify-center h-full w-full z-30'>
       <div className='fixed mx-auto px-4 py-10 sm:px-6 lg:px-8 z-20 bg-white max-h-[75vh] w-[75vw] lg:w-[50vw] overflow-y-auto'>
-        <h2 className='text-2xl font-bold text-center mb-3'>
-          Detalle del pedido
-        </h2>
+        <h2 className='text-2xl font-bold text-center mb-3'>Detalle del pedido</h2>
         <div className='flex flex-col items-center md:items-stretch'>
           {products?.map((product) => (
             <div className='md:flex items-center py-8 border-t border-gray-300'>
@@ -44,18 +37,14 @@ const OrderDetail = ({
                 <div>
                   <p>
                     Empaque:{' '}
-                    {product.pack === 'small'
-                      ? product.smallPack
-                      : product.bigPack}
+                    {product.pack === 'small' ? product.smallPack : product.bigPack}
                   </p>
                 </div>
 
                 <div>
                   <p>
                     Cantidad: {product.quantity} x{' '}
-                    {product.pack === 'small'
-                      ? product.smallPack
-                      : product.bigPack}
+                    {product.pack === 'small' ? product.smallPack : product.bigPack}
                   </p>
                 </div>
               </div>
@@ -70,7 +59,7 @@ const OrderDetail = ({
                 <div>
                   <p>
                     Con Descuento:{' '}
-                    {priceTransform(product.price * discount)}
+                    {priceTransform(product.price - product.price * discount)}
                   </p>
                 </div>
 
@@ -78,12 +67,9 @@ const OrderDetail = ({
                   <p>
                     Subtotal:{' '}
                     {priceTransform(
-                      product.price *
-                        discount *
+                      (product.price - product.price * discount) *
                         product.quantity *
-                        (product.pack === 'small'
-                          ? product.smallPack
-                          : product.bigPack)
+                        (product.pack === 'small' ? product.smallPack : product.bigPack)
                     )}
                   </p>
                 </div>

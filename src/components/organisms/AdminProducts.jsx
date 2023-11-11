@@ -14,12 +14,13 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const AdminProducts = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [productToEdit, setProductToEdit] = useState(null);
   const allProds = useSelector((state) => state.product.allProducts);
+  const userId = useSelector((state) => state.user.loggedUser.id);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const allProducts = async () => {
-      const { data } = await axios(`${apiUrl}/product`);
+      const { data } = await axios(`${apiUrl}/product?userId=${userId}`);
       dispatch(getAllProducts(data));
     };
 
@@ -31,11 +32,13 @@ const AdminProducts = () => {
     dispatch(filterProductsByName(e.target.value));
   };
 
-  const handleClick = (buttonName) => {
+  const handleClick = (buttonName, product) => {
     if (buttonName === 'edit') {
+      setProductToEdit(product);
       setShowEdit(true);
       setShowDelete(false);
     } else {
+      setProductToEdit(product);
       setShowEdit(false);
       setShowDelete(true);
     }
@@ -71,61 +74,59 @@ const AdminProducts = () => {
           </div>
           <ul>
             {currentPageData.map((product, id) => (
-              <>
-                <li
-                  key={id}
-                  className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center'
-                >
-                  <div className='w-1/3 flex justify-start items-center'>
-                    <div className='rounded-lg'>
-                      <Image
-                        className='filter brightness-110 mix-blend-multiply'
-                        width={75}
-                        height={75}
-                        alt={product?.name}
-                        src={product?.image.secure_url}
-                      />
-                    </div>
-                    <p className='pl-4'>{product?.name}</p>
+              <li
+                key={id}
+                className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center'
+              >
+                <div className='w-1/3 flex justify-start items-center'>
+                  <div className='rounded-lg'>
+                    <Image
+                      className='filter brightness-110 mix-blend-multiply'
+                      width={75}
+                      height={75}
+                      alt={product?.name}
+                      src={product?.image.secure_url}
+                    />
                   </div>
+                  <p className='pl-4'>{product?.name}</p>
+                </div>
 
-                  <div className='w-1/3 flex justify-center items-center'>
-                    <p>
-                      {product.type.charAt(0).toUpperCase() +
-                        product.type.slice(1).toLowerCase()}
-                    </p>
-                  </div>
+                <div className='w-1/3 flex justify-center items-center'>
+                  <p>
+                    {product.type.charAt(0).toUpperCase() +
+                      product.type.slice(1).toLowerCase()}
+                  </p>
+                </div>
 
-                  <div className='w-1/3 flex justify-center items-center'>
-                    <Button
-                      className='mx-5'
-                      color='primary'
-                      variant='flat'
-                      name='login'
-                      onClick={() => handleClick('edit')}
-                    >
-                      Editar
-                    </Button>
+                <div className='w-1/3 flex justify-center items-center'>
+                  <Button
+                    className='mx-5'
+                    color='primary'
+                    variant='flat'
+                    name='login'
+                    onClick={() => handleClick('edit', product)}
+                  >
+                    Editar
+                  </Button>
 
-                    <Button
-                      className='mx-5'
-                      color='danger'
-                      variant='flat'
-                      name='login'
-                      onClick={() => handleClick('delete')}
-                    >
-                      Eliminar
-                    </Button>
-                  </div>
-                </li>
-                {showEdit && (
-                  <EditProduct
-                    setShowEdit={setShowEdit}
-                    product={product}
-                  />
-                )}
-              </>
+                  <Button
+                    className='mx-5'
+                    color='danger'
+                    variant='flat'
+                    name='login'
+                    onClick={() => handleClick('delete')}
+                  >
+                    Eliminar
+                  </Button>
+                </div>
+              </li>
             ))}
+            {showEdit && (
+              <EditProduct
+                setShowEdit={setShowEdit}
+                product={productToEdit}
+              />
+            )}
           </ul>
           <div className='flex justify-center py-4'>
             <Pagination
