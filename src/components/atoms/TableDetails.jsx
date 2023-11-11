@@ -7,51 +7,51 @@ const TableDetails = ({ details }) => {
   return (
     <div className='bg-white text-black overflow-y-scroll max-h-48 min-w-full'>
       <table className='w-full text-sm text-left text-gray-500'>
-        <thead className='text-xs text-gray-700 uppercase bg-gray-50 flex justify-between'>
-          <tr className='bg-gray-50'>
-            <th>Size</th>
+        <thead className='text-xs text-gray-700 uppercase bg-gray-50 flex'>
+          <tr className='w-1/4 px-2'>
+            <th>Medida</th>
           </tr>
-          <tr className='bg-gray-50'>
-            <th>Price</th>
+          <tr className='w-1/4 px-2'>
+            <th>Precio</th>
           </tr>
-          <tr className='bg-gray-50'>
-            <th>Big pack</th>
+          <tr className='w-1/4 px-2'>
+            <th>Bolsón</th>
           </tr>
-          <tr>
-            <th>Small pack</th>
+          <tr className='w-1/4 px-2'>
+            <th>Bolsita</th>
           </tr>
         </thead>
 
-        <tbody className='bg-white flex justify-between'>
-          <div className='flex-col items-center'>
+        <div className='bg-white flex'>
+          <div className='flex-col items-center w-1/4 px-2'>
             {sizes?.map((size) => (
-              <tr key={size}>
+              <div key={size}>
                 <td>{size}</td>
-              </tr>
+              </div>
             ))}
           </div>
-          <div className='flex-col items-center'>
+          <div className='flex-col items-center w-1/4 px-2'>
             {prices?.map((price) => (
-              <tr key={price}>
+              <div key={price}>
                 <td>{price}</td>
-              </tr>
+              </div>
             ))}
           </div>
-          <div>
+          <div className='flex-col items-center w-1/4 px-2'>
             {bigPack?.map((big) => (
-              <tr key={big}>
+              <div key={big}>
                 <td>{big}</td>
-              </tr>
+              </div>
             ))}
           </div>
-          <div>
+          <div className='flex-col items-center w-1/4 px-2'>
             {smallPack?.map((small) => (
-              <tr key={small}>
+              <div key={small}>
                 <td>{small}</td>
-              </tr>
+              </div>
             ))}
           </div>
-        </tbody>
+        </div>
       </table>
     </div>
   );
