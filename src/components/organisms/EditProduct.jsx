@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import useValidation from '@/hooks/useValidation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import TableDetails from '@/components/atoms/TableDetails';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-const EditModal = ({ setShowEdit, product }) => {
+const EditProduct = ({ setShowEdit, product }) => {
+  const userId = useSelector((state) => state.user.loggedUser.id);
   // id: "51ec44f0-f864-4086-9a38-610a21c12c4d"
   // name: "Codo HH a 45º"
   // type: "ROSCADO"
   // category: "Codo"
   // image: {public_id: 'products/oupjboripihspf85i5j0', secure_url: 'https://res.cloudinary.com/djbeg0zrq/image/upload/v1697824065/products/oupjboripihspf85i5j0.jpg'}
   // sales: 0
-  // specifications: []
+  // specifications: [{},{}]
   // active: true
   // createdAt: "2023-11-08T21:49:27.573Z"
   // updatedAt: "2023-11-08T21:49:27.573Z"
@@ -199,13 +204,18 @@ const EditModal = ({ setShowEdit, product }) => {
               </div>
             </div>
 
-            {showSpecs && <div className='flex'>Poner tabla de especificaciones</div>}
+            {showSpecs && (
+              <div>
+                {showSpecs ? <TableDetails details={product.specifications} /> : null}
+              </div>
+            )}
             <div className='lg:flex justify-center gap-x-6 w-full'>
               <button
                 onClick={() => setShowSpecs(!showSpecs)}
                 className='w-40 inline-flex gap-2 justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300'
               >
                 {showSpecs ? 'Ocultar detalles' : 'Ver más detalles'}
+
                 <svg
                   className='w-3.5 h-3.5'
                   aria-hidden='true'
@@ -234,7 +244,7 @@ const EditModal = ({ setShowEdit, product }) => {
   );
 };
 
-export default EditModal;
+export default EditProduct;
 
 /*
 <div className='flex items-center justify-center'>
