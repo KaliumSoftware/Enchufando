@@ -14,55 +14,44 @@ const cartSlice = createSlice({
     setCart: (state, action) => {
       state.cartProducts = action.payload;
 
-      localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(state.cartProducts)
-      );
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts));
     },
     addToCart: (state, action) => {
       state.cartProducts.push({
         ...action.payload
       });
 
-      localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(state.cartProducts)
-      );
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts));
     },
     deleteCart: (state, action) => {
       state.cartProducts = state.cartProducts.filter(
         (product) => product.localId !== action.payload
       );
 
-      localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(state.cartProducts)
-      );
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts));
     },
     setSpecificationsCart: (state, action) => {
       const { selectedSpec, localId } = action.payload;
-      state.cartProducts = state.cartProducts.map((product) => {
-        if (product.localId === localId) {
-          return {
-            ...product,
-            selectedSpec
-          };
-        }
-        return product;
-      });
-
-      localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(state.cartProducts)
+      const index = state.cartProducts.findIndex(
+        (product) => product.localId === localId
       );
+
+      if (index !== -1) {
+        state.cartProducts[index] = {
+          ...state.cartProducts[index],
+          selectedSpec
+        };
+
+        // Actualiza el estado de forma inmutable
+        state.cartProducts = [...state.cartProducts];
+      }
+
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts));
     },
     clearCart: (state) => {
       state.cartProducts = [];
 
-      localStorage.setItem(
-        'cartProducts',
-        JSON.stringify(state.cartProducts)
-      );
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts));
     }
   }
 });
