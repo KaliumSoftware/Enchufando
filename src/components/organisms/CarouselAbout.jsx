@@ -1,6 +1,12 @@
 'use client';
 import { Carousel, Typography, Button } from '@material-tailwind/react';
 
+const img1 =
+  'https://res.cloudinary.com/djbeg0zrq/image/upload/v1699914952/pics/vjlljq7gmjaeo0ueuexm.jpg';
+const img2 =
+  'https://res.cloudinary.com/djbeg0zrq/image/upload/v1699977153/pics/ahpv1jd4aqzlsfb5eno5.jpg';
+const img3 =
+  'https://res.cloudinary.com/djbeg0zrq/image/upload/v1699914753/pics/emhhscgm9gtbq0yavoht.jpg';
 export function CarouselAbout() {
   return (
     <Carousel
@@ -11,7 +17,11 @@ export function CarouselAbout() {
       className='h-[90vh] lg:h-[80vh] overflow-hidden rounded-xl'
     >
       <div className='relative h-full w-full'>
-        <img className='h-full w-full object-cover' />
+        <img
+          src={img1}
+          alt='img1'
+          className='h-full w-full object-cover'
+        />
         <div className='absolute inset-0 grid h-full w-full items-center bg-black/75'>
           <div className='w-4/5 pl-14 md:w-2/4 md:pl-20 lg:pl-32'>
             <Typography
@@ -50,7 +60,10 @@ export function CarouselAbout() {
         </div>
       </div>
       <div className='relative h-full w-full'>
-        <img className='h-screen w-full object-cover' />
+        <img
+          src={img2}
+          className='h-screen w-full object-cover'
+        />
         <div className='absolute inset-0 grid h-full w-full items-center bg-black/75'>
           <div className='w-4/5 pl-14 md:w-2/4 md:pl-20 lg:pl-32'>
             <Typography
@@ -88,7 +101,10 @@ export function CarouselAbout() {
         </div>
       </div>
       <div className='relative h-full w-full'>
-        <img className='h-screen w-full object-cover' />
+        <img
+          src={img3}
+          className='h-screen w-full object-cover'
+        />
         <div className='absolute inset-0 grid h-full w-full items-center bg-black/75'>
           <div className='w-4/5 pl-14 md:w-2/4 md:pl-20 lg:pl-32'>
             <Typography
