@@ -38,16 +38,16 @@ export default function AsidePirce() {
               {isNaN(subTotal)
                 ? '$ 0,00'
                 : subTotal.toLocaleString('es-AR', {
-                    style: 'currency',
-                    currency: 'ARS',
-                    minimumFractionDigits: 2
-                  })}
+                  style: 'currency',
+                  currency: 'ARS',
+                  minimumFractionDigits: 2
+                })}
             </p>
           </div>
           <div className='flex items-center justify-between pt-5'>
             <p className='text-base leading-none text-gray-800'>Descuento</p>
             <p className='text-base leading-none text-gray-800'>
-              {userDiscount * 10000}%
+              {userDiscount * 100}%
             </p>
           </div>
         </div>
@@ -58,10 +58,10 @@ export default function AsidePirce() {
               {isNaN(totalFinal)
                 ? '$ 0,00'
                 : totalFinal.toLocaleString('es-AR', {
-                    style: 'currency',
-                    currency: 'ARS',
-                    minimumFractionDigits: 2
-                  })}
+                  style: 'currency',
+                  currency: 'ARS',
+                  minimumFractionDigits: 2
+                })}
             </p>
           </div>
           <ButtonSendOrder

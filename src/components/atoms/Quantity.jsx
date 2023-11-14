@@ -8,22 +8,52 @@ export default function Quantity(props) {
     const dispatch = useDispatch()
     const { id, localId, selectedSpec } = props;
 
-    const handleQuantityChange = (event) => {
-        event.preventDefault();
-        const { value } = event.target;
-        const numberRegex = /^[1-9]\d*$/;
-        if (numberRegex.test(value) || value.length === 0) {
+    const handleQuantityChange = (change) => {
+        if (!selectedSpec.quantity) {
             dispatch(setSpecificationsCart({
-                selectedSpec: { ...selectedSpec, quantity: Number(value) },
+                selectedSpec: { ...selectedSpec, quantity: 1 },
                 localId
             }))
+        } else {
+            const newQuantity = selectedSpec?.quantity + change;
+            const value = Number(newQuantity);
+            if (value >= 1) {
+                dispatch(setSpecificationsCart({
+                    selectedSpec: { ...selectedSpec, quantity: newQuantity },
+                    localId
+                }))
+            }
         }
-    };
 
+    };
+    console.log(selectedSpec)
     const isQuantityEnabled = !!selectedSpec?.pack;
     return (
         <div>
-            <div>
+            <div className="flex">
+                <p className="text-sm text-black mt-3">
+                    Cantidad: {selectedSpec?.quantity}
+                </p>
+                <button
+                    className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white"
+                    onClick={() => handleQuantityChange(1)}
+                    disabled={!isQuantityEnabled}
+                >
+                    +
+                </button>
+                <button
+                    className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white"
+                    onClick={() => handleQuantityChange(-1)}
+                    disabled={!isQuantityEnabled || selectedSpec?.quantity <= 1}
+                >
+                    -
+                </button>
+            </div>
+        </div>
+    )
+}
+
+{/* <div>
                 <label
                     htmlFor={`${localId}quantity`}
                     className='relative block overflow-hidden rounded-md border border-gray-200 px-9 pt-3 shadow-sm focus-within:border-black focus-within:ring-1 focus-within:ring-black selection:'
@@ -43,7 +73,4 @@ export default function Quantity(props) {
                         Cantidad
                     </span>
                 </label>
-            </div>
-        </div>
-    )
-}
+            </div> */}
