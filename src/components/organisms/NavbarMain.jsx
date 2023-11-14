@@ -49,7 +49,7 @@ export default function NavbarMain() {
   const menuItems = [
     { name: 'Inicio', url: '/' },
     { name: 'Tienda', url: '/store' },
-    { name: 'Empresa', url: '/about-us' },
+    { name: 'Nosotros', url: '/about-us' },
     { name: 'Contacto', url: '/contact-us' }
   ];
 
@@ -182,9 +182,7 @@ export default function NavbarMain() {
                           : router.push('/purchases');
                       }}
                     >
-                      {loggedUser.isAdmin
-                        ? 'Panel de administrador'
-                        : 'Mis compras'}
+                      {loggedUser.isAdmin ? 'Panel de administrador' : 'Mis compras'}
                     </DropdownItem>
                     <DropdownItem
                       key='help_and_feedback'
