@@ -19,9 +19,7 @@ export default function CarouselHome() {
                 <span
                   key={i}
                   className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                    activeIndex === i
-                      ? 'w-8 bg-white'
-                      : 'w-4 bg-white/50'
+                    activeIndex === i ? 'w-8 bg-white' : 'w-4 bg-white/50'
                   }`}
                   onClick={() => setActiveIndex(i)}
                 />
@@ -91,15 +89,13 @@ export default function CarouselHome() {
                 Materia prima de calidad
               </h2>
               <p className='my-3 sm:text-lg/relaxed'>
-                Polipropileno Roscado (PPN) Los accesorios roscados
-                Enchufando están fabricados con polipropileno
-                homopolímero (PP-H), este material brinda a los
-                productos alta resistencia cuando son sometidos a
-                altas presiones y temperaturas.{' '}
+                Polipropileno Roscado (PPN) Los accesorios roscados Enchufando están
+                fabricados con polipropileno homopolímero (PP-H), este material brinda a
+                los productos alta resistencia cuando son sometidos a altas presiones y
+                temperaturas.{' '}
                 <span className='hidden lg:inline'>
-                  Además, posee un alto grado de elasticidad
-                  otorgándole a las roscas la necesaria rigidez para
-                  no deformarse ante exigencias mecánicas.
+                  Además, posee un alto grado de elasticidad otorgándole a las roscas la
+                  necesaria rigidez para no deformarse ante exigencias mecánicas.
                 </span>
               </p>
             </div>
@@ -119,14 +115,12 @@ export default function CarouselHome() {
                 Polipropileno Riego (PPN)
               </h2>
               <p className='mt-4 sm:text-lg/relaxed'>
-                Los accesorios Riego Enchufando están fabricados con
-                el polietileno de baja densidad. La característica de
-                este material, es altamente recomendado para su uso en
-                aguadas, bebederos, riego de campos y jardines.{' '}
+                Los accesorios Riego Enchufando están fabricados con el polietileno de
+                baja densidad. La característica de este material, es altamente
+                recomendado para su uso en aguadas, bebederos, riego de campos y jardines.{' '}
                 <span className='hidden lg:inline'>
-                  Su aplicación es aconsejada especialmente para
-                  largos tendidos en condiciones climáticas y de
-                  instalación exigidas.
+                  Su aplicación es aconsejada especialmente para largos tendidos en
+                  condiciones climáticas y de instalación exigidas.
                 </span>
               </p>
             </div>
@@ -142,14 +136,11 @@ export default function CarouselHome() {
             </div>
 
             <div className='h-80 hidden md:flex flex-col items-center justify-center mx-10 lg:px-32'>
-              <h2 className='text-xl font-extrabold sm:text-3xl'>
-                Marca Krona
-              </h2>
+              <h2 className='text-xl font-extrabold sm:text-3xl'>Marca Krona</h2>
               <p className='mt-4 sm:text-lg/relaxed'>
-                Los productos de la Línea Krona son fabricados con
-                materiales de PVC de alta calidad y ofrecen una
-                solución confiable y duradera para sus necesidades de
-                plomería en proyectos de construcción.
+                Los productos de la Línea Krona son fabricados con materiales de PVC de
+                alta calidad y ofrecen una solución confiable y duradera para sus
+                necesidades de plomería en proyectos de construcción.
               </p>
             </div>
           </div>
