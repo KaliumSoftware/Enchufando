@@ -7,12 +7,19 @@ const img2 =
   'https://res.cloudinary.com/djbeg0zrq/image/upload/v1699977153/pics/ahpv1jd4aqzlsfb5eno5.jpg';
 const img3 =
   'https://res.cloudinary.com/djbeg0zrq/image/upload/v1699914753/pics/emhhscgm9gtbq0yavoht.jpg';
+
+const handleClick = (e) => {
+  e.target.value === 'store'
+    ? (window.location.href = '/store')
+    : (window.location.href = '/');
+};
+
 export function CarouselAbout() {
   return (
     <Carousel
       fullWidth
       autoplay='true'
-      autoplayDelay={5000}
+      autoplayDelay={8000}
       loop='true'
       className='h-[90vh] lg:h-[80vh] overflow-hidden rounded-xl'
     >
@@ -43,17 +50,20 @@ export function CarouselAbout() {
             </Typography>
             <div className='flex gap-2'>
               <Button
-                size='lg'
-                color='white'
-              >
-                Tienda
-              </Button>
-              <Button
+                className='bg-white/20 hover:bg-white/40'
                 size='lg'
                 color='white'
                 variant='text'
               >
                 Inicio
+              </Button>
+              <Button
+                onClick={(e) => handleClick(e)}
+                size='lg'
+                color='white'
+                value='store'
+              >
+                Tienda
               </Button>
             </div>
           </div>
@@ -84,17 +94,20 @@ export function CarouselAbout() {
             </Typography>
             <div className='flex gap-2'>
               <Button
-                size='lg'
-                color='white'
-              >
-                Tienda
-              </Button>
-              <Button
+                className='bg-white/10 hover:bg-white/40'
                 size='lg'
                 color='white'
                 variant='text'
               >
                 Inicio
+              </Button>
+              <Button
+                size='lg'
+                color='white'
+                onClick={(e) => handleClick(e)}
+                value='store'
+              >
+                Tienda
               </Button>
             </div>
           </div>
@@ -124,17 +137,20 @@ export function CarouselAbout() {
             </Typography>
             <div className='flex gap-2'>
               <Button
-                size='lg'
-                color='white'
-              >
-                Tienda
-              </Button>
-              <Button
+                className='bg-white/10 hover:bg-white/40'
                 size='lg'
                 color='white'
                 variant='text'
               >
                 Inicio
+              </Button>
+              <Button
+                size='lg'
+                color='white'
+                onClick={(e) => handleClick(e)}
+                value='store'
+              >
+                Tienda
               </Button>
             </div>
           </div>
