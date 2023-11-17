@@ -16,6 +16,7 @@ const discountToPorcentage = (number) => {
 };
 
 const Clients = () => {
+  const { loggedUser } = useSelector((state) => state.user);
   const allUsers = useSelector((state) => state.user.allUsers);
   const allClients = allUsers.filter((user) => user.isAdmin === false);
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Clients = () => {
 
   useEffect(() => {
     const allUsers = async () => {
-      const { data } = await axios(`${apiUrl}/user`);
+      const { data } = await axios(`${apiUrl}/user?userId=${loggedUser.id}`);
       dispatch(getAllUsers(data));
     };
 

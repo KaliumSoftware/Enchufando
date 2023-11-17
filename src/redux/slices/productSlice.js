@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   allProducts: [],
-  allProductsCopy: []
+  allProductsCopy: [],
+  popularProducts: []
 };
 
 const productSlice = createSlice({
@@ -16,19 +17,15 @@ const productSlice = createSlice({
 
     filterProductsByName: (state, action) => {
       const searchTerm = action.payload.toLowerCase();
-      const filteredProducts = state.allProductsCopy.filter(
-        (product) => {
-          if (product.name) {
-            const productNameNormalized = product.name
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '');
-            return productNameNormalized
-              .toLowerCase()
-              .includes(searchTerm);
-          }
-          return true;
+      const filteredProducts = state.allProductsCopy.filter((product) => {
+        if (product.name) {
+          const productNameNormalized = product.name
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+          return productNameNormalized.toLowerCase().includes(searchTerm);
         }
-      );
+        return true;
+      });
       state.allProducts = filteredProducts;
     },
     restoreProducts: (state) => {
@@ -39,9 +36,7 @@ const productSlice = createSlice({
         state.allProducts = state.allProductsCopy;
       } else {
         const filteredProducts = state.allProductsCopy.filter(
-          (product) =>
-            product.category.toLowerCase() ===
-            action.payload.toLowerCase()
+          (product) => product.category.toLowerCase() === action.payload.toLowerCase()
         );
         state.allProducts = filteredProducts;
       }
@@ -51,12 +46,27 @@ const productSlice = createSlice({
         state.allProducts = state.allProductsCopy;
       } else {
         const filteredProducts = state.allProductsCopy.filter(
-          (product) =>
-            product.type.toLowerCase() ===
-            action.payload.toLowerCase()
+          (product) => product.type.toLowerCase() === action.payload.toLowerCase()
         );
         state.allProducts = filteredProducts;
       }
+    },
+    getPopularProducts: (state, action) => {
+      const orderProducts = action.payload;
+      console.log(orderProducts);
+
+      const selledProduct = orderProducts.map((orderProduct) => orderProduct.products);
+
+      console.log(selledProduct);
+      /*   const sortedProducts = Object.keys(productCounts).sort(
+        (a, b) => productCounts[b] - productCounts[a]
+      );
+
+      const popularProducts = sortedProducts.map((productId) =>
+        state.allProductsCopy.find((product) => product.id === productId)
+      ); */
+
+      /* state.popularProducts = popularProducts; */
     }
   }
 });
@@ -66,6 +76,7 @@ export const {
   filterProductsByName,
   restoreProducts,
   filterByCategory,
-  filterByType
+  filterByType,
+  getPopularProducts
 } = productSlice.actions;
 export default productSlice.reducer;

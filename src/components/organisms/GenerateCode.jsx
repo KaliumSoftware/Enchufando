@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import useValidation from '@/hooks/useValidation';
+import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const GenerateCode = ({ setShowDiscountMenu }) => {
+  const { loggedUser } = useSelector((state) => state.user);
   const [codeForm, setCodeForm] = useState({
     discount: ''
   });
@@ -18,7 +20,10 @@ const GenerateCode = ({ setShowDiscountMenu }) => {
   useEffect(() => {
     const createCode = async () => {
       try {
-        const { data } = await axios.post(`${apiUrl}/codes`, codeForm);
+        const { data } = await axios.post(
+          `${apiUrl}/codes?userId=${loggedUser.id}`,
+          codeForm
+        );
 
         if (data.code) {
           setShowCode(data.code);
