@@ -10,7 +10,9 @@ import axios from 'axios';
 
 const Layout = ({ children }) => {
   const [access, setAccess] = useState(false);
-  const [screenSmall, setIsScreenSmall] = useState(window.innerWidth < 768);
+  const [screenSmall, setIsScreenSmall] = useState(
+    typeof window !== 'undefined' && window.innerWidth < 768
+  );
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const userId = loggedUser.id;
   const router = useRouter();
