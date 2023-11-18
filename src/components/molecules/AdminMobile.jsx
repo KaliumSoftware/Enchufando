@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import useValidation from '@/hooks/useValidation';
 import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -15,6 +16,8 @@ import {
 } from '@nextui-org/react';
 
 const AdminMobile = () => {
+  const { loggedUser } = useSelector((state) => state.user);
+  console.log(loggedUser);
   const router = useRouter();
   const [codeForm, setCodeForm] = useState({
     discount: ''
@@ -29,8 +32,10 @@ const AdminMobile = () => {
   useEffect(() => {
     const createCode = async () => {
       try {
-        const { data } = await axios.post(`${apiUrl}/codes`, codeForm);
-
+        const { data } = await axios.post(
+          `${apiUrl}/codes?userId=${loggedUser.id}`,
+          codeForm
+        );
         if (data.code) {
           setShowCode(data.code);
         }
