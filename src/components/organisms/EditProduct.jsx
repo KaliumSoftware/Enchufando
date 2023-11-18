@@ -18,6 +18,7 @@ const EditProduct = ({ setShowEdit, product }) => {
   // active: true
   // createdAt: "2023-11-08T21:49:27.573Z"
   // updatedAt: "2023-11-08T21:49:27.573Z"
+  const [specs, setSpecs] = useState(product.specifications);
   const [productForm, setProductForm] = useState({
     id: product.id,
     name: product.name,
@@ -81,6 +82,24 @@ const EditProduct = ({ setShowEdit, product }) => {
     const validatedErrors = updateProductValidation(productForm);
 
     setProductErrors({ ...productErrors, ...validatedErrors });
+  };
+
+  const handleSetSpecs = (inputs) => {
+    if (inputs.index || inputs.index === 0) {
+      const index = inputs.index;
+      let previousSpecs = [...specs];
+      const previousValues = specs[index];
+      const newValues = {
+        ...previousValues,
+        code: inputs.code[index],
+        size: inputs.size[index],
+        price: inputs.price[index],
+        bigPack: inputs.bigPack[index],
+        smallPack: inputs.smallPack[index]
+      };
+      previousSpecs[index] = newValues;
+      setSpecs(previousSpecs);
+    }
   };
 
   return (
@@ -206,7 +225,13 @@ const EditProduct = ({ setShowEdit, product }) => {
 
             {showSpecs && (
               <div>
-                {showSpecs ? <TableDetails details={product.specifications} /> : null}
+                {showSpecs ? (
+                  <TableDetails
+                    details={specs}
+                    from={'EditProduct'}
+                    handleSetSpecs={handleSetSpecs}
+                  />
+                ) : null}
               </div>
             )}
             <div className='lg:flex justify-center gap-x-6 w-full'>
