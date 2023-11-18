@@ -1,5 +1,6 @@
 'use client';
 import { Carousel, Typography, Button } from '@material-tailwind/react';
+import { useRouter } from 'next/navigation';
 
 const img1 =
   'https://res.cloudinary.com/djbeg0zrq/image/upload/v1699914952/pics/vjlljq7gmjaeo0ueuexm.jpg';
@@ -8,13 +9,13 @@ const img2 =
 const img3 =
   'https://res.cloudinary.com/djbeg0zrq/image/upload/v1699914753/pics/emhhscgm9gtbq0yavoht.jpg';
 
-const handleClick = (e) => {
-  e.target.value === 'store'
-    ? (window.location.href = '/store')
-    : (window.location.href = '/');
-};
-
 export function CarouselAbout() {
+  const router = useRouter();
+
+  const handleClick = (e) => {
+    e.target.value === 'store' ? router.push('/store') : router.push('/');
+  };
+
   return (
     <Carousel
       fullWidth
@@ -50,6 +51,7 @@ export function CarouselAbout() {
             </Typography>
             <div className='flex gap-2'>
               <Button
+                onClick={(e) => handleClick(e)}
                 className='bg-white/20 hover:bg-white/40'
                 size='lg'
                 color='white'
@@ -94,6 +96,7 @@ export function CarouselAbout() {
             </Typography>
             <div className='flex gap-2'>
               <Button
+                onClick={(e) => handleClick(e)}
                 className='bg-white/10 hover:bg-white/40'
                 size='lg'
                 color='white'
@@ -102,9 +105,9 @@ export function CarouselAbout() {
                 Inicio
               </Button>
               <Button
+                onClick={(e) => handleClick(e)}
                 size='lg'
                 color='white'
-                onClick={(e) => handleClick(e)}
                 value='store'
               >
                 Tienda
@@ -137,6 +140,7 @@ export function CarouselAbout() {
             </Typography>
             <div className='flex gap-2'>
               <Button
+                onClick={(e) => handleClick(e)}
                 className='bg-white/10 hover:bg-white/40'
                 size='lg'
                 color='white'
