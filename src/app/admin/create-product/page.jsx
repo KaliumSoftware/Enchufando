@@ -1,5 +1,4 @@
 import { PhotoIcon } from '@heroicons/react/24/solid';
-import InputImages from '@/admin-components/InputImages';
 import Measures from '../../../components/molecules/Measures';
 
 export default function CreateProduct() {
@@ -17,8 +16,7 @@ export default function CreateProduct() {
                 htmlFor='username'
                 className='block text-lg font-medium leading-6 text-gray-900'
               >
-                Nombre del Producto{' '}
-                <span className='text-red-400'>*</span>
+                Nombre del Producto <span className='text-red-400'>*</span>
               </label>
               <div className='mt-2'>
                 <div className='flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md'>
@@ -58,13 +56,13 @@ export default function CreateProduct() {
 
             <div className='col-span-full'>
               <label>Selecciona Imagen</label>
-              <InputImages />
-              {/*   <label
+
+              <label
                 htmlFor='photo'
                 className='block text-sm font-medium lg:text-lg leading-6 text-gray-900'
               >
                 Imagen del Producto
-              </label> */}
+              </label>
               <div className='col-span-full'>
                 <div className='mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10'>
                   <div className='text-center'>
