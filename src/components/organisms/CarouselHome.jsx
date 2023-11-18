@@ -4,9 +4,7 @@ import { Carousel, IconButton } from '@material-tailwind/react';
 export default function CarouselHome() {
   return (
     <>
-      <h2 className='text-3xl font-extrabold sm:text-5xl text-center mt-10'>
-        Productos destacados
-      </h2>
+      <h2 className='text-3xl font-bold text-center mt-10'>Productos destacados</h2>
       <div className='h-[50%] bg-white mb-5 py-16'>
         <Carousel
           autoplay={true}

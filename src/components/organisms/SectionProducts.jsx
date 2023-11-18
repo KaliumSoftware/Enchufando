@@ -14,7 +14,7 @@ const SectionProducts = () => {
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2 items-center'>
           <div className='bg-white p-8 md:p-12 lg:px-16 lg:py-24'>
             <div className='mx-auto max-w-xl text-center'>
-              <h2 className='text-2xl font-bold text-black md:text-3xl'>
+              <h2 className='text-3xl font-bold text-black md:text-3xl'>
                 Stock Permanente Garantizado
               </h2>
 

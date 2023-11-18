@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   allProducts: [],
@@ -52,21 +53,9 @@ const productSlice = createSlice({
       }
     },
     getPopularProducts: (state, action) => {
-      const orderProducts = action.payload;
-      console.log(orderProducts);
-
-      const selledProduct = orderProducts.map((orderProduct) => orderProduct.products);
-
-      console.log(selledProduct);
-      /*   const sortedProducts = Object.keys(productCounts).sort(
-        (a, b) => productCounts[b] - productCounts[a]
-      );
-
-      const popularProducts = sortedProducts.map((productId) =>
-        state.allProductsCopy.find((product) => product.id === productId)
-      ); */
-
-      /* state.popularProducts = popularProducts; */
+      const products = action.payload;
+      const popularProducts = products.sort((a, b) => b.sales - a.sales).slice(0, 5);
+      state.popularProducts = popularProducts;
     }
   }
 });

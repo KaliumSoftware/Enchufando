@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { FcBullish } from 'react-icons/fc';
-import { HiOutlineLogout } from 'react-icons/hi';
 import {
   DASHBOARD_SIDEBAR_LINKS,
   DASHBOARD_SIDEBAR_BOTTOM_LINKS
@@ -12,7 +11,7 @@ import GenerateCode from './GenerateCode';
 
 const Sidebar = () => {
   return (
-    <div className='h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between'>
+    <div className='fixed lg:block h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between'>
       <div className='flex flex-col gap-2'>
         <div className='flex items-center gap-2 px-1 py-3'>
           <FcBullish fontSize={24} />
@@ -39,12 +38,6 @@ const Sidebar = () => {
             />
           );
         })}
-        <div className='flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-100 hover:no-underline active-neutral-600 rounded-sm text-base text-red-600 cursor-pointer'>
-          <span className='text-xl'>
-            <HiOutlineLogout />
-          </span>
-          Logout
-        </div>
       </div>
     </div>
   );
