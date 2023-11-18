@@ -3,7 +3,7 @@ const orderRouter = Router();
 // middlewares
 const isLogged = require('../../middlewares/isLogged');
 const authAdmin = require('../../middlewares/authAdmin');
-//handlers
+// handlers
 const { getAllOrders, getAllUserOrders, postOrder } = require('../../handlers');
 
 orderRouter.get('/', authAdmin(getAllOrders));

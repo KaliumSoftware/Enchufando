@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import enchufandoStock1 from '@/../assets/enchufando-galpon.jpeg';
-import enchufandoStock2 from '@/../assets/enchufando-galpon2.jpeg';
+import enchufandoStock1 from '../../../assets/galpon1.jpeg';
+import enchufandoStock2 from '../../../assets/galpon2.jpeg';
 import Image from 'next/image';
 
 const SectionProducts = () => {
@@ -19,8 +19,8 @@ const SectionProducts = () => {
               </h2>
 
               <p className='block text-black sm:mt-4 sm:block'>
-                Descubrí nuestros accesorios para tuberías de agua y
-                mangueras de riego líderes en el mercado.
+                Descubrí nuestros accesorios para tuberías de agua y mangueras de riego
+                líderes en el mercado.
               </p>
 
               <div className='mt-4 md:mt-8'>
