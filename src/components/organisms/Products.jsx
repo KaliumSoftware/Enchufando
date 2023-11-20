@@ -7,14 +7,17 @@ import Product from '../molecules/Product';
 import Pagination from '../molecules/Pagination';
 import usePagination from '@/hooks/usePagination';
 import FilterStore from '../molecules/FilterStore';
-
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+import SearchBar from '../atoms/SearchBar';
 
 const Products = () => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const allProducts = useSelector((state) => state.product.allProducts);
   const userId = useSelector((state) => state.user.loggedUser.id);
   const dispatch = useDispatch();
+
   const { currentPageData } = usePagination(6, allProducts);
+
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await axios(`${apiUrl}/product?userId=${userId || 'notLogged'}`);
@@ -23,10 +26,14 @@ const Products = () => {
 
     if (!allProducts || !allProducts.length) getProducts();
   }, []);
+
   return (
-    <div className='min-h-[80vh] bg-gray-100 flex flex-col md:flex-row py-8'>
+    <div className='min-h-[80vh] bg-gray-100 flex flex-col py-8 md:gap-8'>
+      <div className='w-full bg-blueDark md:hidden flex justify-center items-center py-4'>
+        <SearchBar />
+      </div>
       <FilterStore />
-      <div className='w-full '>
+      <div className='w-full px-16'>
         <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-100 gap-4'>
           {currentPageData.length > 0 ? (
             currentPageData?.map((product) => (

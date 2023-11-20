@@ -5,7 +5,7 @@ import { clearCart } from '@/redux/slices/cartSlice';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function ButtonSendOrder({ totalFinal, allInCart }) {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.loggedUser.id);
+  const user = useSelector((state) => state.user.loggedUser);
   const handleSendOrder = async () => {
     if (!isNaN(totalFinal) && allInCart.length > 0) {
       const productsInOrder = allInCart.map((product) => {
@@ -21,12 +21,12 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
           bigPack: product.selectedSpec.bigPack
         };
       });
-
       try {
         const { data } = await axios.post(`${apiUrl}/order`, {
           products: productsInOrder,
           totalPrice: totalFinal,
-          userId: userId
+          userId: user.id,
+          userName: user.name
         });
 
         if (data.id) {
@@ -34,7 +34,7 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
           alert('Pedido Enviado');
         }
       } catch (error) {
-        alert(error.response.data.message);
+        alert(error.message);
       }
     } else if (isNaN(totalFinal) && allInCart.length > 0) {
       alert('Seleccione medida, empaque y cantidad para todos los productos del carrito');
