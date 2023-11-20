@@ -4,8 +4,7 @@ import Image from 'next/image';
 import useContactUsForm from '@/hooks/useContactUsForm';
 
 const ContactUs = () => {
-  const { contactUsForm, errors, handleChange, validate } =
-    useContactUsForm();
+  const { contactUsForm, errors, handleChange, validate } = useContactUsForm();
 
   return (
     <div className='flex flex-col items-center justify-center'>
@@ -34,10 +33,13 @@ const ContactUs = () => {
                   Datos de cliente
                 </h2>
                 <p className='mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl'>
-                  Vamos a necesitar los siguientes datos para poder
-                  contactarte y darte una respuesta mas eficiente
+                  Vamos a necesitar los siguientes datos para poder contactarte y darte
+                  una respuesta mas eficiente
                 </p>
-                <form className='space-y-5 md:space-y-8 md:px-20'>
+                <form
+                  name='contact'
+                  className='space-y-5 md:space-y-8 md:px-20'
+                >
                   <div className='md:flex md:gap-5 space-y-5 md:space-y-0'>
                     <div className='md:w-[50%]'>
                       <label

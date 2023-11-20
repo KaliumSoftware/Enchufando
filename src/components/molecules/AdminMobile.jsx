@@ -28,8 +28,6 @@ const AdminMobile = () => {
 
   const { discountValidation } = useValidation();
 
-  console.log(codeForm);
-
   const createCode = async () => {
     if (errors.discount.length === 0 && codeForm.discount.length > 0) {
       try {
@@ -106,7 +104,10 @@ const AdminMobile = () => {
               {showCode}
             </span>
           ) : (
-            <form onSubmit={validate}>
+            <form
+              name='discount'
+              onSubmit={validate}
+            >
               <div className='mb-4 '>
                 <input
                   className='flex justify-center shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'

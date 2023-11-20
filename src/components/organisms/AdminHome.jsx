@@ -8,10 +8,10 @@ import RecentOrders from '@/components/molecules/RecentOrders';
 
 const AdminHome = () => {
   return (
-    <div className='ml-52 lg:mr-0 min-h-screen bg-gray-100'>
+    <div className='ml-52 lg:mr-0 pr-2 min-h-screen bg-gray-100'>
       <Header />
       <TopCards />
-      <div className='mb-4 px-4 py-2 flex sm:gap-4 md:flex-col md:justify-between xl:flex-row '>
+      <div className='mb-4 px-4 py-2 flex sm:gap-4 md:flex-col md:justify-between lg:flex-row '>
         <BarChart />
         <PopularProducts />
       </div>

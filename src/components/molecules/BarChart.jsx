@@ -15,11 +15,11 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const BarChart = () => {
   const [chartData, setChartData] = useState({
-    labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+    labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
     datasets: [
       {
         label: 'Sales $',
-        data: [18127, 22201, 19490, 17938, 24182, 17842, 22475],
+        data: [181127, 222301, 191490, 179238, 241842, 1784112, 223475],
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgb(53, 162, 235, 0.4)'
       }

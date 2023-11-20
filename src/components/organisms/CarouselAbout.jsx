@@ -19,7 +19,7 @@ export function CarouselAbout() {
   return (
     <Carousel
       fullWidth
-      autoplay='true'
+      autoplay={true}
       autoplayDelay={8000}
       loop='true'
       className='h-[90vh] lg:h-[80vh] overflow-hidden rounded-xl'
