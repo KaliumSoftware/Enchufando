@@ -1,8 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import useValidation from '@/hooks/useValidation';
 import { useRouter } from 'next/navigation';
-import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -17,7 +17,6 @@ import {
 
 const AdminMobile = () => {
   const { loggedUser } = useSelector((state) => state.user);
-  console.log(loggedUser);
   const router = useRouter();
   const [codeForm, setCodeForm] = useState({
     discount: ''
@@ -29,13 +28,14 @@ const AdminMobile = () => {
 
   const { discountValidation } = useValidation();
 
-  useEffect(() => {
-    const createCode = async () => {
+  const createCode = async () => {
+    if (errors.discount.length === 0 && codeForm.discount.length > 0) {
       try {
         const { data } = await axios.post(
           `${apiUrl}/codes?userId=${loggedUser.id}`,
           codeForm
         );
+
         if (data.code) {
           setShowCode(data.code);
         }
@@ -48,12 +48,8 @@ const AdminMobile = () => {
           text: error.response.data.message
         });
       }
-    };
-
-    if (errors.discount.length === 0 && codeForm.discount.length > 0) {
-      createCode();
     }
-  }, [errors]);
+  };
 
   const validate = (event) => {
     event.preventDefault();
@@ -108,7 +104,10 @@ const AdminMobile = () => {
               {showCode}
             </span>
           ) : (
-            <form onSubmit={validate}>
+            <form
+              name='discount'
+              onSubmit={validate}
+            >
               <div className='mb-4 '>
                 <input
                   className='flex justify-center shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -136,7 +135,7 @@ const AdminMobile = () => {
             <div className='flex items-center justify-center'>
               <button
                 className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                type='submit'
+                onClick={createCode}
               >
                 Generar Código
               </button>

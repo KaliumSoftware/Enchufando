@@ -3,7 +3,7 @@ const Testimonials = () => {
   return (
     <section className=''>
       <div className='mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16'>
-        <h2 className='text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
+        <h2 className='text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
           Lee las reseñas de conformidad de nuestros clientes.
         </h2>
 
@@ -67,8 +67,8 @@ const Testimonials = () => {
             </div>
 
             <p className='mt-4 text-gray-700'>
-              Productos de alta calidad. Precios competitivos.
-              Servicio confiable. ¡Muy satisfecho!
+              Productos de alta calidad. Precios competitivos. Servicio confiable. ¡Muy
+              satisfecho!
             </p>
           </blockquote>
 
@@ -124,15 +124,11 @@ const Testimonials = () => {
                   </svg>
                 </div>
 
-                <p className='mt-0.5 text-lg font-medium text-gray-900'>
-                  Fernando Gerez
-                </p>
+                <p className='mt-0.5 text-lg font-medium text-gray-900'>Fernando Gerez</p>
               </div>
             </div>
 
-            <p className='mt-4 text-gray-700'>
-              Muy buena fabrica, excelente gente
-            </p>
+            <p className='mt-4 text-gray-700'>Muy buena fabrica, excelente gente</p>
           </blockquote>
 
           <blockquote className='rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8'>
@@ -187,9 +183,7 @@ const Testimonials = () => {
                   </svg>
                 </div>
 
-                <p className='mt-0.5 text-lg font-medium text-gray-900'>
-                  Javier Ramírez
-                </p>
+                <p className='mt-0.5 text-lg font-medium text-gray-900'>Javier Ramírez</p>
               </div>
             </div>
 

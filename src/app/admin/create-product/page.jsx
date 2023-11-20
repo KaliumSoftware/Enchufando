@@ -3,7 +3,10 @@ import Measures from '../../../components/molecules/Measures';
 
 export default function CreateProduct() {
   return (
-    <form className='flex flex-col items-center justify-center'>
+    <form
+      name='create'
+      className='flex flex-col items-center justify-center'
+    >
       <div className='w-[80%] md:w-1/2'>
         <div className='border-b border-gray-900/10 pb-12'>
           <h2 className='mt-4 text-center text-2xl font-semibold leading-7 text-gray-900'>

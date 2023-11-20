@@ -48,15 +48,11 @@ const Layout = ({ children }) => {
   useEffect(() => {
     const checkAccess = async () => {
       if (loggedUser.id) {
-        const access = await authUser();
-        if (!access) {
-          router.push('/');
-        }
+        await authUser();
       } else {
         router.push('/');
       }
     };
-
     checkAccess();
   }, [loggedUser]);
 

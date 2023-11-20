@@ -15,41 +15,42 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const BarChart = () => {
   const [chartData, setChartData] = useState({
-    datasets: []
+    labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+    datasets: [
+      {
+        label: 'Sales $',
+        data: [181127, 222301, 191490, 179238, 241842, 1784112, 223475],
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgb(53, 162, 235, 0.4)'
+      }
+    ]
   });
 
-  const [chartOptions, setChartOptions] = useState({});
-
-  useEffect(() => {
-    setChartData({
-      labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
-      datasets: [
-        {
-          label: 'Sales $',
-          data: [18127, 22201, 19490, 17938, 24182, 17842, 22475],
-          borderColor: 'rgb(53, 162, 235)',
-          backgroundColor: 'rgb(53, 162, 235, 0.4'
-        }
-      ]
-    });
-    setChartOptions({
-      plugins: {
-        legend: {
-          position: 'top'
-        },
-        title: {
-          display: true,
-          text: 'Daily Revenue'
-        }
+  const [chartOptions, setChartOptions] = useState({
+    plugins: {
+      legend: {
+        position: 'top'
       },
-      maintainAspectRatio: false,
-      responsive: true
-    });
-  }, []);
+      title: {
+        display: true,
+        text: 'Daily Revenue'
+      }
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+    scales: {
+      x: {
+        beginAtZero: true
+      },
+      y: {
+        beginAtZero: true
+      }
+    }
+  });
 
   return (
-    <div className=' lg:w-[80%]'>
-      <div className='w-full h-full bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1'>
+    <div className='w-full lg:w-4/5'>
+      <div className='h-full w-full bg-white p-4 rounded-sm border border-gray-200'>
         <Bar
           data={chartData}
           options={chartOptions}

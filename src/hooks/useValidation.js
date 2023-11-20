@@ -1,6 +1,5 @@
 const useValidation = () => {
-  const emailRegex =
-    /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   const spaceBetweenWordsRegex = /^.*\s+.*$/;
   const notNumbersRegex = /^[^\d]+$/;
   const numbersAndLettersRegex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
@@ -101,11 +100,8 @@ const useValidation = () => {
       errors.discount = 'Ingrese un descuento';
     } else if (!Number(codeForm.discount)) {
       errors.discount = 'Ingrese solo números';
-    } else if (
-      Number(codeForm.discount) > 100 ||
-      Number(codeForm.discount) < 0
-    ) {
-      errors.discount = 'Ingrese un número entre 0 y 100';
+    } else if (Number(codeForm.discount) > 99 || Number(codeForm.discount) < 0) {
+      errors.discount = 'Ingrese un número entre 0 y 99';
     } else {
       errors.discount = '';
     }

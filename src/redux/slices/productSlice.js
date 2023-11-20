@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   allProducts: [],
   allProductsCopy: [],
-  popularProducts: []
+  popularProducts: [],
+  handleFilter: {
+    type: false,
+    category: false
+  }
 };
 
 const productSlice = createSlice({
@@ -52,21 +57,13 @@ const productSlice = createSlice({
       }
     },
     getPopularProducts: (state, action) => {
-      const orderProducts = action.payload;
-      console.log(orderProducts);
-
-      const selledProduct = orderProducts.map((orderProduct) => orderProduct.products);
-
-      console.log(selledProduct);
-      /*   const sortedProducts = Object.keys(productCounts).sort(
-        (a, b) => productCounts[b] - productCounts[a]
-      );
-
-      const popularProducts = sortedProducts.map((productId) =>
-        state.allProductsCopy.find((product) => product.id === productId)
-      ); */
-
-      /* state.popularProducts = popularProducts; */
+      const products = action.payload;
+      const popularProducts = products.sort((a, b) => b.sales - a.sales).slice(0, 5);
+      state.popularProducts = popularProducts;
+    },
+    handleFilter: (state, action) => {
+      console.log(action.payload);
+      state.handleFilter = action.payload;
     }
   }
 });
@@ -77,6 +74,7 @@ export const {
   restoreProducts,
   filterByCategory,
   filterByType,
-  getPopularProducts
+  getPopularProducts,
+  handleFilter
 } = productSlice.actions;
 export default productSlice.reducer;
