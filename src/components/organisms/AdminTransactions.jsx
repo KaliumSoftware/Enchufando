@@ -20,7 +20,7 @@ const AdminTransactions = () => {
   useEffect(() => {
     const getAllOrders = async () => {
       try {
-        const { data } = await axios.get(`${apiUrl}/api/order?userId=${userId}`);
+        const { data } = await axios.get(`${apiUrl}/order?userId=${userId}`);
         dispatch(setOrder(data));
       } catch (error) {
         console.error(error);
