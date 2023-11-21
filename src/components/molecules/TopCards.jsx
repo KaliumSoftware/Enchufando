@@ -19,11 +19,11 @@ const TopCards = () => {
   const allOrders = useSelector((state) => state.order.orderProducts);
   const allUsers = useSelector((state) => state.user.allUsers);
   const allClients = allUsers.filter((user) => user.isAdmin === false);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     const getAllOrders = async () => {
       try {
-        const { data } = await axios.get(`/api/order?userId=${loggedUser.id}`);
+        const { data } = await axios.get(`${apiUrl}/order?userId=${loggedUser.id}`);
         dispatch(setOrder(data));
         dispatch(setAllSales());
         dispatch(setDailySales());

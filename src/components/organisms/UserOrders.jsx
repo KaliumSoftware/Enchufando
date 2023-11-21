@@ -7,7 +7,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import OrderDetail from '@/components/molecules/OrderDetail';
 import usePagination from '@/hooks/usePagination';
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 
 const UserOrders = () => {
   const [allUserOrders, setAllUserOrders] = useState([]);
@@ -15,6 +15,7 @@ const UserOrders = () => {
   const userId = useSelector((state) => state.user.loggedUser.id);
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const { currentPageData } = usePagination(6, allUserOrders);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const getAllOrders = async () => {
