@@ -1,7 +1,11 @@
 'use client';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAllUserOrders, setRecentOrders } from '@/redux/slices/orderSlice';
+import {
+  setAllUserOrders,
+  setRecentOrders,
+  resetReducer
+} from '@/redux/slices/orderSlice';
 import axios from 'axios';
 import { FaShoppingBag } from 'react-icons/fa';
 
@@ -12,6 +16,8 @@ const RecentOrders = () => {
   const recentOrders = useSelector((state) => state.order.recentOrders);
 
   useEffect(() => {
+    dispatch(resetReducer('RESET_STATE'));
+
     const getAllOrders = async () => {
       try {
         const { data } = await axios.get(`/api/order?userId=${userId}`);

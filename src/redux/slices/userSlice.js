@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   allUsers: [],
   allUsersCopy: [],
+  onlyUsers: 0,
   loggedUser: {}
 };
 
@@ -14,11 +15,9 @@ const userSlice = createSlice({
       state.allUsers = action.payload;
       state.allUsersCopy = action.payload;
     },
+
     setLoggedUser: (state, action) => {
-      localStorage.setItem(
-        'loggedUser',
-        JSON.stringify(action.payload)
-      );
+      localStorage.setItem('loggedUser', JSON.stringify(action.payload));
 
       state.loggedUser = action.payload;
     },
@@ -29,9 +28,7 @@ const userSlice = createSlice({
           const userNameNormalized = user.name
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '');
-          return userNameNormalized
-            .toLowerCase()
-            .includes(searchTerm);
+          return userNameNormalized.toLowerCase().includes(searchTerm);
         }
         return true;
       });
@@ -40,6 +37,5 @@ const userSlice = createSlice({
   }
 });
 
-export const { getAllUsers, setLoggedUser, filterUsersByName } =
-  userSlice.actions;
+export const { getAllUsers, setLoggedUser, filterUsersByName } = userSlice.actions;
 export default userSlice.reducer;
