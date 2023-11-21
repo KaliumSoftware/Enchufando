@@ -1,12 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { BsThreeDotsVertical, BsFillCartFill } from 'react-icons/bs';
+import { BsFillCartFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import Pagination from '@/components/molecules/Pagination';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import OrderDetail from '@/components/molecules/OrderDetail';
 import usePagination from '@/hooks/usePagination';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const UserOrders = () => {
   const [allUserOrders, setAllUserOrders] = useState([]);
@@ -18,7 +19,7 @@ const UserOrders = () => {
   useEffect(() => {
     const getAllOrders = async () => {
       try {
-        const { data } = await axios.get(`/api/order/${userId}`);
+        const { data } = await axios.get(`${apiUrl}/api/order/${userId}`);
 
         setAllUserOrders(data);
       } catch (error) {
@@ -56,12 +57,8 @@ const UserOrders = () => {
     <div className='md:min-h-[56vh] h-full'>
       <div className='mt-24 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between'>
         <span className='flex justify-center'>Fecha de pedido</span>
-        <span className='hidden md:flex justify-center'>
-          Cantidad de productos
-        </span>
-        <span className='hidden md:flex justify-center'>
-          Descuento ($)
-        </span>
+        <span className='hidden md:flex justify-center'>Cantidad de productos</span>
+        <span className='hidden md:flex justify-center'>Descuento ($)</span>
         <span className='flex justify-center'>Total final</span>
       </div>
       <ul>
@@ -82,9 +79,7 @@ const UserOrders = () => {
             </div>
             <div className='hidden md:flex justify-center items-center'>
               <p className='flex'>
-                {priceTransform(
-                  order.totalPrice * loggedUser.discount
-                )}
+                {priceTransform(order.totalPrice * loggedUser.discount)}
               </p>
             </div>
             <div className='flex justify-center items-center'>
