@@ -5,7 +5,7 @@ export default function CreateProduct() {
   return (
     <form
       name='create'
-      className='flex flex-col items-center justify-center'
+      className='ml-52 lg:mr-0 pr-2 min-h-screen bg-gray-100 flex flex-col items-center justify-center'
     >
       <div className='w-[80%] md:w-1/2'>
         <div className='border-b border-gray-900/10 pb-12'>

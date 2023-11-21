@@ -45,7 +45,7 @@ const AdminProducts = () => {
   };
 
   return (
-    <div className='bg-gray-100 min-h-screen'>
+    <div className='ml-52 lg:mr-0 pr-2 min-h-screen bg-gray-100'>
       <div className='p-4'>
         <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto'>
           <div className='relative mx-2'>

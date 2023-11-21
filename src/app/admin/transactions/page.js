@@ -1,5 +1,7 @@
+import AdminTransactions from '@/components/organisms/AdminTransactions';
+
 const page = () => {
-  return <div>Acá las transacciones</div>;
+  return <AdminTransactions />;
 };
 
 export default page;
