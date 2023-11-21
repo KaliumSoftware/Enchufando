@@ -14,13 +14,14 @@ const RecentOrders = () => {
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const userId = loggedUser.id;
   const recentOrders = useSelector((state) => state.order.recentOrders);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     dispatch(resetReducer('RESET_STATE'));
 
     const getAllOrders = async () => {
       try {
-        const { data } = await axios.get(`/api/order?userId=${userId}`);
+        const { data } = await axios.get(`${apiUrl}/order?userId=${userId}`);
         dispatch(setAllUserOrders(data));
         dispatch(setRecentOrders(data));
       } catch (error) {
@@ -50,7 +51,7 @@ const RecentOrders = () => {
         {recentOrders.map((order, id) => (
           <li
             key={id}
-            onClick={() => {}}
+            onClick={() => { }}
             className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer'
           >
             <div className='bg-purple-100 rounded-lg p-3'>
