@@ -19,7 +19,7 @@ const UserOrders = () => {
   useEffect(() => {
     const getAllOrders = async () => {
       try {
-        const { data } = await axios.get(`${apiUrl}/api/order/${userId}`);
+        const { data } = await axios.get(`${apiUrl}/order/${userId}`);
 
         setAllUserOrders(data);
       } catch (error) {
