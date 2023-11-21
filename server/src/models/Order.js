@@ -35,10 +35,6 @@ module.exports = function defineOrderModel(sequelize) {
           model: 'Users',
           key: 'id'
         }
-      },
-      userName: {
-        type: DataTypes.STRING,
-        allowNull: false
       }
     },
     {
