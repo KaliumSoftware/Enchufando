@@ -20,7 +20,7 @@ const Products = () => {
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios(`${apiUrl}/product?userId=${userId || 'notLogged'}`);
+      const { data } = await axios(`https://enchufando-production.up.railway.app/api/product?userId=${userId || 'notLogged'}`);
       dispatch(getAllProducts(data));
     };
 
