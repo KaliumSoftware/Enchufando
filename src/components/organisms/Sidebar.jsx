@@ -11,7 +11,7 @@ import GenerateCode from './GenerateCode';
 
 const Sidebar = () => {
   return (
-    <div className='fixed lg:block h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between'>
+    <div className='fixed  h-screen p-4 bg-white flex flex-col justify-between'>
       <div className='flex flex-col gap-2'>
         <div className='flex items-center gap-2 px-1 py-3'>
           <FcBullish fontSize={24} />

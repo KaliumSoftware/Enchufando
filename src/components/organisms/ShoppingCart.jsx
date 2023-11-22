@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCart } from '@/redux/slices/cartSlice';
 import CartProduct from '../molecules/CartProduct';
@@ -31,8 +31,9 @@ function ShoppingCart() {
         <button
           type='button'
           onClick={() => setShow(!show)}
-          className={`${show && 'hidden'
-            } relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blueDark rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
+          className={`${
+            show && 'hidden'
+          } relative inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blueDark rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
         >
           {cartProducts?.length ? (
             <svg

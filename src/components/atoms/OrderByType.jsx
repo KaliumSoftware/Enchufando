@@ -6,7 +6,6 @@ const OrderByType = () => {
   const resetFilter = useSelector((state) => state.product.handleFilter);
   const dispatch = useDispatch();
 
-  console.log(resetFilter);
   const handleType = (e) => {
     dispatch(filterByType(e.target.value));
 

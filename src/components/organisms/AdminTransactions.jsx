@@ -15,8 +15,6 @@ const AdminTransactions = () => {
   const allOrders = useSelector((state) => state.order.orderProducts);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  console.log(allOrders);
-
   useEffect(() => {
     const getAllOrders = async () => {
       try {
@@ -46,7 +44,7 @@ const AdminTransactions = () => {
   }
 
   const { currentPageData } = usePagination(6, allOrders);
-  console.log(allOrders);
+
   return (
     <div className='ml-52 lg:mr-0 pr-2 min-h-screen bg-gray-100'>
       <div className='p-4'>

@@ -62,7 +62,6 @@ const productSlice = createSlice({
       state.popularProducts = popularProducts;
     },
     handleFilter: (state, action) => {
-      console.log(action.payload);
       state.handleFilter = action.payload;
     }
   }

@@ -53,9 +53,9 @@ const orderSlice = createSlice({
     setAllSales: (state) => {
       const allOrders = state.orderProducts;
 
-      for (let i = 0; i < allOrders.length; i++) {
-        state.totalSales += allOrders[i].totalPrice;
-      }
+      state.totalSales = allOrders.reduce((total, order) => {
+        return total + order.totalPrice;
+      }, 0);
     }
   }
 });
