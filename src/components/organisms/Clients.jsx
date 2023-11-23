@@ -8,7 +8,7 @@ import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
 import Pagination from '@/components/molecules/Pagination';
 import usePagination from '@/hooks/usePagination';
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
 const discountToPorcentage = (number) => {
   const porcentage = number * 100;
