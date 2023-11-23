@@ -9,7 +9,7 @@ import { Button } from '@nextui-org/react';
 import Pagination from '../molecules/Pagination';
 import usePagination from '@/hooks/usePagination';
 import EditProduct from '@/components/organisms/EditProduct';
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
 const AdminProducts = () => {
   const [showEdit, setShowEdit] = useState(false);
