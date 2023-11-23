@@ -13,7 +13,7 @@ const AdminTransactions = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.loggedUser.id);
   const allOrders = useSelector((state) => state.order.orderProducts);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
   console.log(allOrders);
 
