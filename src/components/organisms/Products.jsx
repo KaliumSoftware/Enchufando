@@ -10,7 +10,7 @@ import FilterStore from '../molecules/FilterStore';
 import SearchBar from '../atoms/SearchBar';
 
 const Products = () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
   const allProducts = useSelector((state) => state.product.allProducts);
   const userId = useSelector((state) => state.user.loggedUser.id);
@@ -20,7 +20,7 @@ const Products = () => {
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios(`https://enchufando-production.up.railway.app/api/product?userId=${userId || 'notLogged'}`);
+      const { data } = await axios(`${apiUrl}/product?userId=${userId || 'notLogged'}`);
       dispatch(getAllProducts(data));
     };
 

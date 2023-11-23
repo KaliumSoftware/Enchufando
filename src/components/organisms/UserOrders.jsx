@@ -15,7 +15,7 @@ const UserOrders = () => {
   const userId = useSelector((state) => state.user.loggedUser.id);
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const { currentPageData } = usePagination(6, allUserOrders);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
   useEffect(() => {
     const getAllOrders = async () => {
