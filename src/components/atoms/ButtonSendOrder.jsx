@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '@/redux/slices/cartSlice';
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api'
 export default function ButtonSendOrder({ totalFinal, allInCart }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.loggedUser);
