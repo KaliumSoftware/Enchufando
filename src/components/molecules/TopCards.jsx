@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import { setDailySales, setOrder, setAllSales } from '../../redux/slices/orderSlice';
 import { getAllUsers } from '../../redux/slices/userSlice';
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const spanStyle = 'text-sm text-gray-500 font-light';
 const strongStyle = 'text-xl text-gray-700 font-semibold';
 
@@ -19,7 +18,7 @@ const TopCards = () => {
   const allOrders = useSelector((state) => state.order.orderProducts);
   const allUsers = useSelector((state) => state.user.allUsers);
   const allClients = allUsers.filter((user) => user.isAdmin === false);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
   useEffect(() => {
     const getAllOrders = async () => {
       try {
