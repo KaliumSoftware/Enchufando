@@ -3,7 +3,7 @@ import useValidation from '@/hooks/useValidation';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
 const GenerateCode = ({ setShowDiscountMenu }) => {
   const { loggedUser } = useSelector((state) => state.user);
@@ -98,11 +98,10 @@ const GenerateCode = ({ setShowDiscountMenu }) => {
                     <div className='relative'>
                       <input
                         id='discount'
-                        className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                          errors.discount
+                        className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${errors.discount
                             ? 'border-red-600 border'
                             : 'border-gray-200 border'
-                        }`}
+                          }`}
                         placeholder='Descuento (%)'
                         name='discount'
                         onChange={handleChange}
