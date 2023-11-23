@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import TableDetails from '@/components/atoms/TableDetails';
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
 const EditProduct = ({ setShowEdit, product }) => {
   const userId = useSelector((state) => state.user.loggedUser.id);
@@ -114,11 +114,10 @@ const EditProduct = ({ setShowEdit, product }) => {
                   <input
                     id='name'
                     type='text'
-                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                      productErrors.name
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${productErrors.name
                         ? 'border-red-600 border'
                         : 'border-gray-200 border'
-                    }`}
+                      }`}
                     placeholder='Nombre del producto'
                     name='name'
                     value={productForm.name}
@@ -145,11 +144,10 @@ const EditProduct = ({ setShowEdit, product }) => {
                   <input
                     id='type'
                     type='text'
-                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                      productErrors.type
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${productErrors.type
                         ? 'border-red-600 border'
                         : 'border-gray-200 border'
-                    }`}
+                      }`}
                     placeholder='Tipo'
                     name='type'
                     onChange={handleProductChange}
@@ -179,11 +177,10 @@ const EditProduct = ({ setShowEdit, product }) => {
                   <input
                     id='category'
                     type='text'
-                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                      productErrors.category
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${productErrors.category
                         ? 'border-red-600 border'
                         : 'border-gray-200 border'
-                    }`}
+                      }`}
                     placeholder='Tipo'
                     name='category'
                     onChange={handleProductChange}
