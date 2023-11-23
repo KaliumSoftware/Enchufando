@@ -16,10 +16,10 @@ const Layout = ({ children }) => {
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const userId = loggedUser.id;
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api'
   const authUser = async () => {
     try {
-      const response = await axios(`${process.env.NEXT_PUBLIC_API_URL}/user/${userId}`);
+      const response = await axios(`${apiUrl}/user/${userId}`);
       if (!response.data.isAdmin) {
         throw new Error('User is not an admin');
       }
