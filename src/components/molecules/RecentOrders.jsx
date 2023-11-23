@@ -14,7 +14,7 @@ const RecentOrders = () => {
   const loggedUser = useSelector((state) => state.user.loggedUser);
   const userId = loggedUser.id;
   const recentOrders = useSelector((state) => state.order.recentOrders);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
   useEffect(() => {
     dispatch(resetReducer('RESET_STATE'));
