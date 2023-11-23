@@ -5,7 +5,7 @@ import useValidation from '@/hooks/useValidation';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 import {
   Card,
   CardHeader,
