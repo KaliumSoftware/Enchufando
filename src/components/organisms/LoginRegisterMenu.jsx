@@ -6,7 +6,7 @@ import useValidation from '@/hooks/useValidation';
 import axios from 'axios';
 import { setLoggedUser } from '@/redux/slices/userSlice';
 import Swal from 'sweetalert2';
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api';
 
 const LoginRegisterMenu = ({
   setShowLoginMenu,
@@ -216,11 +216,10 @@ const LoginRegisterMenu = ({
                     <input
                       id='name'
                       type='text'
-                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                        errorsSignUp.name
+                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${errorsSignUp.name
                           ? 'border-red-600 border'
                           : 'border-gray-200 border'
-                      }`}
+                        }`}
                       placeholder='Nombre completo'
                       name='name'
                       onChange={handleSignUpChange}
@@ -277,15 +276,14 @@ const LoginRegisterMenu = ({
                   <input
                     id='email'
                     type='text'
-                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                      signingin
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${signingin
                         ? errors.email
                           ? 'border-red-600 border'
                           : 'border-gray-200 border'
                         : errorsSignUp.email
-                        ? 'border-red-600 border'
-                        : 'border-gray-200 border'
-                    }`}
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                      }`}
                     placeholder='Email'
                     name='email'
                     onChange={
@@ -349,15 +347,14 @@ const LoginRegisterMenu = ({
                   <input
                     id='password'
                     type={showPassword.password ? 'text' : 'password'}
-                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                      signingin
+                    className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${signingin
                         ? errors.password
                           ? 'border-red-600 border'
                           : 'border-gray-200 border'
                         : errorsSignUp.password
-                        ? 'border-red-600 border'
-                        : 'border-gray-200 border'
-                    }`}
+                          ? 'border-red-600 border'
+                          : 'border-gray-200 border'
+                      }`}
                     placeholder='Contraseña'
                     name='password'
                     onChange={
@@ -433,11 +430,10 @@ const LoginRegisterMenu = ({
                           ? 'text'
                           : 'password'
                       }
-                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                        errorsSignUp.repeatPassword
+                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${errorsSignUp.repeatPassword
                           ? 'border-red-600 border'
                           : 'border-gray-200 border'
-                      }`}
+                        }`}
                       placeholder='Repetir contraseña'
                       name='repeatPassword'
                       onChange={handleSignUpChange}
@@ -499,11 +495,10 @@ const LoginRegisterMenu = ({
                     <input
                       id='address'
                       type='text'
-                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${
-                        errorsSignUp.address
+                      className={`w-full rounded-lg p-4 pe-12 text-sm shadow-sm ${errorsSignUp.address
                           ? 'border-red-600 border'
                           : 'border-gray-200 border'
-                      }`}
+                        }`}
                       placeholder='Dirección'
                       name='address'
                       onChange={handleSignUpChange}
@@ -560,11 +555,10 @@ const LoginRegisterMenu = ({
                     <input
                       id='code'
                       type='text'
-                      className={`w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ${
-                        errorsSignUp.code
+                      className={`w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ${errorsSignUp.code
                           ? 'border-red-600 border'
                           : 'border-gray-200 border'
-                      }`}
+                        }`}
                       placeholder='Código'
                       name='code'
                       onChange={handleSignUpChange}
