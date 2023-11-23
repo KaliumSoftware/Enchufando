@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 const PopularProducts = () => {
   const popularProducts = useSelector((state) => state.product.popularProducts);
   const { loggedUser } = useSelector((state) => state.user);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://enchufando-production.up.railway.app/api'
   const dispatch = useDispatch();
   useEffect(() => {
     const getOrders = async () => {
       const { data } = await axios(
-        `${process.env.NEXT_PUBLIC_API_URL}/product?userId=${loggedUser.id}`
+        `${apiUrl}/product?userId=${loggedUser.id}`
       );
       dispatch(getPopularProducts(data));
     };
@@ -42,8 +42,8 @@ const PopularProducts = () => {
                   product.sales === 0
                     ? 'text-red-500 text-xs font-medium'
                     : product.sales > 3000
-                    ? 'text-green-500 text-xs font-medium'
-                    : 'text-orange-500 text-xs font-medium'
+                      ? 'text-green-500 text-xs font-medium'
+                      : 'text-orange-500 text-xs font-medium'
                 }
               >
                 {product.sales === 0 ? 'Sin Ordenes' : product.sales + ' Ordenes'}
