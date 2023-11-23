@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import { setDailySales, setOrder, setAllSales } from '../../redux/slices/orderSlice';
 import { getAllUsers } from '../../redux/slices/userSlice';
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const spanStyle = 'text-sm text-gray-500 font-light';
 const strongStyle = 'text-xl text-gray-700 font-semibold';
 

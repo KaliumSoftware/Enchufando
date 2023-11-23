@@ -18,10 +18,9 @@ export function CarouselAbout() {
 
   return (
     <Carousel
-      fullWidth
       autoplay={true}
       autoplayDelay={8000}
-      loop='true'
+      loop={true}
       className='h-[90vh] lg:h-[80vh] overflow-hidden rounded-xl'
     >
       <div className='relative h-full w-full'>
@@ -37,7 +36,7 @@ export function CarouselAbout() {
               color='white'
               className='mb-4 text-3xl md:text-4xl lg:text-5xl'
             >
-              Quienes sómos
+              Quienes somos
             </Typography>
             <Typography
               variant='lead'

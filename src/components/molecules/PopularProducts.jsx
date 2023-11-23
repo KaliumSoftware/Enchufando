@@ -1,14 +1,14 @@
 'use client';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getPopularProducts } from '@/redux/slices/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const PopularProducts = () => {
   const popularProducts = useSelector((state) => state.product.popularProducts);
   const { loggedUser } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
+  console.log(`${process.env.NEXT_PUBLIC_API_URL}/order?userId=${loggedUser.id}`);
   useEffect(() => {
     const getOrders = async () => {
       const { data } = await axios(
