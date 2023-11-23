@@ -4,7 +4,6 @@ const postOrder = async (req, res) => {
   try {
     const { products, totalPrice, userId, userName } = req.body;
 
-    console.log(products, totalPrice, userId, userName);
     if (!products || !totalPrice || !userId || !userName) {
       return res
         .status(400)

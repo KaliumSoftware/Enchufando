@@ -129,7 +129,7 @@ export default function NavbarMain() {
 
             {!loggedUser.id ? (
               <NavbarContent justify='end'>
-                <NavbarItem className='hidden lg:flex'>
+                <NavbarItem>
                   <Button
                     as={Link}
                     color='primary'
@@ -142,6 +142,7 @@ export default function NavbarMain() {
                 </NavbarItem>
                 <NavbarItem>
                   <Button
+                    className='hidden lg:flex'
                     as={Link}
                     color='primary'
                     variant='flat'
