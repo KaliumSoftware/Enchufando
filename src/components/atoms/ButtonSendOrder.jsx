@@ -1,4 +1,4 @@
-import React from 'react';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '@/redux/slices/cartSlice';
@@ -6,6 +6,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function ButtonSendOrder({ totalFinal, allInCart }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.loggedUser);
+
   const handleSendOrder = async () => {
     if (!isNaN(totalFinal) && allInCart.length > 0) {
       const productsInOrder = allInCart.map((product) => {
@@ -31,15 +32,27 @@ export default function ButtonSendOrder({ totalFinal, allInCart }) {
 
         if (data.id) {
           dispatch(clearCart());
-          alert('Pedido Enviado');
+          Swal.fire({
+            icon: 'success',
+            title: 'Tu pedido ha sido enviado',
+            text: 'Gracias por tu compra'
+          });
         }
       } catch (error) {
-        alert(error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Problema al enviar el pedido',
+          text: error.message
+        });
       }
     } else if (isNaN(totalFinal) && allInCart.length > 0) {
-      alert('Seleccione medida, empaque y cantidad para todos los productos del carrito');
+      Swal.fire({
+        icon: 'error',
+        title: 'Problema al armar el pedido',
+        text: 'Seleccione medida, empaque y cantidad para todos los productos del carrito'
+      });
     } else if (allInCart.length === 0) {
-      alert('No hay productos en el carrito');
+      Swal.fire('No hay productos en el carrito');
     }
   };
 

@@ -5,7 +5,7 @@ const TableDetails = ({ details }) => {
   const smallPack = details?.map((item) => item.smallPack);
 
   return (
-    <div className='bg-white text-black overflow-y-scroll max-h-48 min-w-full'>
+    <div className='min-h-[270px] bg-white text-black overflow-y-scroll max-h-48 min-w-full'>
       <table className='w-full text-sm text-left text-gray-500'>
         <thead className='text-xs text-gray-700 uppercase bg-gray-50 flex'>
           <tr className='w-1/4 px-2'>
