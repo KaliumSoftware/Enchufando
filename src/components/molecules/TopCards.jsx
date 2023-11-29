@@ -49,7 +49,6 @@ const TopCards = () => {
     return formattedNumber;
   }
 
-  console.log(dailySales);
   return (
     <div className='px-4 py-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full'>
       <BoxWrapper>
