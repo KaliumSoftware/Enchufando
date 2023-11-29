@@ -49,6 +49,7 @@ const TopCards = () => {
     return formattedNumber;
   }
 
+  console.log(dailySales);
   return (
     <div className='px-4 py-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full'>
       <BoxWrapper>
@@ -67,7 +68,7 @@ const TopCards = () => {
       </BoxWrapper>
       <BoxWrapper>
         <div className='rounded-full h-12 w-12 flex items-center justify-center bg-orange-600'>
-          <IoPieChart className='text-2xl text-white' />
+          <IoPeople className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
           <span className={spanStyle}>Usuarios nuevos</span>
@@ -79,13 +80,13 @@ const TopCards = () => {
       </BoxWrapper>
       <BoxWrapper>
         <div className='rounded-full h-12 w-12 flex items-center justify-center bg-yellow-400'>
-          <IoPeople className='text-2xl text-white' />
+          <IoPieChart className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
-          <span className={spanStyle}> Usuarios nuevos</span>
+          <span className={spanStyle}> Ordenes Totales</span>
           <div className='flex items-center'>
-            <strong className={strongStyle}>15320</strong>
-            <span className='text-sm text-green-500 pl-2'>+1543</span>
+            <strong className={strongStyle}>{allOrders.length}</strong>
+            <span className='text-sm text-green-500 pl-2'>+{dailySales.orders}</span>
           </div>
         </div>
       </BoxWrapper>
