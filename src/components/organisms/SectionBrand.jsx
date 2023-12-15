@@ -17,7 +17,7 @@ const SectionBrand = () => {
         <div className='w-screen h-full lg:flex lg:justify-center lg:items-center filter bg-black/10 md:p-4 md:rounded-xl'>
           <div className='h-full w-full bg-white lg:h-[80%] lg:w-1/2 md:rounded-xl md:bg-white/90 '>
             <div className='flex flex-col justify-center h-full mx-auto max-w-xl text-center'>
-              <h1 className='flex flex-col text-3xl font-extrabold sm:text-5xl'>
+              <h1 className='flex flex-col text-xl sm:text-5xl font-extrabold '>
                 <strong className='font-extrabold mb-2'>Enchufando</strong>
 
                 <strong className='font-extrabold text-blueMain block'>
